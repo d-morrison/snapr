@@ -2,23 +2,35 @@
 % Please edit documentation in R/expect_snapshot_data.R
 \name{expect_snapshot_data}
 \alias{expect_snapshot_data}
-\title{Snapshot a data frame}
+\title{Snapshot testing for \link{data.frame}s}
 \usage{
-expect_snapshot_data(x, name, digits = 6)
+expect_snapshot_data(x, name, digits = 6, ...)
 }
 \arguments{
-\item{x}{a \link{data.frame}}
+\item{x}{a \link{data.frame} to snapshot}
 
-\item{name}{a \link{character} name of the snapshot}
+\item{name}{\link{character} snapshot name}
 
-\item{digits}{a \link{numeric} number of digits to round to}
+\item{digits}{\link{integer} passed to \code{\link[=signif]{signif()}} for numeric variables}
+
+\item{...}{
+  Arguments passed on to \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file}}
+  \describe{
+    \item{\code{path}}{Path to file.}
+    \item{\code{name}}{Snapshot name, taken from \code{path} by default.}
+    \item{\code{compare}}{A function used to compare the snapshot files.}
+  }}
+}
+\value{
+\link{NULL} (from \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file()}})
 }
 \description{
-Copied with permission:
-\url{https://github.com/bcgov/ssdtools/issues/379#issuecomment-2372581429}
+copied from \url{https://github.com/bcgov/ssdtools}
+with permission (\url{https://github.com/bcgov/ssdtools/issues/379})
 }
 \examples{
 \dontrun{
-iris |> expect_snapshot_data(name = "iris")
+expect_snapshot_data(iris, name = "iris")
 }
 }
+\keyword{internal}
