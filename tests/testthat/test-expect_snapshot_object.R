@@ -3,9 +3,9 @@ test_that("expect_snapshot_object works with RDS format (default)", {
   test_obj <- list(a = 1:3, b = letters[1:3], c = list(x = 1, y = 2))
   
   # This should create a snapshot
-  # RDS files are binary and OS-dependent, so use variant
+  # RDS files vary by both OS and R version, so use platform_variant
   expect_snapshot_object(
-    test_obj, name = "test_list_rds", variant = system_os()
+    test_obj, name = "test_list_rds", variant = platform_variant()
   )
 })
 

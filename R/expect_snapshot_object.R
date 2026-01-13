@@ -16,17 +16,28 @@
 #' @inheritDotParams testthat::expect_snapshot_file -path -name
 #' @returns [NULL] (from [testthat::expect_snapshot_file()])
 #' @export
+#' @details
+#' When using RDS format (the default), snapshots can vary across R versions
+#' and platforms even with fixed serialization versions. Consider using
+#' `variant = platform_variant()` for RDS snapshots to handle these
+#' differences, or use text-based formats like JSON or deparse for more
+#' stable snapshots across platforms and versions.
 #' @examples
 #' \dontrun{
-#' # Snapshot a list (using RDS format by default)
-#' expect_snapshot_object(list(a = 1, b = 2, c = "text"), name = "config")
+#' # Snapshot a list (using RDS format with platform/version variant)
+#' expect_snapshot_object(
+#'   list(a = 1, b = 2), name = "config", variant = platform_variant()
+#' )
 #'
 #' # Snapshot a model
 #' model <- lm(mpg ~ wt, data = mtcars)
-#' expect_snapshot_object(model, name = "model")
+#' expect_snapshot_object(
+#'   model, name = "model", variant = platform_variant()
+#' )
 #'
 #' # Snapshot with JSON format (for human-readable diffs)
-#' expect_snapshot_object(iris[1:5, ], name = "iris_sample", writer = save_json)
+#' # Text formats don't need variants
+#' expect_snapshot_object(iris[1:5, ], name = "iris", writer = save_json)
 #'
 #' # Snapshot with deparse format
 #' expect_snapshot_object(

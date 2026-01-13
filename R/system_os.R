@@ -54,3 +54,34 @@ system_os <- function() {
 darwin_variant <- function() {
   if (system_os() == "darwin") "darwin" else NULL
 }
+
+#' Get platform variant including OS and R version
+#'
+#' @description
+#' Returns a variant string combining OS and R major.minor version.
+#' This is useful for RDS snapshots that vary by both platform and R version.
+#'
+#' @details
+#' RDS files can produce different binary output across R versions even when
+#' using the same serialization version. This function creates variant strings
+#' like "linux-4.4", "darwin-4.5", "windows-4.4" to handle these differences.
+#'
+#' Use this function with [testthat::expect_snapshot_file()] when testing
+#' RDS files or other formats that vary by both OS and R version.
+#'
+#' @returns A character string like "linux-4.4", "darwin-4.5", or
+#'   "windows-4.4"
+#' @export
+#' @examples
+#' \dontrun{
+#' # Use with expect_snapshot_file for RDS snapshots
+#' expect_snapshot_object(
+#'   my_object, name = "test", variant = platform_variant()
+#' )
+#' }
+platform_variant <- function() {
+  r_version <- paste0(R.version$major, ".", R.version$minor)
+  # Extract major.minor (e.g., "4.4.3" -> "4.4")
+  r_version <- sub("^([0-9]+\\.[0-9]+).*", "\\1", r_version)
+  paste0(system_os(), "-", r_version)
+}
