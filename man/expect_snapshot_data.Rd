@@ -22,7 +22,7 @@ expect_snapshot_data(x, name, digits = 6, ...)
   }}
 }
 \value{
-Invisible \code{NULL} (from \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file()}})}
+[NULL] (from \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file()}})}
 \description{
 copied from \url{https://github.com/bcgov/ssdtools}
 with permission (\url{https://github.com/bcgov/ssdtools/issues/379})

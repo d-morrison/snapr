@@ -12,7 +12,7 @@
 #'   Other options include [save_json()], [save_deparse()], [save_csv()].
 #'   Custom writer functions should accept `x` and return a file path.
 #' @inheritDotParams testthat::expect_snapshot_file -path -name
-#' @returns Invisible `NULL` (from [testthat::expect_snapshot_file()])
+#' @returns [NULL] (from [testthat::expect_snapshot_file()])
 #' @export
 #' @examples
 #' \dontrun{

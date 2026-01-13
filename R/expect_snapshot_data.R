@@ -7,7 +7,7 @@
 #' @param name [character] snapshot name
 #' @param digits [integer] passed to [signif()] for numeric variables
 #' @inheritDotParams testthat::expect_snapshot_file -path -name -compare
-#' @returns Invisible `NULL` (from [testthat::expect_snapshot_file()])
+#' @returns [NULL] (from [testthat::expect_snapshot_file()])
 #' @export
 #' @examples
 #' \dontrun{

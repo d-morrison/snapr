@@ -35,7 +35,7 @@ a package you can set it in the \code{tests/testthat/helper.R} file.}
 }
 }
 \value{
-Invisible \code{NULL} (from \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file()}})
+[NULL] (from \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file()}})
 }
 \description{
 A flexible wrapper around \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file()}} that allows
