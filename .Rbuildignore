@@ -5,3 +5,6 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^\.lintr\.R$
+^copilot-instructions\.md$
+^project\.Rproj$
