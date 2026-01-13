@@ -6,11 +6,8 @@
 
 The goal of snapr is to provide convenient snapshot testing functions for R packages:
 
-- `expect_snapshot_data()` - for data.frames (adapted with permission from <https://github.com/bcgov/ssdtools/issues/379>)
-- `expect_snapshot_object()` - for any R object
-
-See <https://github.com/bcgov/ssdtools/issues/379#issuecomment-2372581429>.
-
+- `expect_snapshot_data()` - for data.frames (adapted [with permission](https://github.com/bcgov/ssdtools/issues/379) from the [`{ssdtools}` package](https://cran.r-project.org/web/packages/ssdtools/index.html))
+- `expect_snapshot_object()` - generalizes `expect_snapshot_data()` for use with any R object
 
 ## Installation
 
