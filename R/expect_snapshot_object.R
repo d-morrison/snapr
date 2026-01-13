@@ -34,7 +34,10 @@ expect_snapshot_object <- function(x, name, writer = save_rds, ...) {
   # Get file extension from the path returned by writer
   ext <- tools::file_ext(path)
   # Determine comparison method based on file extension
-  compare <- if (ext %in% c("txt", "json", "R", "csv")) {
+  # Text-based formats use line-by-line comparison (ignores line-ending differences)
+  # Binary formats use byte-by-byte comparison
+  text_extensions <- c("txt", "json", "R", "csv", "md", "yml", "yaml", "xml")
+  compare <- if (ext %in% text_extensions) {
     testthat::compare_file_text
   } else {
     testthat::compare_file_binary
