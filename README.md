@@ -2,7 +2,7 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/d-morrison/snapr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/d-morrison/snapr/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/d-morrison/snapshot.data/graph/badge.svg)](https://app.codecov.io/gh/d-morrison/snapshot.data)
+[![Codecov test coverage](https://codecov.io/gh/d-morrison/snapr/graph/badge.svg)](https://app.codecov.io/gh/d-morrison/snapr)
 <!-- badges: end -->
 
 The goal of snapr is to provide convenient snapshot testing functions for R packages:
