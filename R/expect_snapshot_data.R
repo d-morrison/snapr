@@ -2,7 +2,7 @@
 #' @description
 #' copied from <https://github.com/bcgov/ssdtools>
 #' with permission (<https://github.com/bcgov/ssdtools/issues/379>)
-#' 
+#'
 #' @param x a [data.frame] to snapshot
 #' @param name [character] snapshot name
 #' @param digits [integer] passed to [signif()] for numeric variables
