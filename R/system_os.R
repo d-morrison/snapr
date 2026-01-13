@@ -47,7 +47,9 @@ system_os <- function() {
 #' @examples
 #' \dontrun{
 #' # Use with expect_snapshot_file when only macOS differs
-#' expect_snapshot_object(mcmc_result, name = "test", variant = darwin_variant())
+#' expect_snapshot_object(
+#'   mcmc_result, name = "test", variant = darwin_variant()
+#' )
 #' }
 darwin_variant <- function() {
   if (system_os() == "darwin") "darwin" else NULL

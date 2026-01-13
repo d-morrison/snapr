@@ -4,7 +4,9 @@ test_that("expect_snapshot_object works with RDS format (default)", {
   
   # This should create a snapshot
   # RDS files are binary and OS-dependent, so use variant
-  expect_snapshot_object(test_obj, name = "test_list_rds", variant = system_os())
+  expect_snapshot_object(
+    test_obj, name = "test_list_rds", variant = system_os()
+  )
 })
 
 test_that("expect_snapshot_object works with JSON format", {
