@@ -9,7 +9,6 @@
 #' @inheritDotParams testthat::expect_snapshot_file -path -name -compare
 #' @returns [NULL] (from [testthat::expect_snapshot_file()])
 #' @export
-#' @keywords internal
 #' @examples
 #' \dontrun{
 #' expect_snapshot_data(iris, name = "iris")
