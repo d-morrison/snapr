@@ -43,7 +43,7 @@ expect_snapshot_data(x, name, digits = 6, ...)
 
 ## Value
 
-[NULL](https://rdrr.io/r/base/NULL.html) (from
+\[NULL\] (from
 [`testthat::expect_snapshot_file()`](https://testthat.r-lib.org/reference/expect_snapshot_file.html))
 
 ## Examples

@@ -3,9 +3,15 @@
 <url><loc>https://d-morrison.github.io/snapr/LICENSE-text.html</loc></url>
 <url><loc>https://d-morrison.github.io/snapr/LICENSE.html</loc></url>
 <url><loc>https://d-morrison.github.io/snapr/authors.html</loc></url>
+<url><loc>https://d-morrison.github.io/snapr/copilot-instructions.html</loc></url>
 <url><loc>https://d-morrison.github.io/snapr/index.html</loc></url>
 <url><loc>https://d-morrison.github.io/snapr/reference/expect_snapshot_data.html</loc></url>
+<url><loc>https://d-morrison.github.io/snapr/reference/expect_snapshot_object.html</loc></url>
 <url><loc>https://d-morrison.github.io/snapr/reference/index.html</loc></url>
+<url><loc>https://d-morrison.github.io/snapr/reference/save_csv.html</loc></url>
+<url><loc>https://d-morrison.github.io/snapr/reference/save_deparse.html</loc></url>
+<url><loc>https://d-morrison.github.io/snapr/reference/save_json.html</loc></url>
+<url><loc>https://d-morrison.github.io/snapr/reference/save_rds.html</loc></url>
 <url><loc>https://d-morrison.github.io/snapr/reference/snapr-package.html</loc></url>
 </urlset>
 
