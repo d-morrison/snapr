@@ -4,8 +4,10 @@
 [![R-CMD-check](https://github.com/d-morrison/snapr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/d-morrison/snapr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of snapr is to export the `expect_snapshot_data()` function from `https://github.com/bcgov/ssdtools`, 
-to test functions in other projects, without having to import the entire `ssdtools` package.
+The goal of snapr is to provide convenient snapshot testing functions for R packages:
+
+- `expect_snapshot_data()` - for data.frames (exported from `https://github.com/bcgov/ssdtools`)
+- `expect_snapshot_object()` - for any R object
 
 See <https://github.com/bcgov/ssdtools/issues/379#issuecomment-2372581429>.
 
@@ -19,11 +21,37 @@ You can install the development version of snapr from [GitHub](https://github.co
 pak::pak("d-morrison/snapr")
 ```
 
-## Example
+## Examples
 
-This is a basic example which shows you how to solve a common problem:
+### Snapshot data.frames
 
 ``` r
 library(snapr)
-## basic example code
+
+# In a testthat test file:
+test_that("iris data is correct", {
+  expect_snapshot_data(iris[1:5, ], name = "iris_sample")
+})
+```
+
+### Snapshot any R object
+
+``` r
+library(snapr)
+
+# Snapshot a list
+test_that("config object is correct", {
+  config <- list(
+    name = "my_app",
+    version = "1.0.0",
+    settings = list(debug = TRUE, timeout = 30)
+  )
+  expect_snapshot_object(config)
+})
+
+# Snapshot a model
+test_that("model structure is correct", {
+  model <- lm(mpg ~ wt, data = mtcars)
+  expect_snapshot_object(model, style = "serialize")
+})
 ```
