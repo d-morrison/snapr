@@ -1,29 +1,29 @@
-#' Snapshot a data frame
+#' Snapshot testing for [data.frame]s
 #' @description
-#' Copied with permission:
-#' <https://github.com/bcgov/ssdtools/issues/379#issuecomment-2372581429>
+#' copied from <https://github.com/bcgov/ssdtools>
+#' with permission (<https://github.com/bcgov/ssdtools/issues/379>)
 #'
-#' @param x a [data.frame]
-#' @param name a [character] name of the snapshot
-#' @param digits a [numeric] number of digits to round to
-#'
-#' @returns NULL
+#' @param x a [data.frame] to snapshot
+#' @param name [character] snapshot name
+#' @param digits [integer] passed to [signif()] for numeric variables
+#' @inheritDotParams testthat::expect_snapshot_file -path -name -compare
+#' @returns [NULL] (from [testthat::expect_snapshot_file()])
 #' @export
-#'
 #' @examples
 #' \dontrun{
-#' iris |> expect_snapshot_data(name = "iris")
+#' expect_snapshot_data(iris, name = "iris")
 #' }
-expect_snapshot_data <- function(x, name, digits = 6) {
+expect_snapshot_data <- function(x, name, digits = 6, ...) {
   fun <- function(x) signif(x, digits = digits)
   lapply_fun <- function(x) I(lapply(x, fun))
-  x <- dplyr::mutate(x, dplyr::across(where(is.numeric), fun))
-  x <- dplyr::mutate(x, dplyr::across(where(is.list), lapply_fun))
+  x <- dplyr::mutate(x, dplyr::across(tidyselect::where(is.numeric), fun))
+  x <- dplyr::mutate(x, dplyr::across(tidyselect::where(is.list), lapply_fun))
   path <- save_csv(x)
   testthat::expect_snapshot_file(
-    path,
-    paste0(name, ".csv"),
-    compare = testthat::expect_snapshot_file
+    path = path,
+    name = paste0(name, ".csv"),
+    compare = testthat::compare_file_text,
+    ...
   )
 }
 

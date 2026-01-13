@@ -13,4 +13,5 @@ BugReports: https://github.com/d-morrison/snapr/issues
 Imports: 
     dplyr,
     readr,
-    testthat
+    testthat,
+    tidyselect
