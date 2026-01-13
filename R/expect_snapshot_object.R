@@ -7,8 +7,10 @@
 #'
 #' @param x An R object to snapshot. Can be any R object including lists,
 #'   models, data.frames, vectors, etc.
-#' @param name [character] snapshot name (file extension will be added automatically)
-#' @param writer [function] Function to write the object to a file. Default is [save_rds()].
+#' @param name [character] snapshot name (file extension added
+#'   automatically)
+#' @param writer [function] Function to write the object to a file.
+#'   Default is [save_rds()].
 #'   Other options include [save_json()], [save_deparse()], [save_csv()].
 #'   Custom writer functions should accept `x` and return a file path.
 #' @inheritDotParams testthat::expect_snapshot_file -path -name
@@ -27,14 +29,17 @@
 #' expect_snapshot_object(iris[1:5, ], name = "iris_sample", writer = save_json)
 #'
 #' # Snapshot with deparse format
-#' expect_snapshot_object(list(x = 1:5), name = "simple_list", writer = save_deparse)
+#' expect_snapshot_object(
+#'   list(x = 1:5), name = "simple_list", writer = save_deparse
+#' )
 #' }
 expect_snapshot_object <- function(x, name, writer = save_rds, ...) {
   path <- writer(x)
   # Get file extension from the path returned by writer
   ext <- tools::file_ext(path)
   # Determine comparison method based on file extension
-  # Text-based formats use line-by-line comparison (ignores line-ending differences)
+  # Text-based formats use line-by-line comparison
+  # (ignores line-ending differences)
   # Binary formats use byte-by-byte comparison
   text_extensions <- c("txt", "json", "R", "csv", "md", "yml", "yaml", "xml")
   compare <- if (ext %in% text_extensions) {

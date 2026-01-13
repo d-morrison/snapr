@@ -19,7 +19,9 @@ test_that("expect_snapshot_object works with deparse format", {
   test_obj <- list(x = 1:5)
   
   # This should create a text snapshot with deparse
-  expect_snapshot_object(test_obj, name = "test_list_deparse", writer = save_deparse)
+  expect_snapshot_object(
+    test_obj, name = "test_list_deparse", writer = save_deparse
+  )
 })
 
 test_that("save_rds creates an RDS file", {
@@ -91,7 +93,9 @@ test_that("expect_snapshot_data rounds numeric columns", {
   # But the rounding happens before save_csv is called
   # So we test the rounding logic separately
   fun <- function(x) signif(x, digits = 6)
-  rounded_df <- dplyr::mutate(test_df, dplyr::across(tidyselect::where(is.numeric), fun))
+  rounded_df <- dplyr::mutate(
+    test_df, dplyr::across(tidyselect::where(is.numeric), fun)
+  )
   
   expect_equal(rounded_df$x[1], signif(1.23456789, 6))
   expect_equal(rounded_df$x[2], signif(2.34567890, 6))
