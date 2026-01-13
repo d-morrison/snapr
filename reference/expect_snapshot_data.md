@@ -1,34 +1,55 @@
-# Snapshot a data frame
+# Snapshot testing for [data.frame](https://rdrr.io/r/base/data.frame.html)s
 
-Copied with permission:
-<https://github.com/bcgov/ssdtools/issues/379#issuecomment-2372581429>
+copied from <https://github.com/bcgov/ssdtools> with permission
+(<https://github.com/bcgov/ssdtools/issues/379>)
 
 ## Usage
 
 ``` r
-expect_snapshot_data(x, name, digits = 6)
+expect_snapshot_data(x, name, digits = 6, ...)
 ```
 
 ## Arguments
 
 - x:
 
-  a [data.frame](https://rdrr.io/r/base/data.frame.html)
+  a [data.frame](https://rdrr.io/r/base/data.frame.html) to snapshot
 
 - name:
 
-  a [character](https://rdrr.io/r/base/character.html) name of the
-  snapshot
+  [character](https://rdrr.io/r/base/character.html) snapshot name
 
 - digits:
 
-  a [numeric](https://rdrr.io/r/base/numeric.html) number of digits to
-  round to
+  [integer](https://rdrr.io/r/base/integer.html) passed to
+  [`signif()`](https://rdrr.io/r/base/Round.html) for numeric variables
+
+- ...:
+
+  Arguments passed on to
+  [`testthat::expect_snapshot_file`](https://testthat.r-lib.org/reference/expect_snapshot_file.html)
+
+  `path`
+
+  :   Path to file.
+
+  `name`
+
+  :   Snapshot name, taken from `path` by default.
+
+  `compare`
+
+  :   A function used to compare the snapshot files.
+
+## Value
+
+[NULL](https://rdrr.io/r/base/NULL.html) (from
+[`testthat::expect_snapshot_file()`](https://testthat.r-lib.org/reference/expect_snapshot_file.html))
 
 ## Examples
 
 ``` r
 if (FALSE) { # \dontrun{
-iris |> expect_snapshot_data(name = "iris")
+expect_snapshot_data(iris, name = "iris")
 } # }
 ```
