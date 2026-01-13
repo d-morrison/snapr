@@ -7,7 +7,7 @@
 #' @param name [character] snapshot name
 #' @param digits [integer] passed to [signif()] for numeric variables
 #' @inheritDotParams testthat::expect_snapshot_file -path -name -compare
-#' @returns [NULL] (from [testthat::expect_snapshot_file()])
+#' @returns Invisible `NULL` (from [testthat::expect_snapshot_file()])
 #' @export
 #' @examples
 #' \dontrun{
@@ -18,15 +18,14 @@ expect_snapshot_data <- function(x, name, digits = 6, ...) {
   lapply_fun <- function(x) I(lapply(x, fun))
   x <- dplyr::mutate(x, dplyr::across(tidyselect::where(is.numeric), fun))
   x <- dplyr::mutate(x, dplyr::across(tidyselect::where(is.list), lapply_fun))
-  path <- save_csv(x)
-  testthat::expect_snapshot_file(
-    path = path,
-    name = paste0(name, ".csv"),
-    compare = testthat::compare_file_text,
-    ...
-  )
+  expect_snapshot_object(x, name = name, writer = save_csv, ...)
 }
 
+#' Save a data.frame to a CSV file
+#' @param x A data.frame to save
+#' @returns [character] Path to the temporary CSV file
+#' @keywords internal
+#' @export
 save_csv <- function(x) {
   path <- tempfile(fileext = ".csv")
   readr::write_csv(x, path)

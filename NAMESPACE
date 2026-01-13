@@ -2,3 +2,7 @@
 
 export(expect_snapshot_data)
 export(expect_snapshot_object)
+export(save_csv)
+export(save_deparse)
+export(save_json)
+export(save_rds)

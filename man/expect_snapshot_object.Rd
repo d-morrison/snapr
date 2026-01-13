@@ -4,31 +4,27 @@
 \alias{expect_snapshot_object}
 \title{Snapshot testing for R objects}
 \usage{
-expect_snapshot_object(x, style = "json2", ...)
+expect_snapshot_object(x, name, writer = save_rds, ...)
 }
 \arguments{
 \item{x}{An R object to snapshot. Can be any R object including lists,
 models, data.frames, vectors, etc.}
 
-\item{style}{\link{character} Serialization style. One of:
-\itemize{
-\item \code{"json"} - Uses \code{jsonlite::toJSON} for readable output (simple objects only)
-\item \code{"json2"} - Uses \code{jsonlite::serializeJSON} for more complex objects (default)
-\item \code{"deparse"} - Uses R's \code{deparse()} for R code representation
-\item \code{"serialize"} - Uses raw byte serialization (works for any object but not human-readable)
-}}
+\item{name}{\link{character} snapshot name (file extension will be added automatically)}
+
+\item{writer}{\link{function} Function to write the object to a file. Default is \code{\link[=save_rds]{save_rds()}}.
+Other options include \code{\link[=save_json]{save_json()}}, \code{\link[=save_deparse]{save_deparse()}}, \code{\link[=save_csv]{save_csv()}}.
+Custom writer functions should accept \code{x} and return a file path.}
 
 \item{...}{
-  Arguments passed on to \code{\link[testthat:expect_snapshot_value]{testthat::expect_snapshot_value}}
+  Arguments passed on to \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file}}
   \describe{
     \item{\code{cran}}{Should these expectations be verified on CRAN? By default,
 they are not, because snapshot tests tend to be fragile because they
 often rely on minor details of dependencies.}
-    \item{\code{tolerance}}{Numerical tolerance: any differences smaller than this
-value will be ignored.
-
-The default tolerance is \code{sqrt(.Machine$double.eps)}, unless long doubles
-are not available, in which case the test is skipped.}
+    \item{\code{compare}}{A function used to compare the old and new results. Defaults
+to \code{compare_file_binary()}, which compares files line-by-line. To compare
+binary files byte-by-byte, use \code{compare_file_binary()}.}
     \item{\code{variant}}{If not-\code{NULL}, results will be saved in
 \verb{_snaps/\{variant\}/\{test\}/\{name\}}. This allows you to create variants for
 experiments, or if the results are different on different operating
@@ -39,24 +35,27 @@ a package you can set it in the \code{tests/testthat/helper.R} file.}
 }
 }
 \value{
-Invisible \code{NULL} (from \code{\link[testthat:expect_snapshot_value]{testthat::expect_snapshot_value()}})
+Invisible \code{NULL} (from \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file()}})
 }
 \description{
-A flexible wrapper around \code{\link[testthat:expect_snapshot_value]{testthat::expect_snapshot_value()}} that allows
+A flexible wrapper around \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file()}} that allows
 snapshotting any R object, not just data.frames. This function provides
 a convenient interface for snapshot testing with sensible defaults for
-serialization style.
+serialization.
 }
 \examples{
 \dontrun{
-# Snapshot a list
-expect_snapshot_object(list(a = 1, b = 2, c = "text"))
+# Snapshot a list (using RDS format by default)
+expect_snapshot_object(list(a = 1, b = 2, c = "text"), name = "config")
 
 # Snapshot a model
 model <- lm(mpg ~ wt, data = mtcars)
-expect_snapshot_object(model, style = "serialize")
+expect_snapshot_object(model, name = "model")
 
-# Snapshot a data.frame with JSON style
-expect_snapshot_object(iris[1:5, ], style = "json")
+# Snapshot with JSON format (for human-readable diffs)
+expect_snapshot_object(iris[1:5, ], name = "iris_sample", writer = save_json)
+
+# Snapshot with deparse format
+expect_snapshot_object(list(x = 1:5), name = "simple_list", writer = save_deparse)
 }
 }
