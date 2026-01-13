@@ -80,8 +80,9 @@ darwin_variant <- function() {
 #' )
 #' }
 platform_variant <- function() {
-  r_version <- paste0(R.version$major, ".", R.version$minor)
-  # Extract major.minor (e.g., "4.4.3" -> "4.4")
-  r_version <- sub("^([0-9]+\\.[0-9]+).*", "\\1", r_version)
+  # Get R version as major.minor (e.g., "4.4" for R 4.4.3)
+  # Patch versions shouldn't affect RDS serialization
+  r_ver <- getRversion()
+  r_version <- paste(r_ver$major, r_ver$minor, sep = ".")
   paste0(system_os(), "-", r_version)
 }
