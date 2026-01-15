@@ -13,22 +13,29 @@
 # 2. Modify the test by changing the mean value (e.g., from 5 to 7):
 #    result <- t.test(rnorm(10, mean = 7))  # changed from 5
 #
-# 3. Run the test again - it will fail showing waldo's comparison:
+# 3. Run the test again - it will fail showing waldo's comparison in console:
 #    testthat::test_file("tests/testthat/test-waldo-comparison-demo.R")
 #
-# 4. Alternatively, use testthat::snapshot_review() to interactively
-#    review the differences in a human-readable format
+#    The console output will show waldo's field-by-field comparison.
+#    A *_diff.txt file will also be created with the comparison output.
 #
-# EXPECTED OUTPUT:
-# ================
-# When the snapshot differs, waldo::compare will show exactly which
-# fields of the htest object changed, such as:
+# 4. Note: testthat::snapshot_review() shows RDS file content (binary),
+#    not the comparison. To see the waldo comparison:
+#    - Check the console output when tests fail
+#    - Look for the *_diff.txt file created alongside the snapshot
 #
+# EXPECTED OUTPUT IN CONSOLE:
+# ============================
+# When the snapshot differs, you'll see output like:
+#
+#   Snapshot mismatch detected. Waldo comparison:
 #   `old$statistic` is a double vector (5.123)
 #   `new$statistic` is a double vector (7.456)
 #
 #   `old$p.value` is a double vector (0.001)
 #   `new$p.value` is a double vector (0.0001)
+#
+#   Diff also saved to: tests/testthat/_snaps/.../demo_htest_diff.txt
 #
 # This is much more informative than binary comparison which would only
 # report "files differ" without showing what actually changed.
@@ -48,5 +55,6 @@ test_that("htest snapshot demonstrates waldo human-readable output", {
   # To see waldo's output:
   # 1. Change the mean above (e.g., to 7)
   # 2. Re-run this test
-  # 3. Observe the detailed, field-by-field comparison output
+  # 3. Check console output for detailed, field-by-field comparison
+  # 4. Check for *_diff.txt file with the waldo comparison
 })

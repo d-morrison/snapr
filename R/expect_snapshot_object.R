@@ -23,7 +23,28 @@ compare_rds <- function(old, new) {
   )
   # waldo::compare returns a character vector of differences
   # Empty vector means no differences
-  length(waldo::compare(old_obj, new_obj)) == 0
+  diff <- waldo::compare(old_obj, new_obj, x_arg = "old", y_arg = "new")
+  
+  if (length(diff) > 0) {
+    # Print the human-readable diff so it appears in test output
+    # Create a text file with the comparison for easier review
+    diff_file <- paste0(tools::file_path_sans_ext(new), "_diff.txt")
+    writeLines(c(
+      "Waldo comparison of RDS snapshots:",
+      "===================================",
+      "",
+      diff
+    ), diff_file)
+    
+    message(
+      "Snapshot mismatch detected. Waldo comparison:\n",
+      paste(diff, collapse = "\n"),
+      "\n\nDiff also saved to: ", diff_file
+    )
+    return(FALSE)
+  }
+  
+  TRUE
 }
 
 #' Snapshot testing for R objects
