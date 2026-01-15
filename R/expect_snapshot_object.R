@@ -1,3 +1,21 @@
+#' Compare RDS files using waldo
+#' @description
+#' Custom comparison function for RDS files that compares the R objects
+#' contained within, rather than the binary representation. This avoids
+#' spurious test failures due to irrelevant differences in file metadata,
+#' compression, or session info.
+#' @param old Path to the old (expected) RDS file
+#' @param new Path to the new (actual) RDS file
+#' @returns TRUE if objects are equal, FALSE otherwise
+#' @keywords internal
+compare_rds <- function(old, new) {
+  old_obj <- readRDS(old)
+  new_obj <- readRDS(new)
+  # waldo::compare returns a character vector of differences
+  # Empty vector means no differences
+  length(waldo::compare(old_obj, new_obj)) == 0
+}
+
 #' Snapshot testing for R objects
 #' @description
 #' A flexible wrapper around [testthat::expect_snapshot_file()] that allows
@@ -51,10 +69,13 @@ expect_snapshot_object <- function(x, name, writer = save_rds, ...) {
   # Determine comparison method based on file extension
   # Text-based formats use line-by-line comparison
   # (ignores line-ending differences)
-  # Binary formats use byte-by-byte comparison
+  # RDS files use waldo::compare for object-level comparison
+  # Other binary formats use byte-by-byte comparison
   text_extensions <- c("txt", "json", "R", "csv", "md", "yml", "yaml", "xml")
   compare <- if (ext %in% text_extensions) {
     testthat::compare_file_text
+  } else if (ext == "rds") {
+    compare_rds
   } else {
     testthat::compare_file_binary
   }
