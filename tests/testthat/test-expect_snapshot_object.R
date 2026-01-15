@@ -103,3 +103,52 @@ test_that("expect_snapshot_data rounds numeric columns", {
   expect_equal(rounded_df$x[1], signif(1.23456789, 6))
   expect_equal(rounded_df$x[2], signif(2.34567890, 6))
 })
+
+test_that("expect_snapshot_object works with htest objects (e.g., t.test)", {
+  # Create a t-test result (htest object)
+  # Use a fixed seed for reproducibility
+  withr::local_seed(123)
+  x <- rnorm(10, mean = 5, sd = 2)
+  y <- rnorm(10, mean = 6, sd = 2)
+  test_result <- t.test(x, y)
+  
+  # Snapshot the htest object using RDS format
+  # When the object changes, waldo::compare will provide human-readable
+  # output showing which fields differ (e.g., statistic, p.value, etc.)
+  # To verify human-readable output:
+  # 1. Run tests to create initial snapshot
+  # 2. Manually change the test (e.g., different means)
+  # 3. Run testthat::snapshot_review() to see waldo's comparison output
+  expect_snapshot_object(
+    test_result,
+    name = "htest_ttest",
+    variant = platform_variant()
+  )
+})
+
+test_that("compare_rds demonstrates waldo output for changed objects", {
+  # This test demonstrates that compare_rds uses waldo::compare
+  # and produces human-readable output when objects differ
+  
+  # Create two different htest objects
+  withr::local_seed(123)
+  result1 <- t.test(rnorm(10, mean = 5))
+  
+  withr::local_seed(456)
+  result2 <- t.test(rnorm(10, mean = 7))
+  
+  # Save to temporary RDS files
+  file1 <- tempfile(fileext = ".rds")
+  file2 <- tempfile(fileext = ".rds")
+  saveRDS(result1, file1)
+  saveRDS(result2, file2)
+  
+  # When objects differ, compare_rds returns FALSE
+  expect_false(compare_rds(file1, file2))
+  
+  # When comparing identical objects, returns TRUE
+  expect_true(compare_rds(file1, file1))
+  
+  # Clean up
+  unlink(c(file1, file2))
+})

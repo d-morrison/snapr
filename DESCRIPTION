@@ -18,4 +18,6 @@ Imports:
     tidyselect,
     tools,
     waldo
+Suggests:
+    withr
 Config/testthat/edition: 3
