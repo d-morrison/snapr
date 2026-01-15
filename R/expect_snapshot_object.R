@@ -9,8 +9,18 @@
 #' @returns TRUE if objects are equal, FALSE otherwise
 #' @keywords internal
 compare_rds <- function(old, new) {
-  old_obj <- readRDS(old)
-  new_obj <- readRDS(new)
+  old_obj <- tryCatch(
+    readRDS(old),
+    error = function(e) {
+      stop("Failed to read old RDS file: ", old, "\n  Error: ", e$message, call. = FALSE)
+    }
+  )
+  new_obj <- tryCatch(
+    readRDS(new),
+    error = function(e) {
+      stop("Failed to read new RDS file: ", new, "\n  Error: ", e$message, call. = FALSE)
+    }
+  )
   # waldo::compare returns a character vector of differences
   # Empty vector means no differences
   length(waldo::compare(old_obj, new_obj)) == 0
