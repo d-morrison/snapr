@@ -17,12 +17,12 @@
 #    testthat::test_file("tests/testthat/test-waldo-comparison-demo.R")
 #
 #    The console output will show waldo's field-by-field comparison.
-#    A *_diff.txt file will also be created with the comparison output.
+#    A *.waldo_diff.txt file will also be created with the comparison output.
 #
 # 4. Note: testthat::snapshot_review() shows RDS file content (binary),
 #    not the comparison. To see the waldo comparison:
 #    - Check the console output when tests fail
-#    - Look for the *_diff.txt file created alongside the snapshot
+#    - Look for the *.waldo_diff.txt file created alongside the snapshot
 #
 # EXPECTED OUTPUT IN CONSOLE:
 # ============================
@@ -35,7 +35,7 @@
 #   `old$p.value` is a double vector (0.001)
 #   `new$p.value` is a double vector (0.0001)
 #
-#   Diff also saved to: tests/testthat/_snaps/.../demo_htest_diff.txt
+#   Diff also saved to: demo_htest.waldo_diff.txt
 #
 # This is much more informative than binary comparison which would only
 # report "files differ" without showing what actually changed.
@@ -56,5 +56,5 @@ test_that("htest snapshot demonstrates waldo human-readable output", {
   # 1. Change the mean above (e.g., to 7)
   # 2. Re-run this test
   # 3. Check console output for detailed, field-by-field comparison
-  # 4. Check for *_diff.txt file with the waldo comparison
+  # 4. Check for *.waldo_diff.txt file with the waldo comparison
 })

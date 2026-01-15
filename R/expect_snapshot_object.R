@@ -28,18 +28,28 @@ compare_rds <- function(old, new) {
   if (length(diff) > 0) {
     # Print the human-readable diff so it appears in test output
     # Create a text file with the comparison for easier review
-    diff_file <- paste0(tools::file_path_sans_ext(new), "_diff.txt")
-    writeLines(c(
-      "Waldo comparison of RDS snapshots:",
-      "===================================",
-      "",
-      diff
-    ), diff_file)
+    diff_file <- paste0(tools::file_path_sans_ext(new), ".waldo_diff.txt")
+    
+    # Try to write diff file, but don't fail if it doesn't work
+    tryCatch(
+      {
+        writeLines(c(
+          "Waldo comparison of RDS snapshots:",
+          "===================================",
+          "",
+          diff
+        ), diff_file)
+        diff_msg <- paste0("\n\nDiff also saved to: ", basename(diff_file))
+      },
+      error = function(e) {
+        diff_msg <<- ""  # If file write fails, just skip mentioning it
+      }
+    )
     
     message(
       "Snapshot mismatch detected. Waldo comparison:\n",
       paste(diff, collapse = "\n"),
-      "\n\nDiff also saved to: ", diff_file
+      diff_msg
     )
     return(FALSE)
   }
