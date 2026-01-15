@@ -1,3 +1,62 @@
+#' Compare RDS files using waldo
+#' @description
+#' Custom comparison function for RDS files that compares the R objects
+#' contained within, rather than the binary representation. This avoids
+#' spurious test failures due to irrelevant differences in file metadata,
+#' compression, or session info.
+#' @param old Path to the old (expected) RDS file
+#' @param new Path to the new (actual) RDS file
+#' @returns TRUE if objects are equal, FALSE otherwise
+#' @keywords internal
+compare_rds <- function(old, new) {
+  old_obj <- tryCatch(
+    readRDS(old),
+    error = function(e) {
+      stop("Failed to read old RDS file: ", old, "\n  Error: ", e$message, call. = FALSE)
+    }
+  )
+  new_obj <- tryCatch(
+    readRDS(new),
+    error = function(e) {
+      stop("Failed to read new RDS file: ", new, "\n  Error: ", e$message, call. = FALSE)
+    }
+  )
+  # waldo::compare returns a character vector of differences
+  # Empty vector means no differences
+  diff <- waldo::compare(old_obj, new_obj, x_arg = "old", y_arg = "new")
+  
+  if (length(diff) > 0) {
+    # Print the human-readable diff so it appears in test output
+    # Create a text file with the comparison for easier review
+    diff_file <- paste0(tools::file_path_sans_ext(new), ".waldo_diff.txt")
+    
+    # Try to write diff file, but don't fail if it doesn't work
+    tryCatch(
+      {
+        writeLines(c(
+          "Waldo comparison of RDS snapshots:",
+          "===================================",
+          "",
+          diff
+        ), diff_file)
+        diff_msg <- paste0("\n\nDiff also saved to: ", basename(diff_file))
+      },
+      error = function(e) {
+        diff_msg <<- ""  # If file write fails, just skip mentioning it
+      }
+    )
+    
+    message(
+      "Snapshot mismatch detected. Waldo comparison:\n",
+      paste(diff, collapse = "\n"),
+      diff_msg
+    )
+    return(FALSE)
+  }
+  
+  TRUE
+}
+
 #' Snapshot testing for R objects
 #' @description
 #' A flexible wrapper around [testthat::expect_snapshot_file()] that allows
@@ -51,10 +110,13 @@ expect_snapshot_object <- function(x, name, writer = save_rds, ...) {
   # Determine comparison method based on file extension
   # Text-based formats use line-by-line comparison
   # (ignores line-ending differences)
-  # Binary formats use byte-by-byte comparison
+  # RDS files use waldo::compare for object-level comparison
+  # Other binary formats use byte-by-byte comparison
   text_extensions <- c("txt", "json", "R", "csv", "md", "yml", "yaml", "xml")
   compare <- if (ext %in% text_extensions) {
     testthat::compare_file_text
+  } else if (ext == "rds") {
+    compare_rds
   } else {
     testthat::compare_file_binary
   }

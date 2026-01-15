@@ -23,8 +23,8 @@ Custom writer functions should accept \code{x} and return a file path.}
 they are not, because snapshot tests tend to be fragile because they
 often rely on minor details of dependencies.}
     \item{\code{compare}}{A function used to compare the old and new results. Defaults
-to \code{compare_file_binary()}, which compares files line-by-line. To compare
-binary files byte-by-byte, use \code{compare_file_binary()}.}
+to \code{compare_file_text()} for text files. For RDS files, uses \code{waldo::compare()}
+to compare objects. For other binary files, uses \code{compare_file_binary()}.}
     \item{\code{variant}}{If not-\code{NULL}, results will be saved in
 \verb{_snaps/\{variant\}/\{test\}/\{name\}}. This allows you to create variants for
 experiments, or if the results are different on different operating

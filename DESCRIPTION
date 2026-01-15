@@ -16,5 +16,8 @@ Imports:
     readr,
     testthat,
     tidyselect,
-    tools
+    tools,
+    waldo
+Suggests:
+    withr
 Config/testthat/edition: 3
