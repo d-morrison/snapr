@@ -28,11 +28,11 @@ expect_snapshot_object(x, name, writer = save_rds, ...)
 
   [function](https://rdrr.io/r/base/function.html) Function to write the
   object to a file. Default is
-  [`save_rds()`](https:/d-morrison.github.io/snapr/preview/pr11/reference/save_rds.md).
+  [`save_rds()`](https://d-morrison.github.io/snapr/preview/pr11/reference/save_rds.md).
   Other options include
-  [`save_json()`](https:/d-morrison.github.io/snapr/preview/pr11/reference/save_json.md),
-  [`save_deparse()`](https:/d-morrison.github.io/snapr/preview/pr11/reference/save_deparse.md),
-  [`save_csv()`](https:/d-morrison.github.io/snapr/preview/pr11/reference/save_csv.md).
+  [`save_json()`](https://d-morrison.github.io/snapr/preview/pr11/reference/save_json.md),
+  [`save_deparse()`](https://d-morrison.github.io/snapr/preview/pr11/reference/save_deparse.md),
+  [`save_csv()`](https://d-morrison.github.io/snapr/preview/pr11/reference/save_csv.md).
   Custom writer functions should accept `x` and return a file path.
 
 - ...:

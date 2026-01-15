@@ -485,7 +485,7 @@ Choose the appropriate testing approach based on the context:
 #### When to Use Snapshot Tests
 
 Use snapshot tests (`expect_snapshot()`, `expect_snapshot_value()`, or
-[`expect_snapshot_data()`](https:/d-morrison.github.io/snapr/preview/pr11/reference/expect_snapshot_data.md))
+[`expect_snapshot_data()`](https://d-morrison.github.io/snapr/preview/pr11/reference/expect_snapshot_data.md))
 when: - Testing complex data structures (data.frames, lists, model
 outputs) - Validating statistical results - Output format stability is
 important - The exact values are less important than structural
