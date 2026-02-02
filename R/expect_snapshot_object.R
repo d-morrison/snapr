@@ -129,6 +129,7 @@ save_deparse <- function(x) {
 #' @returns [character] Path to the temporary text file
 #' @keywords internal
 #' @export
+#' @importFrom utils str
 #' @examples
 #' \dontrun{
 #' obj <- list(a = 1:5, b = letters[1:3], c = list(x = 1, y = 2))
@@ -138,7 +139,7 @@ save_deparse <- function(x) {
 save_diffobj <- function(x) {
   path <- tempfile(fileext = ".txt")
   # Capture str() output which gives a good hierarchical view
-  output <- utils::capture.output(str(x))
+  output <- utils::capture.output(utils::str(x))
   writeLines(output, path)
   path
 }
