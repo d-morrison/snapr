@@ -16,13 +16,28 @@ expect_snapshot_data(x, name, digits = 6, ...)
 \item{...}{
   Arguments passed on to \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file}}
   \describe{
-    \item{\code{path}}{Path to file.}
-    \item{\code{name}}{Snapshot name, taken from \code{path} by default.}
-    \item{\code{compare}}{A function used to compare the snapshot files.}
+    \item{\code{binary}}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use the
+\code{compare} argument instead.}
+    \item{\code{cran}}{Should these expectations be verified on CRAN? By default,
+they are not, because snapshot tests tend to be fragile because they
+often rely on minor details of dependencies.}
+    \item{\code{transform}}{Optionally, a function to scrub sensitive or stochastic
+text from the output. Should take a character vector of lines as input
+and return a modified character vector as output.}
+    \item{\code{variant}}{If not-\code{NULL}, results will be saved in
+\verb{_snaps/{variant}/{test}/{name}}. This allows you to create
+different snapshots for different scenarios, like different operating
+systems or different R versions.
+
+Note that there's no way to declare all possible variants up front which
+means that as soon as you start using variants, you are responsible for
+deleting snapshot variants that are no longer used. (testthat will still
+delete all variants if you delete the test.)}
   }}
 }
 \value{
-[NULL] (from \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file()}})}
+\link{NULL} (from \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file()}})
+}
 \description{
 copied from \url{https://github.com/bcgov/ssdtools}
 with permission (\url{https://github.com/bcgov/ssdtools/issues/379})
