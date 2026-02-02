@@ -8,3 +8,7 @@
 ^\.lintr\.R$
 ^copilot-instructions\.md$
 ^project\.Rproj$
+^altdoc$
+^_quarto$
+^\.quarto$
+^index\.qmd$
