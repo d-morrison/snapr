@@ -10,52 +10,98 @@ expect_snapshot_object(x, name, writer = save_rds, ...)
 \item{x}{An R object to snapshot. Can be any R object including lists,
 models, data.frames, vectors, etc.}
 
-\item{name}{\link{character} snapshot name (file extension will be added automatically)}
+\item{name}{\link{character} snapshot name (file extension added
+automatically)}
 
-\item{writer}{\link{function} Function to write the object to a file. Default is \code{\link[=save_rds]{save_rds()}}.
-Other options include \code{\link[=save_json]{save_json()}}, \code{\link[=save_deparse]{save_deparse()}}, \code{\link[=save_csv]{save_csv()}}.
+\item{writer}{\link{function} Function to write the object to a file.
+Default is \code{\link[=save_rds]{save_rds()}}.
+Other options include \code{\link[=save_json]{save_json()}}, \code{\link[=save_deparse]{save_deparse()}}, \code{\link[=save_csv]{save_csv()}},
+\code{\link[=save_diffobj]{save_diffobj()}}.
 Custom writer functions should accept \code{x} and return a file path.}
 
 \item{...}{
   Arguments passed on to \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file}}
   \describe{
+    \item{\code{binary}}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use the
+\code{compare} argument instead.}
     \item{\code{cran}}{Should these expectations be verified on CRAN? By default,
 they are not, because snapshot tests tend to be fragile because they
 often rely on minor details of dependencies.}
-    \item{\code{compare}}{A function used to compare the old and new results. Defaults
-to \code{compare_file_binary()}, which compares files line-by-line. To compare
-binary files byte-by-byte, use \code{compare_file_binary()}.}
+    \item{\code{compare}}{A function used to compare the snapshot files. It should take
+two inputs, the paths to the \code{old} and \code{new} snapshot, and return either
+\code{TRUE} or \code{FALSE}. This defaults to \code{compare_file_text} if \code{name} has
+extension \code{.r}, \code{.R}, \code{.Rmd}, \code{.md}, or \code{.txt}, and otherwise uses
+\code{compare_file_binary}.
+
+\code{compare_file_binary()} compares byte-by-byte and
+\code{compare_file_text()} compares lines-by-line, ignoring
+the difference between Windows and Mac/Linux line endings.}
+    \item{\code{transform}}{Optionally, a function to scrub sensitive or stochastic
+text from the output. Should take a character vector of lines as input
+and return a modified character vector as output.}
     \item{\code{variant}}{If not-\code{NULL}, results will be saved in
-\verb{_snaps/\{variant\}/\{test\}/\{name\}}. This allows you to create variants for
-experiments, or if the results are different on different operating
-systems. Snapshot variant is set by the
-\link[testthat:local_reproducible_output]{local_reproducible_output()} function and its friends. If you're developing
-a package you can set it in the \code{tests/testthat/helper.R} file.}
-  }
-}
+\verb{_snaps/{variant}/{test}/{name}}. This allows you to create
+different snapshots for different scenarios, like different operating
+systems or different R versions.
+
+Note that there's no way to declare all possible variants up front which
+means that as soon as you start using variants, you are responsible for
+deleting snapshot variants that are no longer used. (testthat will still
+delete all variants if you delete the test.)}
+  }}
 }
 \value{
-[NULL] (from \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file()}})
+\link{NULL} (from \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file()}})
 }
 \description{
 A flexible wrapper around \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file()}} that allows
 snapshotting any R object, not just data.frames. This function provides
 a convenient interface for snapshot testing with sensible defaults for
 serialization.
+
+When using RDS format (the default), snapshots are compared using
+\code{\link[diffobj:diffObj]{diffobj::diffObj()}} which provides rich, visual diffs in
+\code{\link[testthat:snapshot_accept]{testthat::snapshot_review()}}. This makes it much easier to review
+changes to complex R objects.
+}
+\details{
+When using RDS format (the default), snapshots can vary across R versions
+and platforms even with fixed serialization versions. Consider using
+\code{variant = platform_variant()} for RDS snapshots to handle these
+differences, or use text-based formats like JSON or deparse for more
+stable snapshots across platforms and versions.
+
+The RDS comparison uses \code{\link[diffobj:diffObj]{diffobj::diffObj()}} internally, which provides
+rich visual diffs in \code{\link[testthat:snapshot_accept]{testthat::snapshot_review()}}. This is particularly
+useful for complex objects like models, nested lists, or data structures
+where byte-level comparison would be difficult to interpret.
 }
 \examples{
 \dontrun{
-# Snapshot a list (using RDS format by default)
-expect_snapshot_object(list(a = 1, b = 2, c = "text"), name = "config")
+# Snapshot a list (using RDS format with platform/version variant)
+expect_snapshot_object(
+  list(a = 1, b = 2), name = "config", variant = platform_variant()
+)
 
 # Snapshot a model
 model <- lm(mpg ~ wt, data = mtcars)
-expect_snapshot_object(model, name = "model")
+expect_snapshot_object(
+  model, name = "model", variant = platform_variant()
+)
 
 # Snapshot with JSON format (for human-readable diffs)
-expect_snapshot_object(iris[1:5, ], name = "iris_sample", writer = save_json)
+# Text formats don't need variants
+expect_snapshot_object(iris[1:5, ], name = "iris", writer = save_json)
 
 # Snapshot with deparse format
-expect_snapshot_object(list(x = 1:5), name = "simple_list", writer = save_deparse)
+expect_snapshot_object(
+  list(x = 1:5), name = "simple_list", writer = save_deparse
+)
+
+# Snapshot with str() format (optimal for diffobj visualization)
+expect_snapshot_object(
+  list(a = 1:5, b = letters[1:3]), name = "complex_list",
+  writer = save_diffobj
+)
 }
 }
