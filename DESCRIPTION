@@ -17,7 +17,11 @@ Imports:
     testthat,
     tidyselect,
     tools,
-    utils
+    utils,
+    waldo
 Suggests: 
-    withr
+    withr,
+    diffviewer (>= 0.1.2.9000)
 Config/testthat/edition: 3
+Remotes: 
+    d-morrison/diffviewer@copilot/use-diffobj-diffstr-to-compare-rds-files
