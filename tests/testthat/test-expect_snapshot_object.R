@@ -27,16 +27,6 @@ test_that("expect_snapshot_object works with deparse format", {
   )
 })
 
-test_that("expect_snapshot_object works with diffobj format", {
-  # Complex object for diffobj-friendly str() format
-  test_obj <- list(a = 1:5, b = letters[1:3], c = list(x = 1, y = 2))
-
-  # This should create a text snapshot with str() output
-  expect_snapshot_object(
-    test_obj, name = "test_list_diffobj", writer = save_diffobj
-  )
-})
-
 test_that("save_rds creates an RDS file", {
   test_obj <- list(a = 1, b = 2)
   path <- save_rds(test_obj)
@@ -73,20 +63,6 @@ test_that("save_deparse creates a text file", {
   content <- readLines(path)
   expect_true(length(content) > 0)
   expect_true(any(grepl("list", content)))
-})
-
-test_that("save_diffobj creates a text file with str() output", {
-  test_obj <- list(a = 1:3, b = letters[1:3])
-  path <- save_diffobj(test_obj)
-
-  expect_true(file.exists(path))
-  expect_equal(tools::file_ext(path), "txt")
-
-  # Verify the content contains str() output
-  content <- readLines(path)
-  expect_true(length(content) > 0)
-  # str() output should contain "List of" for list objects
-  expect_true(any(grepl("List of", content)))
 })
 
 test_that("save_csv creates a CSV file", {

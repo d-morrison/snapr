@@ -15,8 +15,7 @@ automatically)}
 
 \item{writer}{\link{function} Function to write the object to a file.
 Default is \code{\link[=save_rds]{save_rds()}}.
-Other options include \code{\link[=save_json]{save_json()}}, \code{\link[=save_deparse]{save_deparse()}}, \code{\link[=save_csv]{save_csv()}},
-\code{\link[=save_diffobj]{save_diffobj()}}.
+Other options include \code{\link[=save_json]{save_json()}}, \code{\link[=save_deparse]{save_deparse()}}, \code{\link[=save_csv]{save_csv()}}.
 Custom writer functions should accept \code{x} and return a file path.}
 
 \item{...}{
@@ -96,12 +95,6 @@ expect_snapshot_object(iris[1:5, ], name = "iris", writer = save_json)
 # Snapshot with deparse format
 expect_snapshot_object(
   list(x = 1:5), name = "simple_list", writer = save_deparse
-)
-
-# Snapshot with str() format (optimal for diffobj visualization)
-expect_snapshot_object(
-  list(a = 1:5, b = letters[1:3]), name = "complex_list",
-  writer = save_diffobj
 )
 }
 }
