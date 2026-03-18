@@ -1,4 +1,3 @@
-
 #' Compare RDS files using diffobj for better snapshot review
 #' @description
 #' This comparison function loads RDS files and compares the deserialized

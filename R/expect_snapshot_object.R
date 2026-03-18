@@ -16,7 +16,7 @@
 #'   automatically)
 #' @param writer [function] Function to write the object to a file.
 #'   Default is [save_rds()].
-#'   Other options include [save_json()], [save_deparse()], [save_csv()]
+#'   Other options include [save_json()], [save_deparse()], [save_csv()].
 #'   Custom writer functions should accept `x` and return a file path.
 #' @inheritDotParams testthat::expect_snapshot_file -path -name
 #' @returns [NULL] (from [testthat::expect_snapshot_file()])
@@ -53,6 +53,7 @@
 #' expect_snapshot_object(
 #'   list(x = 1:5), name = "simple_list", writer = save_deparse
 #' )
+#' }
 expect_snapshot_object <- function(x, name, writer = save_rds, ...) {
   path <- writer(x)
   # Get file extension from the path returned by writer

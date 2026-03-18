@@ -15,7 +15,7 @@ automatically)}
 
 \item{writer}{\link{function} Function to write the object to a file.
 Default is \code{\link[=save_rds]{save_rds()}}.
-Other options include \code{\link[=save_json]{save_json()}}, \code{\link[=save_deparse]{save_deparse()}}, \code{\link[=save_csv]{save_csv()}}
+Other options include \code{\link[=save_json]{save_json()}}, \code{\link[=save_deparse]{save_deparse()}}, \code{\link[=save_csv]{save_csv()}}.
 Custom writer functions should accept \code{x} and return a file path.}
 
 \item{...}{
@@ -74,4 +74,27 @@ The RDS comparison uses \code{\link[diffobj:diffObj]{diffobj::diffObj()}} intern
 rich visual diffs in \code{\link[testthat:snapshot_accept]{testthat::snapshot_review()}}. This is particularly
 useful for complex objects like models, nested lists, or data structures
 where byte-level comparison would be difficult to interpret.
+}
+\examples{
+\dontrun{
+# Snapshot a list (using RDS format with platform/version variant)
+expect_snapshot_object(
+  list(a = 1, b = 2), name = "config", variant = platform_variant()
+)
+
+# Snapshot a model
+model <- lm(mpg ~ wt, data = mtcars)
+expect_snapshot_object(
+  model, name = "model", variant = platform_variant()
+)
+
+# Snapshot with JSON format (for human-readable diffs)
+# Text formats don't need variants
+expect_snapshot_object(iris[1:5, ], name = "iris", writer = save_json)
+
+# Snapshot with deparse format
+expect_snapshot_object(
+  list(x = 1:5), name = "simple_list", writer = save_deparse
+)
+}
 }
