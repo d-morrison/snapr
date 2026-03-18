@@ -38,8 +38,7 @@ expect_snapshot_object(x, name, writer = save_rds, ...)
   Other options include
   [`save_json()`](https:/d-morrison.github.io/snapr/preview/pr17/reference/save_json.md),
   [`save_deparse()`](https:/d-morrison.github.io/snapr/preview/pr17/reference/save_deparse.md),
-  [`save_csv()`](https:/d-morrison.github.io/snapr/preview/pr17/reference/save_csv.md),
-  [`save_diffobj()`](https:/d-morrison.github.io/snapr/preview/pr17/reference/save_diffobj.md).
+  [`save_csv()`](https:/d-morrison.github.io/snapr/preview/pr17/reference/save_csv.md).
   Custom writer functions should accept `x` and return a file path.
 
 - ...:
@@ -131,12 +130,6 @@ expect_snapshot_object(iris[1:5, ], name = "iris", writer = save_json)
 # Snapshot with deparse format
 expect_snapshot_object(
   list(x = 1:5), name = "simple_list", writer = save_deparse
-)
-
-# Snapshot with str() format (optimal for diffobj visualization)
-expect_snapshot_object(
-  list(a = 1:5, b = letters[1:3]), name = "complex_list",
-  writer = save_diffobj
 )
 } # }
 ```

@@ -85,8 +85,7 @@ automatically)</p></dd>
 <dt id="arg-writer">writer<a class="anchor" aria-label="anchor" href="#arg-writer"></a></dt>
 <dd><p><a href="https://rdrr.io/r/base/function.html" class="external-link">function</a> Function to write the object to a file.
 Default is <code><a href="save_rds.html">save_rds()</a></code>.
-Other options include <code><a href="save_json.html">save_json()</a></code>, <code><a href="save_deparse.html">save_deparse()</a></code>, <code><a href="save_csv.html">save_csv()</a></code>,
-<code><a href="save_diffobj.html">save_diffobj()</a></code>.
+Other options include <code><a href="save_json.html">save_json()</a></code>, <code><a href="save_deparse.html">save_deparse()</a></code>, <code><a href="save_csv.html">save_csv()</a></code>.
 Custom writer functions should accept <code>x</code> and return a file path.</p></dd>
 
 
@@ -167,12 +166,6 @@ where byte-level comparison would be difficult to interpret.</p>
 <span class="r-in"><span><span class="co"># Snapshot with deparse format</span></span></span>
 <span class="r-in"><span><span class="fu">expect_snapshot_object</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"simple_list"</span>, writer <span class="op">=</span> <span class="va">save_deparse</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Snapshot with str() format (optimal for diffobj visualization)</span></span></span>
-<span class="r-in"><span><span class="fu">expect_snapshot_object</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, b <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"complex_list"</span>,</span></span>
-<span class="r-in"><span>  writer <span class="op">=</span> <span class="va">save_diffobj</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
