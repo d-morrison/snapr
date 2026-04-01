@@ -4,12 +4,15 @@
 \alias{compare_file_object}
 \title{Compare RDS files using diffobj for better snapshot review}
 \usage{
-compare_file_object(old, new)
+compare_file_object(old, new, print = FALSE)
 }
 \arguments{
 \item{old}{Path to the old (reference) RDS file}
 
 \item{new}{Path to the new RDS file to compare}
+
+\item{print}{\link{logical} whether to print \link[waldo:compare]{waldo::compare} output to R console;
+can become very long for complex objects like \link{lm}s}
 }
 \value{
 \link{logical} TRUE if objects are identical, FALSE otherwise

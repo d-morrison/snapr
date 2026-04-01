@@ -10,6 +10,8 @@
 #'
 #' @param old Path to the old (reference) RDS file
 #' @param new Path to the new RDS file to compare
+#' @param print [logical] whether to print [waldo::compare] output to R console;
+#' can become very long for complex objects like [lm]s
 #' @returns [logical] TRUE if objects are identical, FALSE otherwise
 #' @export
 #' @keywords internal
@@ -25,7 +27,7 @@
 #' saveRDS(new_obj, new_path)
 #' compare_file_object(old_path, new_path)
 #' }
-compare_file_object <- function(old, new) {
+compare_file_object <- function(old, new, print = FALSE) {
   # Load the RDS files
   old_obj <- readRDS(old)
   new_obj <- readRDS(new)
@@ -33,7 +35,17 @@ compare_file_object <- function(old, new) {
   # rather than raw bytes, which is more meaningful for R objects
   # This allows testthat's snapshot_review to properly detect changes
   # in the actual data structure rather than serialization differences
-  comparison <- waldo::compare(old_obj, new_obj)
+  comparison <- waldo::compare(
+    old_obj,
+    new_obj,
+    x_arg = "actual",
+    y_arg = "expected"
+  )
   identical <- length(comparison) == 0 # c.f., `testthat:::expect_waldo_equal_`
+  if (!identical && print) {
+    c("\nDifferences:", comparison) |>
+      paste(collapse = "\n") |>
+      cat()
+  }
   return(identical)
 }

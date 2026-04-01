@@ -143,7 +143,7 @@ test_that("compare_file_object returns FALSE for different objects", {
   saveRDS(old_obj, old_path)
   saveRDS(new_obj, new_path)
 
-  result <- compare_file_object(old_path, new_path)
+  result <- compare_file_object(old_path, new_path, print = FALSE) |>
   expect_false(result)
 })
 
@@ -159,7 +159,7 @@ test_that("compare_file_object works with complex objects", {
   saveRDS(old_model, old_path)
   saveRDS(new_model, new_path)
 
-  result <- compare_file_object(old_path, new_path)
+  result <- compare_file_object(old_path, new_path, print = FALSE)
   expect_false(result)
 
   # Test with identical simple objects instead of models
