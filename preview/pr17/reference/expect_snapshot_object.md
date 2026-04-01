@@ -15,7 +15,7 @@ This makes it much easier to review changes to complex R objects.
 ## Usage
 
 ``` r
-expect_snapshot_object(x, name, writer = save_rds, ...)
+expect_snapshot_object(x, name, writer = save_rds, print = FALSE, ...)
 ```
 
 ## Arguments
@@ -40,6 +40,13 @@ expect_snapshot_object(x, name, writer = save_rds, ...)
   [`save_deparse()`](https:/d-morrison.github.io/snapr/preview/pr17/reference/save_deparse.md),
   [`save_csv()`](https:/d-morrison.github.io/snapr/preview/pr17/reference/save_csv.md).
   Custom writer functions should accept `x` and return a file path.
+
+- print:
+
+  [logical](https://rdrr.io/r/base/logical.html) whether to print
+  [waldo::compare](https://waldo.r-lib.org/reference/compare.html)
+  output to R console; can become very long for complex objects like
+  [lm](https://rdrr.io/r/stats/lm.html)s
 
 - ...:
 

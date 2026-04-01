@@ -65,7 +65,7 @@ changes to complex R objects.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">expect_snapshot_object</span><span class="op">(</span><span class="va">x</span>, <span class="va">name</span>, writer <span class="op">=</span> <span class="va">save_rds</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">expect_snapshot_object</span><span class="op">(</span><span class="va">x</span>, <span class="va">name</span>, writer <span class="op">=</span> <span class="va">save_rds</span>, print <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -87,6 +87,11 @@ automatically)</p></dd>
 Default is <code><a href="save_rds.html">save_rds()</a></code>.
 Other options include <code><a href="save_json.html">save_json()</a></code>, <code><a href="save_deparse.html">save_deparse()</a></code>, <code><a href="save_csv.html">save_csv()</a></code>.
 Custom writer functions should accept <code>x</code> and return a file path.</p></dd>
+
+
+<dt id="arg-print">print<a class="anchor" aria-label="anchor" href="#arg-print"></a></dt>
+<dd><p><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> whether to print <a href="https://waldo.r-lib.org/reference/compare.html" class="external-link">waldo::compare</a> output to R console;
+can become very long for complex objects like <a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a>s</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
