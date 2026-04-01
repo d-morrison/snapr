@@ -1,4 +1,4 @@
-#' @keywords internal
+#' @export
 "_PACKAGE"
 
 ## usethis namespace: start
