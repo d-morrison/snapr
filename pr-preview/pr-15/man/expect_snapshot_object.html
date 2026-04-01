@@ -401,8 +401,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/darwin_variant.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/expect_snapshot_object.html">expect_snapshot_object</a></li></ol></nav></header><section id="snapshot-testing-for-r-objects" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="snapshot-testing-for-r-objects">Snapshot testing for R objects</h2>
 <section id="description" class="level3"><h3 class="anchored" data-anchor-id="description">Description</h3>
 <p>A flexible wrapper around <code><a href="https://testthat.r-lib.org/reference/expect_snapshot_file.html">testthat::expect_snapshot_file()</a></code> that allows snapshotting any R object, not just data.frames. This function provides a convenient interface for snapshot testing with sensible defaults for serialization.</p>
+<p>When using RDS format (the default), snapshots are compared using <code><a href="https://rdrr.io/pkg/diffobj/man/diffObj.html">diffobj::diffObj()</a></code> which provides rich, visual diffs in <code><a href="https://testthat.r-lib.org/reference/snapshot_accept.html">testthat::snapshot_review()</a></code>. This makes it much easier to review changes to complex R objects.</p>
 </section><section id="usage" class="level3"><h3 class="anchored" data-anchor-id="usage">Usage</h3>
-<pre><code class="language-R">expect_snapshot_object(x, name, writer = save_rds, ...)
+<pre><code class="language-R">expect_snapshot_object(
+  x,
+  name,
+  writer = save_rds,
+  print = FALSE,
+  tolerance = NULL,
+  ...
+)
 </code></pre>
 </section><section id="arguments" class="level3"><h3 class="anchored" data-anchor-id="arguments">Arguments</h3>
 <table role="presentation">
@@ -428,6 +436,23 @@ character snapshot name (file extension added automatically)
 </td>
 <td>
 function Function to write the object to a file. Default is <code><a href="https://d-morrison.github.io/snapr/reference/save_rds.html">save_rds()</a></code>. Other options include <code><a href="https://d-morrison.github.io/snapr/reference/save_json.html">save_json()</a></code>, <code><a href="https://d-morrison.github.io/snapr/reference/save_deparse.html">save_deparse()</a></code>, <code><a href="https://d-morrison.github.io/snapr/reference/save_csv.html">save_csv()</a></code>. Custom writer functions should accept <code>x</code> and return a file path.
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="print">print</code>
+</td>
+<td>
+logical whether to print waldo::compare output to R console; can become very long for complex objects like lms
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="tolerance">tolerance</code>
+</td>
+<td>
+<p>If non-<code>NULL</code>, used as threshold for ignoring small floating point difference when comparing numeric vectors. Using any non-<code>NULL</code> value will cause integer and double vectors to be compared based on their values, not their types, and will ignore the difference between <code>NaN</code> and <code>NA_real_</code>.</p>
+It uses the same algorithm as <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code>, i.e., first we generate <code>x_diff</code> and <code>y_diff</code> by subsetting <code>x</code> and <code>y</code> to look only locations with differences. Then we check that <code>mean(abs(x_diff - y_diff)) / mean(abs(y_diff))</code> (or just <code>mean(abs(x_diff - y_diff))</code> if <code>y_diff</code> is small) is less than <code>tolerance</code>.
 </td>
 </tr>
 <tr>
@@ -474,6 +499,7 @@ Note that there’s no way to declare all possible variants up front which means
 </tr>
 </tbody></table></section><section id="details" class="level3"><h3 class="anchored" data-anchor-id="details">Details</h3>
 <p>When using RDS format (the default), snapshots can vary across R versions and platforms even with fixed serialization versions. Consider using <code>variant = platform_variant()</code> for RDS snapshots to handle these differences, or use text-based formats like JSON or deparse for more stable snapshots across platforms and versions.</p>
+<p>The RDS comparison uses <code><a href="https://rdrr.io/pkg/diffobj/man/diffObj.html">diffobj::diffObj()</a></code> internally, which provides rich visual diffs in <code><a href="https://testthat.r-lib.org/reference/snapshot_accept.html">testthat::snapshot_review()</a></code>. This is particularly useful for complex objects like models, nested lists, or data structures where byte-level comparison would be difficult to interpret.</p>
 </section><section id="value" class="level3"><h3 class="anchored" data-anchor-id="value">Value</h3>
 <p>NULL (from <code><a href="https://testthat.r-lib.org/reference/expect_snapshot_file.html">testthat::expect_snapshot_file()</a></code>)</p>
 </section><section id="examples" class="level3"><h3 class="anchored" data-anchor-id="examples">Examples</h3>
