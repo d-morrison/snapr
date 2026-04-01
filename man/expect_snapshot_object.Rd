@@ -9,7 +9,6 @@ expect_snapshot_object(
   name,
   writer = save_rds,
   print = FALSE,
-  compare = NULL,
   tolerance = NULL,
   ...
 )

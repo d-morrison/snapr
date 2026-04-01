@@ -60,7 +60,6 @@ expect_snapshot_object <- function(x,
                                    name,
                                    writer = save_rds,
                                    print = FALSE,
-                                   compare = NULL,
                                    tolerance = NULL,
                                    ...) {
   path <- writer(x)
@@ -73,20 +72,18 @@ expect_snapshot_object <- function(x,
   # Binary formats use byte-by-byte comparison
   text_extensions <- c("txt", "json", "R", "csv", "md", "yml", "yaml", "xml")
 
-  if (is.null(compare)) {
-
-    compare <- if (ext %in% text_extensions) {
-      testthat::compare_file_text
-    } else if (ext == "rds") {
-      function(...) compare_file_object(
-        print = print,
-        tolerance = tolerance,
-        ...)
-    } else {
-      testthat::compare_file_binary
-    }
-
+  compare <- if (ext %in% text_extensions) {
+    testthat::compare_file_text
+  } else if (ext == "rds") {
+    function(...) compare_file_object(
+      print = print,
+      tolerance = tolerance,
+      ...)
+  } else {
+    testthat::compare_file_binary
   }
+
+
 
   testthat::expect_snapshot_file(
     path = path,
