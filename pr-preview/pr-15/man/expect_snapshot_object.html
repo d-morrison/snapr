@@ -2,10 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.36">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>expect_snapshot_object – snapr</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -63,19 +66,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-df175dff5e0603d307760d170d784760.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-700321e9dc9119e5e0d8e5dad4aa54f3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-df175dff5e0603d307760d170d784760.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-054c4dcd9df23e2e95af582de3a9f0f3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-f01574e971f3beb7e9d87ce2a6c7f558.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-054c4dcd9df23e2e95af582de3a9f0f3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -281,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item">
-    <a class="nav-link" href="../man/snapr-package.qmd"> 
+    <a class="nav-link active" href="../man/snapr-package.html" aria-current="page"> 
 <span class="menu-text">Documentation</span></a>
   </li>  
 </ul>
@@ -301,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/expect_snapshot_data.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/expect_snapshot_object.html">expect_snapshot_object</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/darwin_variant.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/expect_snapshot_object.html">expect_snapshot_object</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -326,6 +328,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../man/darwin_variant.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">darwin_variant</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../man/expect_snapshot_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">expect_snapshot_data</span></a>
   </div>
@@ -334,6 +342,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../man/expect_snapshot_object.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">expect_snapshot_object</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../man/platform_variant.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">platform_variant</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../man/snapr-package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">snapr-package</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../man/system_os.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">system_os</span></a>
   </div>
 </li>
       </ul>
@@ -364,6 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
   <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
   <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments">Arguments</a></li>
+  <li><a href="#details" id="toc-details" class="nav-link" data-scroll-target="#details">Details</a></li>
   <li><a href="#value" id="toc-value" class="nav-link" data-scroll-target="#value">Value</a></li>
   <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   </ul>
@@ -371,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/snapr/edit/main/man/expect_snapshot_object.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/snapr/blob/main/man/expect_snapshot_object.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/snapr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/expect_snapshot_data.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/expect_snapshot_object.html">expect_snapshot_object</a></li></ol></nav></header><section id="snapshot-testing-for-r-objects" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="snapshot-testing-for-r-objects">Snapshot testing for R objects</h2>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/darwin_variant.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/expect_snapshot_object.html">expect_snapshot_object</a></li></ol></nav></header><section id="snapshot-testing-for-r-objects" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="snapshot-testing-for-r-objects">Snapshot testing for R objects</h2>
 <section id="description" class="level3"><h3 class="anchored" data-anchor-id="description">Description</h3>
 <p>A flexible wrapper around <code><a href="https://testthat.r-lib.org/reference/expect_snapshot_file.html">testthat::expect_snapshot_file()</a></code> that allows snapshotting any R object, not just data.frames. This function provides a convenient interface for snapshot testing with sensible defaults for serialization.</p>
 </section><section id="usage" class="level3"><h3 class="anchored" data-anchor-id="usage">Usage</h3>
@@ -392,7 +419,7 @@ An R object to snapshot. Can be any R object including lists, models, data.frame
 <code id="name">name</code>
 </td>
 <td>
-character snapshot name (file extension will be added automatically)
+character snapshot name (file extension added automatically)
 </td>
 </tr>
 <tr>
@@ -411,6 +438,12 @@ function Function to write the object to a file. Default is <code><a href="https
 <p>Arguments passed on to <code><a href="https://testthat.r-lib.org/reference/expect_snapshot_file.html">testthat::expect_snapshot_file</a></code></p>
 <dl>
 <dt>
+<code>binary</code>
+</dt>
+<dd>
+<a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated"><img src="../help/figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> Please use the <code>compare</code> argument instead.
+</dd>
+<dt>
 <code>cran</code>
 </dt>
 <dd>
@@ -420,35 +453,52 @@ Should these expectations be verified on CRAN? By default, they are not, because
 <code>compare</code>
 </dt>
 <dd>
-A function used to compare the old and new results. Defaults to <code>compare_file_binary()</code>, which compares files line-by-line. To compare binary files byte-by-byte, use <code>compare_file_binary()</code>.
+<p>A function used to compare the snapshot files. It should take two inputs, the paths to the <code>old</code> and <code>new</code> snapshot, and return either <code>TRUE</code> or <code>FALSE</code>. This defaults to <code>compare_file_text</code> if <code>name</code> has extension <code>.r</code>, <code>.R</code>, <code>.Rmd</code>, <code>.md</code>, or <code>.txt</code>, and otherwise uses <code>compare_file_binary</code>.</p>
+<code>compare_file_binary()</code> compares byte-by-byte and <code>compare_file_text()</code> compares lines-by-line, ignoring the difference between Windows and Mac/Linux line endings.
+</dd>
+<dt>
+<code>transform</code>
+</dt>
+<dd>
+Optionally, a function to scrub sensitive or stochastic text from the output. Should take a character vector of lines as input and return a modified character vector as output.
 </dd>
 <dt>
 <code>variant</code>
 </dt>
 <dd>
-If not-<code>NULL</code>, results will be saved in <code style="white-space: pre;">_snaps/{variant}/{test}/{name}</code>. This allows you to create variants for experiments, or if the results are different on different operating systems. Snapshot variant is set by the local_reproducible_output() function and its friends. If you’re developing a package you can set it in the <code>tests/testthat/helper.R</code> file.
+<p>If not-<code>NULL</code>, results will be saved in <code style="white-space: pre;">_snaps/{variant}/{test}/{name}</code>. This allows you to create different snapshots for different scenarios, like different operating systems or different R versions.</p>
+Note that there’s no way to declare all possible variants up front which means that as soon as you start using variants, you are responsible for deleting snapshot variants that are no longer used. (testthat will still delete all variants if you delete the test.)
 </dd>
 </dl>
 </td>
 </tr>
-</tbody></table></section><section id="value" class="level3"><h3 class="anchored" data-anchor-id="value">Value</h3>
-<p>[NULL] (from <code><a href="https://testthat.r-lib.org/reference/expect_snapshot_file.html">testthat::expect_snapshot_file()</a></code>)</p>
+</tbody></table></section><section id="details" class="level3"><h3 class="anchored" data-anchor-id="details">Details</h3>
+<p>When using RDS format (the default), snapshots can vary across R versions and platforms even with fixed serialization versions. Consider using <code>variant = platform_variant()</code> for RDS snapshots to handle these differences, or use text-based formats like JSON or deparse for more stable snapshots across platforms and versions.</p>
+</section><section id="value" class="level3"><h3 class="anchored" data-anchor-id="value">Value</h3>
+<p>NULL (from <code><a href="https://testthat.r-lib.org/reference/expect_snapshot_file.html">testthat::expect_snapshot_file()</a></code>)</p>
 </section><section id="examples" class="level3"><h3 class="anchored" data-anchor-id="examples">Examples</h3>
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/d-morrison/snapr">"snapr"</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Snapshot a list (using RDS format by default)</span></span>
-<span><span class="fu"><a href="https://d-morrison.github.io/snapr/reference/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">2</span>, c <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"config"</span><span class="op">)</span></span>
+<span><span class="co"># Snapshot a list (using RDS format with platform/version variant)</span></span>
+<span><span class="fu"><a href="https://d-morrison.github.io/snapr/reference/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"config"</span>, variant <span class="op">=</span> <span class="fu"><a href="https://d-morrison.github.io/snapr/reference/platform_variant.html">platform_variant</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Snapshot a model</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://d-morrison.github.io/snapr/reference/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span><span class="va">model</span>, name <span class="op">=</span> <span class="st">"model"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://d-morrison.github.io/snapr/reference/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span></span>
+<span>  <span class="va">model</span>, name <span class="op">=</span> <span class="st">"model"</span>, variant <span class="op">=</span> <span class="fu"><a href="https://d-morrison.github.io/snapr/reference/platform_variant.html">platform_variant</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Snapshot with JSON format (for human-readable diffs)</span></span>
-<span><span class="fu"><a href="https://d-morrison.github.io/snapr/reference/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span>, name <span class="op">=</span> <span class="st">"iris_sample"</span>, writer <span class="op">=</span> <span class="va">save_json</span><span class="op">)</span></span>
+<span><span class="co"># Text formats don't need variants</span></span>
+<span><span class="fu"><a href="https://d-morrison.github.io/snapr/reference/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span>, name <span class="op">=</span> <span class="st">"iris"</span>, writer <span class="op">=</span> <span class="va">save_json</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Snapshot with deparse format</span></span>
-<span><span class="fu"><a href="https://d-morrison.github.io/snapr/reference/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"simple_list"</span>, writer <span class="op">=</span> <span class="va">save_deparse</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://d-morrison.github.io/snapr/reference/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"simple_list"</span>, writer <span class="op">=</span> <span class="va">save_deparse</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 
