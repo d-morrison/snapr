@@ -15,7 +15,15 @@ This makes it much easier to review changes to complex R objects.
 ## Usage
 
 ``` r
-expect_snapshot_object(x, name, writer = save_rds, print = FALSE, ...)
+expect_snapshot_object(
+  x,
+  name,
+  writer = save_rds,
+  print = FALSE,
+  compare = NULL,
+  tolerance = NULL,
+  ...
+)
 ```
 
 ## Arguments
@@ -48,6 +56,22 @@ expect_snapshot_object(x, name, writer = save_rds, print = FALSE, ...)
   output to R console; can become very long for complex objects like
   [lm](https://rdrr.io/r/stats/lm.html)s
 
+- tolerance:
+
+  If non-`NULL`, used as threshold for ignoring small floating point
+  difference when comparing numeric vectors. Using any non-`NULL` value
+  will cause integer and double vectors to be compared based on their
+  values, not their types, and will ignore the difference between `NaN`
+  and `NA_real_`.
+
+  It uses the same algorithm as
+  [`all.equal()`](https://rdrr.io/r/base/all.equal.html), i.e., first we
+  generate `x_diff` and `y_diff` by subsetting `x` and `y` to look only
+  locations with differences. Then we check that
+  `mean(abs(x_diff - y_diff)) / mean(abs(y_diff))` (or just
+  `mean(abs(x_diff - y_diff))` if `y_diff` is small) is less than
+  `tolerance`.
+
 - ...:
 
   Arguments passed on to
@@ -62,18 +86,6 @@ expect_snapshot_object(x, name, writer = save_rds, print = FALSE, ...)
   :   Should these expectations be verified on CRAN? By default, they
       are not, because snapshot tests tend to be fragile because they
       often rely on minor details of dependencies.
-
-  `compare`
-
-  :   A function used to compare the snapshot files. It should take two
-      inputs, the paths to the `old` and `new` snapshot, and return
-      either `TRUE` or `FALSE`. This defaults to `compare_file_text` if
-      `name` has extension `.r`, `.R`, `.Rmd`, `.md`, or `.txt`, and
-      otherwise uses `compare_file_binary`.
-
-      `compare_file_binary()` compares byte-by-byte and
-      `compare_file_text()` compares lines-by-line, ignoring the
-      difference between Windows and Mac/Linux line endings.
 
   `transform`
 
