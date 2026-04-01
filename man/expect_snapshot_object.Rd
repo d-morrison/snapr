@@ -49,15 +49,6 @@ with differences. Then we check that
     \item{\code{cran}}{Should these expectations be verified on CRAN? By default,
 they are not, because snapshot tests tend to be fragile because they
 often rely on minor details of dependencies.}
-    \item{\code{compare}}{A function used to compare the snapshot files. It should take
-two inputs, the paths to the \code{old} and \code{new} snapshot, and return either
-\code{TRUE} or \code{FALSE}. This defaults to \code{compare_file_text} if \code{name} has
-extension \code{.r}, \code{.R}, \code{.Rmd}, \code{.md}, or \code{.txt}, and otherwise uses
-\code{compare_file_binary}.
-
-\code{compare_file_binary()} compares byte-by-byte and
-\code{compare_file_text()} compares lines-by-line, ignoring
-the difference between Windows and Mac/Linux line endings.}
     \item{\code{transform}}{Optionally, a function to scrub sensitive or stochastic
 text from the output. Should take a character vector of lines as input
 and return a modified character vector as output.}
@@ -97,13 +88,6 @@ The RDS comparison uses \code{\link[diffobj:diffObj]{diffobj::diffObj()}} intern
 rich visual diffs in \code{\link[testthat:snapshot_accept]{testthat::snapshot_review()}}. This is particularly
 useful for complex objects like models, nested lists, or data structures
 where byte-level comparison would be difficult to interpret.
-}
-\details{
-When using RDS format (the default), snapshots can vary across R versions
-and platforms even with fixed serialization versions. Consider using
-\code{variant = platform_variant()} for RDS snapshots to handle these
-differences, or use text-based formats like JSON or deparse for more
-stable snapshots across platforms and versions.
 }
 \examples{
 \dontrun{
