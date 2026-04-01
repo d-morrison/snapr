@@ -5,6 +5,11 @@
 #' a convenient interface for snapshot testing with sensible defaults for
 #' serialization.
 #'
+#' When using RDS format (the default), snapshots are compared using
+#' [diffobj::diffObj()] which provides rich, visual diffs in
+#' [testthat::snapshot_review()]. This makes it much easier to review
+#' changes to complex R objects.
+#'
 #' @param x An R object to snapshot. Can be any R object including lists,
 #'   models, data.frames, vectors, etc.
 #' @param name [character] snapshot name (file extension added
@@ -13,7 +18,9 @@
 #'   Default is [save_rds()].
 #'   Other options include [save_json()], [save_deparse()], [save_csv()].
 #'   Custom writer functions should accept `x` and return a file path.
-#' @inheritDotParams testthat::expect_snapshot_file -path -name
+#' @inheritParams compare_file_object
+#' @inheritParams waldo::compare
+#' @inheritDotParams testthat::expect_snapshot_file -path -name -compare
 #' @returns [NULL] (from [testthat::expect_snapshot_file()])
 #' @export
 #' @details
@@ -22,6 +29,11 @@
 #' `variant = platform_variant()` for RDS snapshots to handle these
 #' differences, or use text-based formats like JSON or deparse for more
 #' stable snapshots across platforms and versions.
+#'
+#' The RDS comparison uses [diffobj::diffObj()] internally, which provides
+#' rich visual diffs in [testthat::snapshot_review()]. This is particularly
+#' useful for complex objects like models, nested lists, or data structures
+#' where byte-level comparison would be difficult to interpret.
 #' @examples
 #' \dontrun{
 #' # Snapshot a list (using RDS format with platform/version variant)
@@ -44,20 +56,34 @@
 #'   list(x = 1:5), name = "simple_list", writer = save_deparse
 #' )
 #' }
-expect_snapshot_object <- function(x, name, writer = save_rds, ...) {
+expect_snapshot_object <- function(x,
+                                   name,
+                                   writer = save_rds,
+                                   print = FALSE,
+                                   tolerance = NULL,
+                                   ...) {
   path <- writer(x)
   # Get file extension from the path returned by writer
   ext <- tools::file_ext(path)
   # Determine comparison method based on file extension
   # Text-based formats use line-by-line comparison
   # (ignores line-ending differences)
+  # RDS files use object comparison with diffobj for better visualization
   # Binary formats use byte-by-byte comparison
   text_extensions <- c("txt", "json", "R", "csv", "md", "yml", "yaml", "xml")
+
   compare <- if (ext %in% text_extensions) {
     testthat::compare_file_text
+  } else if (ext == "rds") {
+    function(...) {
+      compare_file_object(print = print, tolerance = tolerance, ...)
+    }
   } else {
     testthat::compare_file_binary
   }
+
+
+
   testthat::expect_snapshot_file(
     path = path,
     name = paste0(name, ".", ext),

@@ -4,7 +4,14 @@
 \alias{expect_snapshot_object}
 \title{Snapshot testing for R objects}
 \usage{
-expect_snapshot_object(x, name, writer = save_rds, ...)
+expect_snapshot_object(
+  x,
+  name,
+  writer = save_rds,
+  print = FALSE,
+  tolerance = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{An R object to snapshot. Can be any R object including lists,
@@ -17,6 +24,22 @@ automatically)}
 Default is \code{\link[=save_rds]{save_rds()}}.
 Other options include \code{\link[=save_json]{save_json()}}, \code{\link[=save_deparse]{save_deparse()}}, \code{\link[=save_csv]{save_csv()}}.
 Custom writer functions should accept \code{x} and return a file path.}
+
+\item{print}{\link{logical} whether to print \link[waldo:compare]{waldo::compare} output to R console;
+can become very long for complex objects like \link{lm}s}
+
+\item{tolerance}{If non-\code{NULL}, used as threshold for ignoring small
+floating point difference when comparing numeric vectors. Using any
+non-\code{NULL} value will cause integer and double vectors to be compared
+based on their values, not their types, and will ignore the difference
+between \code{NaN} and \code{NA_real_}.
+
+It uses the same algorithm as \code{\link[=all.equal]{all.equal()}}, i.e., first we generate
+\code{x_diff} and \code{y_diff} by subsetting \code{x} and \code{y} to look only locations
+with differences. Then we check that
+\code{mean(abs(x_diff - y_diff)) / mean(abs(y_diff))} (or just
+\code{mean(abs(x_diff - y_diff))} if \code{y_diff} is small) is less than
+\code{tolerance}.}
 
 \item{...}{
   Arguments passed on to \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file}}
@@ -57,6 +80,23 @@ A flexible wrapper around \code{\link[testthat:expect_snapshot_file]{testthat::e
 snapshotting any R object, not just data.frames. This function provides
 a convenient interface for snapshot testing with sensible defaults for
 serialization.
+
+When using RDS format (the default), snapshots are compared using
+\code{\link[diffobj:diffObj]{diffobj::diffObj()}} which provides rich, visual diffs in
+\code{\link[testthat:snapshot_accept]{testthat::snapshot_review()}}. This makes it much easier to review
+changes to complex R objects.
+}
+\details{
+When using RDS format (the default), snapshots can vary across R versions
+and platforms even with fixed serialization versions. Consider using
+\code{variant = platform_variant()} for RDS snapshots to handle these
+differences, or use text-based formats like JSON or deparse for more
+stable snapshots across platforms and versions.
+
+The RDS comparison uses \code{\link[diffobj:diffObj]{diffobj::diffObj()}} internally, which provides
+rich visual diffs in \code{\link[testthat:snapshot_accept]{testthat::snapshot_review()}}. This is particularly
+useful for complex objects like models, nested lists, or data structures
+where byte-level comparison would be difficult to interpret.
 }
 \details{
 When using RDS format (the default), snapshots can vary across R versions

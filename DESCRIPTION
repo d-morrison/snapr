@@ -16,14 +16,20 @@ Imports:
     readr,
     testthat,
     tidyselect,
-    tools
+    tools,
+    waldo
 Suggests: 
     altdoc,
     bslib,
     knitr,
     quarto,
     rmarkdown,
-    spelling
+    spelling,
+    withr,
+    diffviewer (>= 0.1.2.9000)
 VignetteBuilder: knitr, quarto
 Config/testthat/edition: 3
 Config/Needs/website: quarto
+Remotes: 
+    d-morrison/diffviewer@copilot/use-diffobj-diffstr-to-compare-rds-files
+

@@ -45,3 +45,8 @@ This means you can use:
 - `[]` for cross-references
 - `` ` `` for inline code
 - Markdown lists, headers, etc.
+
+## Code Organization
+
+**One function per file**: Each exported function should be in its own R file. The file should be named after the function (e.g., `compare_file_object()` should be in `R/compare_file_object.R`). This makes the codebase easier to navigate and maintain.
+
