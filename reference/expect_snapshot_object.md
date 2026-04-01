@@ -6,10 +6,23 @@ that allows snapshotting any R object, not just data.frames. This
 function provides a convenient interface for snapshot testing with
 sensible defaults for serialization.
 
+When using RDS format (the default), snapshots are compared using
+[`diffobj::diffObj()`](https://rdrr.io/pkg/diffobj/man/diffObj.html)
+which provides rich, visual diffs in
+[`testthat::snapshot_review()`](https://testthat.r-lib.org/reference/snapshot_accept.html).
+This makes it much easier to review changes to complex R objects.
+
 ## Usage
 
 ``` r
-expect_snapshot_object(x, name, writer = save_rds, ...)
+expect_snapshot_object(
+  x,
+  name,
+  writer = save_rds,
+  print = FALSE,
+  tolerance = NULL,
+  ...
+)
 ```
 
 ## Arguments
@@ -22,7 +35,7 @@ expect_snapshot_object(x, name, writer = save_rds, ...)
 - name:
 
   [character](https://rdrr.io/r/base/character.html) snapshot name (file
-  extension will be added automatically)
+  extension added automatically)
 
 - writer:
 
@@ -35,10 +48,37 @@ expect_snapshot_object(x, name, writer = save_rds, ...)
   [`save_csv()`](https://d-morrison.github.io/snapr/reference/save_csv.md).
   Custom writer functions should accept `x` and return a file path.
 
+- print:
+
+  [logical](https://rdrr.io/r/base/logical.html) whether to print
+  [waldo::compare](https://waldo.r-lib.org/reference/compare.html)
+  output to R console; can become very long for complex objects like
+  [lm](https://rdrr.io/r/stats/lm.html)s
+
+- tolerance:
+
+  If non-`NULL`, used as threshold for ignoring small floating point
+  difference when comparing numeric vectors. Using any non-`NULL` value
+  will cause integer and double vectors to be compared based on their
+  values, not their types, and will ignore the difference between `NaN`
+  and `NA_real_`.
+
+  It uses the same algorithm as
+  [`all.equal()`](https://rdrr.io/r/base/all.equal.html), i.e., first we
+  generate `x_diff` and `y_diff` by subsetting `x` and `y` to look only
+  locations with differences. Then we check that
+  `mean(abs(x_diff - y_diff)) / mean(abs(y_diff))` (or just
+  `mean(abs(x_diff - y_diff))` if `y_diff` is small) is less than
+  `tolerance`.
+
 - ...:
 
   Arguments passed on to
   [`testthat::expect_snapshot_file`](https://testthat.r-lib.org/reference/expect_snapshot_file.html)
+
+  `binary`
+
+  :   **\[deprecated\]** Please use the `compare` argument instead.
 
   `cran`
 
@@ -46,42 +86,68 @@ expect_snapshot_object(x, name, writer = save_rds, ...)
       are not, because snapshot tests tend to be fragile because they
       often rely on minor details of dependencies.
 
-  `compare`
+  `transform`
 
-  :   A function used to compare the old and new results. Defaults to
-      `compare_file_binary()`, which compares files line-by-line. To
-      compare binary files byte-by-byte, use `compare_file_binary()`.
+  :   Optionally, a function to scrub sensitive or stochastic text from
+      the output. Should take a character vector of lines as input and
+      return a modified character vector as output.
 
   `variant`
 
   :   If not-`NULL`, results will be saved in
       `_snaps/{variant}/{test}/{name}`. This allows you to create
-      variants for experiments, or if the results are different on
-      different operating systems. Snapshot variant is set by the
-      [local_reproducible_output()](https://testthat.r-lib.org/reference/local_test_context.html)
-      function and its friends. If you're developing a package you can
-      set it in the `tests/testthat/helper.R` file.
+      different snapshots for different scenarios, like different
+      operating systems or different R versions.
+
+      Note that there's no way to declare all possible variants up front
+      which means that as soon as you start using variants, you are
+      responsible for deleting snapshot variants that are no longer
+      used. (testthat will still delete all variants if you delete the
+      test.)
 
 ## Value
 
-\[NULL\] (from
+[NULL](https://rdrr.io/r/base/NULL.html) (from
 [`testthat::expect_snapshot_file()`](https://testthat.r-lib.org/reference/expect_snapshot_file.html))
+
+## Details
+
+When using RDS format (the default), snapshots can vary across R
+versions and platforms even with fixed serialization versions. Consider
+using `variant = platform_variant()` for RDS snapshots to handle these
+differences, or use text-based formats like JSON or deparse for more
+stable snapshots across platforms and versions.
+
+The RDS comparison uses
+[`diffobj::diffObj()`](https://rdrr.io/pkg/diffobj/man/diffObj.html)
+internally, which provides rich visual diffs in
+[`testthat::snapshot_review()`](https://testthat.r-lib.org/reference/snapshot_accept.html).
+This is particularly useful for complex objects like models, nested
+lists, or data structures where byte-level comparison would be difficult
+to interpret.
 
 ## Examples
 
 ``` r
 if (FALSE) { # \dontrun{
-# Snapshot a list (using RDS format by default)
-expect_snapshot_object(list(a = 1, b = 2, c = "text"), name = "config")
+# Snapshot a list (using RDS format with platform/version variant)
+expect_snapshot_object(
+  list(a = 1, b = 2), name = "config", variant = platform_variant()
+)
 
 # Snapshot a model
 model <- lm(mpg ~ wt, data = mtcars)
-expect_snapshot_object(model, name = "model")
+expect_snapshot_object(
+  model, name = "model", variant = platform_variant()
+)
 
 # Snapshot with JSON format (for human-readable diffs)
-expect_snapshot_object(iris[1:5, ], name = "iris_sample", writer = save_json)
+# Text formats don't need variants
+expect_snapshot_object(iris[1:5, ], name = "iris", writer = save_json)
 
 # Snapshot with deparse format
-expect_snapshot_object(list(x = 1:5), name = "simple_list", writer = save_deparse)
+expect_snapshot_object(
+  list(x = 1:5), name = "simple_list", writer = save_deparse
+)
 } # }
 ```

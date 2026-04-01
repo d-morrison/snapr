@@ -8,6 +8,8 @@ Useful links:
 
 - <https://github.com/d-morrison/snapr>
 
+- <https://d-morrison.github.io/snapr/>
+
 - Report bugs at <https://github.com/d-morrison/snapr/issues>
 
 ## Author

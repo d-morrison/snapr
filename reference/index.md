@@ -2,6 +2,9 @@
 
 ## All functions
 
+- [`darwin_variant()`](https://d-morrison.github.io/snapr/reference/darwin_variant.md)
+  : Get darwin snapshot variant for macOS
+
 - [`expect_snapshot_data()`](https://d-morrison.github.io/snapr/reference/expect_snapshot_data.md)
   :
 
@@ -10,3 +13,9 @@
 
 - [`expect_snapshot_object()`](https://d-morrison.github.io/snapr/reference/expect_snapshot_object.md)
   : Snapshot testing for R objects
+
+- [`platform_variant()`](https://d-morrison.github.io/snapr/reference/platform_variant.md)
+  : Get platform variant including OS and R version
+
+- [`system_os()`](https://d-morrison.github.io/snapr/reference/system_os.md)
+  : Get the current operating system

@@ -29,21 +29,38 @@ expect_snapshot_data(x, name, digits = 6, ...)
   Arguments passed on to
   [`testthat::expect_snapshot_file`](https://testthat.r-lib.org/reference/expect_snapshot_file.html)
 
-  `path`
+  `binary`
 
-  :   Path to file.
+  :   **\[deprecated\]** Please use the `compare` argument instead.
 
-  `name`
+  `cran`
 
-  :   Snapshot name, taken from `path` by default.
+  :   Should these expectations be verified on CRAN? By default, they
+      are not, because snapshot tests tend to be fragile because they
+      often rely on minor details of dependencies.
 
-  `compare`
+  `transform`
 
-  :   A function used to compare the snapshot files.
+  :   Optionally, a function to scrub sensitive or stochastic text from
+      the output. Should take a character vector of lines as input and
+      return a modified character vector as output.
+
+  `variant`
+
+  :   If not-`NULL`, results will be saved in
+      `_snaps/{variant}/{test}/{name}`. This allows you to create
+      different snapshots for different scenarios, like different
+      operating systems or different R versions.
+
+      Note that there's no way to declare all possible variants up front
+      which means that as soon as you start using variants, you are
+      responsible for deleting snapshot variants that are no longer
+      used. (testthat will still delete all variants if you delete the
+      test.)
 
 ## Value
 
-\[NULL\] (from
+[NULL](https://rdrr.io/r/base/NULL.html) (from
 [`testthat::expect_snapshot_file()`](https://testthat.r-lib.org/reference/expect_snapshot_file.html))
 
 ## Examples
