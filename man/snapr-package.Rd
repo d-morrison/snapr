@@ -4,9 +4,9 @@
 \name{snapr-package}
 \alias{snapr}
 \alias{snapr-package}
-\title{snapr: What the Package Does (One Line, Title Case)}
+\title{snapr: Convenient Snapshot Testing Functions for R Packages}
 \description{
-What the package does (one paragraph).
+Provides convenient snapshot testing functions for R packages, including expect_snapshot_data() for data.frames and expect_snapshot_object() for any R object.
 }
 \seealso{
 Useful links:
@@ -18,7 +18,6 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com}
+\strong{Maintainer}: Douglas Ezra Morrison \email{demorrison@ucdavis.edu}
 
 }
-\keyword{internal}
