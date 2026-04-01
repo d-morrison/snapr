@@ -75,10 +75,9 @@ expect_snapshot_object <- function(x,
   compare <- if (ext %in% text_extensions) {
     testthat::compare_file_text
   } else if (ext == "rds") {
-    function(...) compare_file_object(
-      print = print,
-      tolerance = tolerance,
-      ...)
+    function(...) {
+      compare_file_object(print = print, tolerance = tolerance, ...)
+    }
   } else {
     testthat::compare_file_binary
   }
