@@ -475,13 +475,6 @@ It uses the same algorithm as <code><a href="https://rdrr.io/r/base/all.equal.ht
 Should these expectations be verified on CRAN? By default, they are not, because snapshot tests tend to be fragile because they often rely on minor details of dependencies.
 </dd>
 <dt>
-<code>compare</code>
-</dt>
-<dd>
-<p>A function used to compare the snapshot files. It should take two inputs, the paths to the <code>old</code> and <code>new</code> snapshot, and return either <code>TRUE</code> or <code>FALSE</code>. This defaults to <code>compare_file_text</code> if <code>name</code> has extension <code>.r</code>, <code>.R</code>, <code>.Rmd</code>, <code>.md</code>, or <code>.txt</code>, and otherwise uses <code>compare_file_binary</code>.</p>
-<code>compare_file_binary()</code> compares byte-by-byte and <code>compare_file_text()</code> compares lines-by-line, ignoring the difference between Windows and Mac/Linux line endings.
-</dd>
-<dt>
 <code>transform</code>
 </dt>
 <dd>
