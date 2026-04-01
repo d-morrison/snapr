@@ -15,8 +15,8 @@ test_that("expect_snapshot_object works with RDS format for lm objects", {
   # Create a test object
 
   lm1 <- lm(Sepal.Length ~ Sepal.Width, data = iris)
-  # lm1 <- lm(Sepal.Length ~ Sepal.Width, data = iris, subset = Species == "setosa")
-  # lm2 <- lm(Sepal.Length ~ Sepal.Width, data = iris, subset = Species == "versicolor")
+  # lm1 <- lm(Sepal.Length ~ Sepal.Width, data = iris, subset = Species == "setosa") # nolint
+  # lm2 <- lm(Sepal.Length ~ Sepal.Width, data = iris, subset = Species == "versicolor") # nolint
   expect_snapshot_object(
     lm1,
     name = "lm1_rds",
@@ -133,19 +133,22 @@ test_that("compare_file_object returns TRUE for identical objects", {
   expect_true(result)
 })
 
-test_that("compare_file_object returns FALSE for different objects", {
-  # Create different objects
-  old_obj <- list(a = 1, b = 2)
-  new_obj <- list(a = 1, b = 3)
-  old_path <- tempfile(fileext = ".rds")
-  new_path <- tempfile(fileext = ".rds")
+test_that(
+  "compare_file_object returns FALSE for different objects",
+  {
+    # Create different objects
+    old_obj <- list(a = 1, b = 2)
+    new_obj <- list(a = 1, b = 3)
+    old_path <- tempfile(fileext = ".rds")
+    new_path <- tempfile(fileext = ".rds")
 
-  saveRDS(old_obj, old_path)
-  saveRDS(new_obj, new_path)
+    saveRDS(old_obj, old_path)
+    saveRDS(new_obj, new_path)
 
-  result <- compare_file_object(old_path, new_path, print = FALSE) |>
-  expect_false(result)
-})
+    result <- compare_file_object(old_path, new_path, print = FALSE) |>
+      expect_false(result)
+  }
+)
 
 test_that("compare_file_object works with complex objects", {
   # Create complex objects (e.g., models)
