@@ -19,6 +19,7 @@ test_that("expect_snapshot_object works with RDS format for lm objects", {
   # lm2 <- lm(Sepal.Length ~ Sepal.Width, data = iris, subset = Species == "versicolor") # nolint
   expect_snapshot_object(
     lm1,
+    print = TRUE,
     name = "lm1_rds",
     variant = platform_variant()
   )

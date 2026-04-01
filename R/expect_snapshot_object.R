@@ -18,6 +18,7 @@
 #'   Default is [save_rds()].
 #'   Other options include [save_json()], [save_deparse()], [save_csv()].
 #'   Custom writer functions should accept `x` and return a file path.
+#' @inheritParams compare_file_object
 #' @inheritDotParams testthat::expect_snapshot_file -path -name
 #' @returns [NULL] (from [testthat::expect_snapshot_file()])
 #' @export
@@ -54,7 +55,11 @@
 #'   list(x = 1:5), name = "simple_list", writer = save_deparse
 #' )
 #' }
-expect_snapshot_object <- function(x, name, writer = save_rds, ...) {
+expect_snapshot_object <- function(x,
+                                   name,
+                                   writer = save_rds,
+                                   print = FALSE,
+                                   ...) {
   path <- writer(x)
   # Get file extension from the path returned by writer
   ext <- tools::file_ext(path)
@@ -64,10 +69,11 @@ expect_snapshot_object <- function(x, name, writer = save_rds, ...) {
   # RDS files use object comparison with diffobj for better visualization
   # Binary formats use byte-by-byte comparison
   text_extensions <- c("txt", "json", "R", "csv", "md", "yml", "yaml", "xml")
+
   compare <- if (ext %in% text_extensions) {
     testthat::compare_file_text
   } else if (ext == "rds") {
-    compare_file_object
+    function(...) compare_file_object(print = print, ...)
   } else {
     testthat::compare_file_binary
   }

@@ -4,7 +4,7 @@
 \alias{expect_snapshot_object}
 \title{Snapshot testing for R objects}
 \usage{
-expect_snapshot_object(x, name, writer = save_rds, ...)
+expect_snapshot_object(x, name, writer = save_rds, print = FALSE, ...)
 }
 \arguments{
 \item{x}{An R object to snapshot. Can be any R object including lists,
@@ -17,6 +17,9 @@ automatically)}
 Default is \code{\link[=save_rds]{save_rds()}}.
 Other options include \code{\link[=save_json]{save_json()}}, \code{\link[=save_deparse]{save_deparse()}}, \code{\link[=save_csv]{save_csv()}}.
 Custom writer functions should accept \code{x} and return a file path.}
+
+\item{print}{\link{logical} whether to print \link[waldo:compare]{waldo::compare} output to R console;
+can become very long for complex objects like \link{lm}s}
 
 \item{...}{
   Arguments passed on to \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file}}
