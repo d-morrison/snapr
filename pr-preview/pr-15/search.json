@@ -15,14 +15,14 @@
     "href": "CITATION.html",
     "title": "Citation",
     "section": "",
-    "text": "Citation\nTo cite package ‘snapr’ in publications use:\n\nLast F (2026). snapr: What the Package Does (One Line, Title Case). R package version 0.0.0.9000, https://github.com/d-morrison/snapr."
+    "text": "Citation\nTo cite package ‘snapr’ in publications use:\n\nMorrison D (2026). snapr: Convenient Snapshot Testing Functions for R Packages. R package version 0.0.0.9000, https://github.com/d-morrison/snapr."
   },
   {
     "objectID": "man/snapr-package.html",
     "href": "man/snapr-package.html",
     "title": "snapr",
     "section": "",
-    "text": "What the package does (one paragraph).\n\n\n\nMaintainer: First Last first.last@example.com\n\n\n\nUseful links:\n\n\nhttps://github.com/d-morrison/snapr\n\n\nhttps://d-morrison.github.io/snapr/\n\n\nReport bugs at https://github.com/d-morrison/snapr/issues",
+    "text": "Provides convenient snapshot testing functions for R packages, including expect_snapshot_data() for data.frames and expect_snapshot_object() for any R object.\n\n\n\nMaintainer: Douglas Ezra Morrison demorrison@ucdavis.edu\n\n\n\nUseful links:\n\n\nhttps://github.com/d-morrison/snapr\n\n\nhttps://d-morrison.github.io/snapr/\n\n\nReport bugs at https://github.com/d-morrison/snapr/issues",
     "crumbs": [
       "Documentation",
       "Reference",
@@ -30,11 +30,11 @@
     ]
   },
   {
-    "objectID": "man/snapr-package.html#snapr-what-the-package-does-one-line-title-case",
-    "href": "man/snapr-package.html#snapr-what-the-package-does-one-line-title-case",
+    "objectID": "man/snapr-package.html#snapr-convenient-snapshot-testing-functions-for-r-packages",
+    "href": "man/snapr-package.html#snapr-convenient-snapshot-testing-functions-for-r-packages",
     "title": "snapr",
     "section": "",
-    "text": "What the package does (one paragraph).\n\n\n\nMaintainer: First Last first.last@example.com\n\n\n\nUseful links:\n\n\nhttps://github.com/d-morrison/snapr\n\n\nhttps://d-morrison.github.io/snapr/\n\n\nReport bugs at https://github.com/d-morrison/snapr/issues",
+    "text": "Provides convenient snapshot testing functions for R packages, including expect_snapshot_data() for data.frames and expect_snapshot_object() for any R object.\n\n\n\nMaintainer: Douglas Ezra Morrison demorrison@ucdavis.edu\n\n\n\nUseful links:\n\n\nhttps://github.com/d-morrison/snapr\n\n\nhttps://d-morrison.github.io/snapr/\n\n\nReport bugs at https://github.com/d-morrison/snapr/issues",
     "crumbs": [
       "Documentation",
       "Reference",
