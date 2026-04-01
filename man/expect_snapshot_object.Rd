@@ -4,7 +4,15 @@
 \alias{expect_snapshot_object}
 \title{Snapshot testing for R objects}
 \usage{
-expect_snapshot_object(x, name, writer = save_rds, print = FALSE, ...)
+expect_snapshot_object(
+  x,
+  name,
+  writer = save_rds,
+  print = FALSE,
+  compare = NULL,
+  tolerance = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{An R object to snapshot. Can be any R object including lists,
@@ -21,6 +29,19 @@ Custom writer functions should accept \code{x} and return a file path.}
 \item{print}{\link{logical} whether to print \link[waldo:compare]{waldo::compare} output to R console;
 can become very long for complex objects like \link{lm}s}
 
+\item{tolerance}{If non-\code{NULL}, used as threshold for ignoring small
+floating point difference when comparing numeric vectors. Using any
+non-\code{NULL} value will cause integer and double vectors to be compared
+based on their values, not their types, and will ignore the difference
+between \code{NaN} and \code{NA_real_}.
+
+It uses the same algorithm as \code{\link[=all.equal]{all.equal()}}, i.e., first we generate
+\code{x_diff} and \code{y_diff} by subsetting \code{x} and \code{y} to look only locations
+with differences. Then we check that
+\code{mean(abs(x_diff - y_diff)) / mean(abs(y_diff))} (or just
+\code{mean(abs(x_diff - y_diff))} if \code{y_diff} is small) is less than
+\code{tolerance}.}
+
 \item{...}{
   Arguments passed on to \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file}}
   \describe{
@@ -29,15 +50,6 @@ can become very long for complex objects like \link{lm}s}
     \item{\code{cran}}{Should these expectations be verified on CRAN? By default,
 they are not, because snapshot tests tend to be fragile because they
 often rely on minor details of dependencies.}
-    \item{\code{compare}}{A function used to compare the snapshot files. It should take
-two inputs, the paths to the \code{old} and \code{new} snapshot, and return either
-\code{TRUE} or \code{FALSE}. This defaults to \code{compare_file_text} if \code{name} has
-extension \code{.r}, \code{.R}, \code{.Rmd}, \code{.md}, or \code{.txt}, and otherwise uses
-\code{compare_file_binary}.
-
-\code{compare_file_binary()} compares byte-by-byte and
-\code{compare_file_text()} compares lines-by-line, ignoring
-the difference between Windows and Mac/Linux line endings.}
     \item{\code{transform}}{Optionally, a function to scrub sensitive or stochastic
 text from the output. Should take a character vector of lines as input
 and return a modified character vector as output.}

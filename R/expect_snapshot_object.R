@@ -19,7 +19,8 @@
 #'   Other options include [save_json()], [save_deparse()], [save_csv()].
 #'   Custom writer functions should accept `x` and return a file path.
 #' @inheritParams compare_file_object
-#' @inheritDotParams testthat::expect_snapshot_file -path -name
+#' @inheritParams waldo::compare
+#' @inheritDotParams testthat::expect_snapshot_file -path -name -compare
 #' @returns [NULL] (from [testthat::expect_snapshot_file()])
 #' @export
 #' @details
@@ -59,6 +60,8 @@ expect_snapshot_object <- function(x,
                                    name,
                                    writer = save_rds,
                                    print = FALSE,
+                                   compare = NULL,
+                                   tolerance = NULL,
                                    ...) {
   path <- writer(x)
   # Get file extension from the path returned by writer
@@ -70,13 +73,21 @@ expect_snapshot_object <- function(x,
   # Binary formats use byte-by-byte comparison
   text_extensions <- c("txt", "json", "R", "csv", "md", "yml", "yaml", "xml")
 
-  compare <- if (ext %in% text_extensions) {
-    testthat::compare_file_text
-  } else if (ext == "rds") {
-    function(...) compare_file_object(print = print, ...)
-  } else {
-    testthat::compare_file_binary
+  if (is.null(compare)) {
+
+    compare <- if (ext %in% text_extensions) {
+      testthat::compare_file_text
+    } else if (ext == "rds") {
+      function(...) compare_file_object(
+        print = print,
+        tolerance = tolerance,
+        ...)
+    } else {
+      testthat::compare_file_binary
+    }
+
   }
+
   testthat::expect_snapshot_file(
     path = path,
     name = paste0(name, ".", ext),

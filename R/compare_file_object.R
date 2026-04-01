@@ -12,6 +12,7 @@
 #' @param new Path to the new RDS file to compare
 #' @param print [logical] whether to print [waldo::compare] output to R console;
 #' can become very long for complex objects like [lm]s
+#' @inheritDotParams waldo::compare
 #' @returns [logical] TRUE if objects are identical, FALSE otherwise
 #' @export
 #' @keywords internal
@@ -27,7 +28,10 @@
 #' saveRDS(new_obj, new_path)
 #' compare_file_object(old_path, new_path)
 #' }
-compare_file_object <- function(old, new, print = FALSE) {
+compare_file_object <- function(old,
+                                new,
+                                print = FALSE,
+                                ...) {
   # Load the RDS files
   old_obj <- readRDS(old)
   new_obj <- readRDS(new)
@@ -39,7 +43,8 @@ compare_file_object <- function(old, new, print = FALSE) {
     old_obj,
     new_obj,
     x_arg = "actual",
-    y_arg = "expected"
+    y_arg = "expected",
+    ...
   )
   identical <- length(comparison) == 0 # c.f., `testthat:::expect_waldo_equal_`
   if (!identical && print) {
