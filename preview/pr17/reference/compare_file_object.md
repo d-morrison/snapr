@@ -11,7 +11,7 @@ internally, this function compares the R objects after deserialization.
 ## Usage
 
 ``` r
-compare_file_object(old, new)
+compare_file_object(old, new, print = FALSE)
 ```
 
 ## Arguments
@@ -23,6 +23,13 @@ compare_file_object(old, new)
 - new:
 
   Path to the new RDS file to compare
+
+- print:
+
+  [logical](https://rdrr.io/r/base/logical.html) whether to print
+  [waldo::compare](https://waldo.r-lib.org/reference/compare.html)
+  output to R console; can become very long for complex objects like
+  [lm](https://rdrr.io/r/stats/lm.html)s
 
 ## Value
 
