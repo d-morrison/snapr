@@ -12,3 +12,4 @@
 ^_quarto$
 ^\.quarto$
 ^index\.qmd$
+^cran-comments\.md$

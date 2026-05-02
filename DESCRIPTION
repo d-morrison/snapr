@@ -1,12 +1,13 @@
 Package: snapr
 Title: Convenient Snapshot Testing Functions for R Packages
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("Douglas Ezra", "Morrison", , "demorrison@ucdavis.edu", role = c("aut", "cre"))
 Description: Provides convenient snapshot testing functions for R packages,
     including expect_snapshot_data() for data.frames and 
     expect_snapshot_object() for any R object.
 License: MIT + file LICENSE
+Language: en-US
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
@@ -27,11 +28,8 @@ Suggests:
     quarto,
     rmarkdown,
     spelling,
-    withr,
-    diffviewer (>= 0.1.2.9000)
+    withr
 VignetteBuilder: knitr, quarto
 Config/testthat/edition: 3
 Config/Needs/website: quarto
-Remotes: 
-    d-morrison/diffviewer@copilot/use-diffobj-diffstr-to-compare-rds-files
 
