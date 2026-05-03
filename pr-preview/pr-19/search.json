@@ -1,0 +1,208 @@
+[
+  {
+    "objectID": "NEWS.html",
+    "href": "NEWS.html",
+    "title": "snapr 0.1.0",
+    "section": "",
+    "text": "snapr 0.1.0\n\nInitial release.\nexpect_snapshot_data(): snapshot testing for data frames (saves as CSV).\nexpect_snapshot_object(): snapshot testing for any R object (RDS, JSON, deparse, or CSV formats).\ncompare_file_object(): compare RDS files by deserializing and comparing the underlying R objects.\nsave_rds(), save_json(), save_deparse(), save_csv(): writer helpers for expect_snapshot_object().\nsystem_os(), darwin_variant(), platform_variant(): helper functions for creating platform-specific snapshot variants.",
+    "crumbs": [
+      "Documentation",
+      "News"
+    ]
+  },
+  {
+    "objectID": "CITATION.html",
+    "href": "CITATION.html",
+    "title": "Citation",
+    "section": "",
+    "text": "Citation\nTo cite package ‘snapr’ in publications use:\n\nMorrison D (2026). snapr: Convenient Snapshot Testing Functions for R Packages. R package version 0.1.0, https://github.com/d-morrison/snapr."
+  },
+  {
+    "objectID": "man/snapr-package.html",
+    "href": "man/snapr-package.html",
+    "title": "snapr",
+    "section": "",
+    "text": "Provides convenient snapshot testing functions for R packages, including expect_snapshot_data() for data.frames and expect_snapshot_object() for any R object.\n\n\n\nMaintainer: Douglas Ezra Morrison demorrison@ucdavis.edu\n\n\n\nUseful links:\n\n\nhttps://github.com/d-morrison/snapr\n\n\nhttps://d-morrison.github.io/snapr/\n\n\nReport bugs at https://github.com/d-morrison/snapr/issues",
+    "crumbs": [
+      "Documentation",
+      "Reference",
+      "snapr-package"
+    ]
+  },
+  {
+    "objectID": "man/snapr-package.html#snapr-convenient-snapshot-testing-functions-for-r-packages",
+    "href": "man/snapr-package.html#snapr-convenient-snapshot-testing-functions-for-r-packages",
+    "title": "snapr",
+    "section": "",
+    "text": "Provides convenient snapshot testing functions for R packages, including expect_snapshot_data() for data.frames and expect_snapshot_object() for any R object.\n\n\n\nMaintainer: Douglas Ezra Morrison demorrison@ucdavis.edu\n\n\n\nUseful links:\n\n\nhttps://github.com/d-morrison/snapr\n\n\nhttps://d-morrison.github.io/snapr/\n\n\nReport bugs at https://github.com/d-morrison/snapr/issues",
+    "crumbs": [
+      "Documentation",
+      "Reference",
+      "snapr-package"
+    ]
+  },
+  {
+    "objectID": "man/expect_snapshot_object.html",
+    "href": "man/expect_snapshot_object.html",
+    "title": "snapr",
+    "section": "",
+    "text": "A flexible wrapper around testthat::expect_snapshot_file() that allows snapshotting any R object, not just data.frames. This function provides a convenient interface for snapshot testing with sensible defaults for serialization.\nWhen using RDS format (the default), snapshots are compared using diffobj::diffObj() which provides rich, visual diffs in testthat::snapshot_review(). This makes it much easier to review changes to complex R objects.\n\nexpect_snapshot_object(\n  x,\n  name,\n  writer = save_rds,\n  print = FALSE,\n  tolerance = NULL,\n  ...\n)\n\n\n\n\n\nx\n\n\nAn R object to snapshot. Can be any R object including lists, models, data.frames, vectors, etc.\n\n\n\n\nname\n\n\ncharacter snapshot name (file extension added automatically)\n\n\n\n\nwriter\n\n\nfunction Function to write the object to a file. Default is save_rds(). Other options include save_json(), save_deparse(), save_csv(). Custom writer functions should accept x and return a file path.\n\n\n\n\nprint\n\n\nlogical whether to print waldo::compare output to R console; can become very long for complex objects like lms\n\n\n\n\ntolerance\n\n\nIf non-NULL, used as threshold for ignoring small floating point difference when comparing numeric vectors. Using any non-NULL value will cause integer and double vectors to be compared based on their values, not their types, and will ignore the difference between NaN and NA_real_.\nIt uses the same algorithm as all.equal(), i.e., first we generate x_diff and y_diff by subsetting x and y to look only locations with differences. Then we check that mean(abs(x_diff - y_diff)) / mean(abs(y_diff)) (or just mean(abs(x_diff - y_diff)) if y_diff is small) is less than tolerance.\n\n\n\n\n…\n\n\nArguments passed on to testthat::expect_snapshot_file\n\n\nbinary\n\n\n Please use the compare argument instead.\n\n\ncran\n\n\nShould these expectations be verified on CRAN? By default, they are not, because snapshot tests tend to be fragile because they often rely on minor details of dependencies.\n\n\ntransform\n\n\nOptionally, a function to scrub sensitive or stochastic text from the output. Should take a character vector of lines as input and return a modified character vector as output.\n\n\nvariant\n\n\nIf not-NULL, results will be saved in _snaps/{variant}/{test}/{name}. This allows you to create different snapshots for different scenarios, like different operating systems or different R versions.\nNote that there’s no way to declare all possible variants up front which means that as soon as you start using variants, you are responsible for deleting snapshot variants that are no longer used. (testthat will still delete all variants if you delete the test.)\n\n\n\n\n\nWhen using RDS format (the default), snapshots can vary across R versions and platforms even with fixed serialization versions. Consider using variant = platform_variant() for RDS snapshots to handle these differences, or use text-based formats like JSON or deparse for more stable snapshots across platforms and versions.\nThe RDS comparison uses diffobj::diffObj() internally, which provides rich visual diffs in testthat::snapshot_review(). This is particularly useful for complex objects like models, nested lists, or data structures where byte-level comparison would be difficult to interpret.\n\nNULL (from testthat::expect_snapshot_file())\n\n\nCodelibrary(\"snapr\")\n\n# Snapshot a list (using RDS format with platform/version variant)\nexpect_snapshot_object(\n  list(a = 1, b = 2), name = \"config\", variant = platform_variant()\n)\n\n# Snapshot a model\nmodel &lt;- lm(mpg ~ wt, data = mtcars)\nexpect_snapshot_object(\n  model, name = \"model\", variant = platform_variant()\n)\n\n# Snapshot with JSON format (for human-readable diffs)\n# Text formats don't need variants\nexpect_snapshot_object(iris[1:5, ], name = \"iris\", writer = save_json)\n\n# Snapshot with deparse format\nexpect_snapshot_object(\n  list(x = 1:5), name = \"simple_list\", writer = save_deparse\n)",
+    "crumbs": [
+      "Documentation",
+      "Reference",
+      "expect_snapshot_object"
+    ]
+  },
+  {
+    "objectID": "man/expect_snapshot_object.html#snapshot-testing-for-r-objects",
+    "href": "man/expect_snapshot_object.html#snapshot-testing-for-r-objects",
+    "title": "snapr",
+    "section": "",
+    "text": "A flexible wrapper around testthat::expect_snapshot_file() that allows snapshotting any R object, not just data.frames. This function provides a convenient interface for snapshot testing with sensible defaults for serialization.\nWhen using RDS format (the default), snapshots are compared using diffobj::diffObj() which provides rich, visual diffs in testthat::snapshot_review(). This makes it much easier to review changes to complex R objects.\n\nexpect_snapshot_object(\n  x,\n  name,\n  writer = save_rds,\n  print = FALSE,\n  tolerance = NULL,\n  ...\n)\n\n\n\n\n\nx\n\n\nAn R object to snapshot. Can be any R object including lists, models, data.frames, vectors, etc.\n\n\n\n\nname\n\n\ncharacter snapshot name (file extension added automatically)\n\n\n\n\nwriter\n\n\nfunction Function to write the object to a file. Default is save_rds(). Other options include save_json(), save_deparse(), save_csv(). Custom writer functions should accept x and return a file path.\n\n\n\n\nprint\n\n\nlogical whether to print waldo::compare output to R console; can become very long for complex objects like lms\n\n\n\n\ntolerance\n\n\nIf non-NULL, used as threshold for ignoring small floating point difference when comparing numeric vectors. Using any non-NULL value will cause integer and double vectors to be compared based on their values, not their types, and will ignore the difference between NaN and NA_real_.\nIt uses the same algorithm as all.equal(), i.e., first we generate x_diff and y_diff by subsetting x and y to look only locations with differences. Then we check that mean(abs(x_diff - y_diff)) / mean(abs(y_diff)) (or just mean(abs(x_diff - y_diff)) if y_diff is small) is less than tolerance.\n\n\n\n\n…\n\n\nArguments passed on to testthat::expect_snapshot_file\n\n\nbinary\n\n\n Please use the compare argument instead.\n\n\ncran\n\n\nShould these expectations be verified on CRAN? By default, they are not, because snapshot tests tend to be fragile because they often rely on minor details of dependencies.\n\n\ntransform\n\n\nOptionally, a function to scrub sensitive or stochastic text from the output. Should take a character vector of lines as input and return a modified character vector as output.\n\n\nvariant\n\n\nIf not-NULL, results will be saved in _snaps/{variant}/{test}/{name}. This allows you to create different snapshots for different scenarios, like different operating systems or different R versions.\nNote that there’s no way to declare all possible variants up front which means that as soon as you start using variants, you are responsible for deleting snapshot variants that are no longer used. (testthat will still delete all variants if you delete the test.)\n\n\n\n\n\nWhen using RDS format (the default), snapshots can vary across R versions and platforms even with fixed serialization versions. Consider using variant = platform_variant() for RDS snapshots to handle these differences, or use text-based formats like JSON or deparse for more stable snapshots across platforms and versions.\nThe RDS comparison uses diffobj::diffObj() internally, which provides rich visual diffs in testthat::snapshot_review(). This is particularly useful for complex objects like models, nested lists, or data structures where byte-level comparison would be difficult to interpret.\n\nNULL (from testthat::expect_snapshot_file())\n\n\nCodelibrary(\"snapr\")\n\n# Snapshot a list (using RDS format with platform/version variant)\nexpect_snapshot_object(\n  list(a = 1, b = 2), name = \"config\", variant = platform_variant()\n)\n\n# Snapshot a model\nmodel &lt;- lm(mpg ~ wt, data = mtcars)\nexpect_snapshot_object(\n  model, name = \"model\", variant = platform_variant()\n)\n\n# Snapshot with JSON format (for human-readable diffs)\n# Text formats don't need variants\nexpect_snapshot_object(iris[1:5, ], name = \"iris\", writer = save_json)\n\n# Snapshot with deparse format\nexpect_snapshot_object(\n  list(x = 1:5), name = \"simple_list\", writer = save_deparse\n)",
+    "crumbs": [
+      "Documentation",
+      "Reference",
+      "expect_snapshot_object"
+    ]
+  },
+  {
+    "objectID": "man/darwin_variant.html",
+    "href": "man/darwin_variant.html",
+    "title": "snapr",
+    "section": "",
+    "text": "Returns \"darwin\" for macOS, NULL for other platforms (Linux/Windows).\n\ndarwin_variant()\n\n\nThis is a specialized variant function for cases where only macOS produces different results while Linux and Windows are identical. Use this instead of system_os() when:\n\n\nmacOS produces unique output (e.g., platform-specific math libraries)\n\n\nLinux and Windows produce identical results\n\n\nYou want to maintain a single snapshot for Linux/Windows\n\n\nCommon use cases:\n\n\nJAGS MCMC output (macOS uses different floating-point arithmetic)\n\n\nPlatform-specific numerical computations\n\n\n\"darwin\" on macOS, NULL on other platforms\n\n\nCodelibrary(\"snapr\")\n\n# Use with expect_snapshot_file when only macOS differs\nexpect_snapshot_object(\n  mcmc_result, name = \"test\", variant = darwin_variant()\n)",
+    "crumbs": [
+      "Documentation",
+      "Reference",
+      "darwin_variant"
+    ]
+  },
+  {
+    "objectID": "man/darwin_variant.html#get-darwin-snapshot-variant-for-macos",
+    "href": "man/darwin_variant.html#get-darwin-snapshot-variant-for-macos",
+    "title": "snapr",
+    "section": "",
+    "text": "Returns \"darwin\" for macOS, NULL for other platforms (Linux/Windows).\n\ndarwin_variant()\n\n\nThis is a specialized variant function for cases where only macOS produces different results while Linux and Windows are identical. Use this instead of system_os() when:\n\n\nmacOS produces unique output (e.g., platform-specific math libraries)\n\n\nLinux and Windows produce identical results\n\n\nYou want to maintain a single snapshot for Linux/Windows\n\n\nCommon use cases:\n\n\nJAGS MCMC output (macOS uses different floating-point arithmetic)\n\n\nPlatform-specific numerical computations\n\n\n\"darwin\" on macOS, NULL on other platforms\n\n\nCodelibrary(\"snapr\")\n\n# Use with expect_snapshot_file when only macOS differs\nexpect_snapshot_object(\n  mcmc_result, name = \"test\", variant = darwin_variant()\n)",
+    "crumbs": [
+      "Documentation",
+      "Reference",
+      "darwin_variant"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "snapr",
+    "section": "",
+    "text": "The goal of snapr is to provide convenient snapshot testing functions for R packages:\n\nexpect_snapshot_data() - for data.frames (adapted with permission from the {ssdtools} package)\nexpect_snapshot_object() - generalizes expect_snapshot_data() for use with any R object\n\n\n\nYou can install the development version of snapr from GitHub with:\n# install.packages(\"pak\")\npak::pak(\"d-morrison/snapr\")\n\n\n\n\n\nlibrary(snapr)\n\n# In a testthat test file:\ntest_that(\"iris data is correct\", {\n  expect_snapshot_data(iris[1:5, ], name = \"iris_sample\")\n})\n\n\n\nlibrary(snapr)\n\n# Snapshot a list (RDS format by default - works for any R object)\ntest_that(\"config object is correct\", {\n  config &lt;- list(\n    name = \"my_app\",\n    version = \"1.0.0\",\n    settings = list(debug = TRUE, timeout = 30)\n  )\n  expect_snapshot_object(config, name = \"config\")\n})\n\n# Snapshot with JSON format for human-readable diffs\ntest_that(\"simple data is correct\", {\n  data &lt;- list(x = 1:5, y = letters[1:5])\n  expect_snapshot_object(data, name = \"simple_data\", writer = save_json)\n})\n\n# Snapshot a model (use RDS for complex objects)\ntest_that(\"model structure is correct\", {\n  model &lt;- lm(mpg ~ wt, data = mtcars)\n  expect_snapshot_object(model, name = \"model\")\n})",
+    "crumbs": [
+      "Documentation",
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "snapr",
+    "section": "",
+    "text": "You can install the development version of snapr from GitHub with:\n# install.packages(\"pak\")\npak::pak(\"d-morrison/snapr\")",
+    "crumbs": [
+      "Documentation",
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#examples",
+    "href": "index.html#examples",
+    "title": "snapr",
+    "section": "",
+    "text": "library(snapr)\n\n# In a testthat test file:\ntest_that(\"iris data is correct\", {\n  expect_snapshot_data(iris[1:5, ], name = \"iris_sample\")\n})\n\n\n\nlibrary(snapr)\n\n# Snapshot a list (RDS format by default - works for any R object)\ntest_that(\"config object is correct\", {\n  config &lt;- list(\n    name = \"my_app\",\n    version = \"1.0.0\",\n    settings = list(debug = TRUE, timeout = 30)\n  )\n  expect_snapshot_object(config, name = \"config\")\n})\n\n# Snapshot with JSON format for human-readable diffs\ntest_that(\"simple data is correct\", {\n  data &lt;- list(x = 1:5, y = letters[1:5])\n  expect_snapshot_object(data, name = \"simple_data\", writer = save_json)\n})\n\n# Snapshot a model (use RDS for complex objects)\ntest_that(\"model structure is correct\", {\n  model &lt;- lm(mpg ~ wt, data = mtcars)\n  expect_snapshot_object(model, name = \"model\")\n})",
+    "crumbs": [
+      "Documentation",
+      "Home"
+    ]
+  },
+  {
+    "objectID": "man/expect_snapshot_data.html",
+    "href": "man/expect_snapshot_data.html",
+    "title": "snapr",
+    "section": "",
+    "text": "copied from https://github.com/bcgov/ssdtools with permission (https://github.com/bcgov/ssdtools/issues/379)\n\nexpect_snapshot_data(x, name, digits = 6, ...)\n\n\n\n\n\nx\n\n\na data.frame to snapshot\n\n\n\n\nname\n\n\ncharacter snapshot name\n\n\n\n\ndigits\n\n\ninteger passed to signif() for numeric variables\n\n\n\n\n…\n\n\nArguments passed on to testthat::expect_snapshot_file\n\n\nbinary\n\n\n Please use the compare argument instead.\n\n\ncran\n\n\nShould these expectations be verified on CRAN? By default, they are not, because snapshot tests tend to be fragile because they often rely on minor details of dependencies.\n\n\ntransform\n\n\nOptionally, a function to scrub sensitive or stochastic text from the output. Should take a character vector of lines as input and return a modified character vector as output.\n\n\nvariant\n\n\nIf not-NULL, results will be saved in _snaps/{variant}/{test}/{name}. This allows you to create different snapshots for different scenarios, like different operating systems or different R versions.\nNote that there’s no way to declare all possible variants up front which means that as soon as you start using variants, you are responsible for deleting snapshot variants that are no longer used. (testthat will still delete all variants if you delete the test.)\n\n\n\n\n\nNULL (from testthat::expect_snapshot_file())\n\n\nCodelibrary(\"snapr\")\n\nexpect_snapshot_data(iris, name = \"iris\")",
+    "crumbs": [
+      "Documentation",
+      "Reference",
+      "expect_snapshot_data"
+    ]
+  },
+  {
+    "objectID": "man/expect_snapshot_data.html#snapshot-testing-for-data.frames",
+    "href": "man/expect_snapshot_data.html#snapshot-testing-for-data.frames",
+    "title": "snapr",
+    "section": "",
+    "text": "copied from https://github.com/bcgov/ssdtools with permission (https://github.com/bcgov/ssdtools/issues/379)\n\nexpect_snapshot_data(x, name, digits = 6, ...)\n\n\n\n\n\nx\n\n\na data.frame to snapshot\n\n\n\n\nname\n\n\ncharacter snapshot name\n\n\n\n\ndigits\n\n\ninteger passed to signif() for numeric variables\n\n\n\n\n…\n\n\nArguments passed on to testthat::expect_snapshot_file\n\n\nbinary\n\n\n Please use the compare argument instead.\n\n\ncran\n\n\nShould these expectations be verified on CRAN? By default, they are not, because snapshot tests tend to be fragile because they often rely on minor details of dependencies.\n\n\ntransform\n\n\nOptionally, a function to scrub sensitive or stochastic text from the output. Should take a character vector of lines as input and return a modified character vector as output.\n\n\nvariant\n\n\nIf not-NULL, results will be saved in _snaps/{variant}/{test}/{name}. This allows you to create different snapshots for different scenarios, like different operating systems or different R versions.\nNote that there’s no way to declare all possible variants up front which means that as soon as you start using variants, you are responsible for deleting snapshot variants that are no longer used. (testthat will still delete all variants if you delete the test.)\n\n\n\n\n\nNULL (from testthat::expect_snapshot_file())\n\n\nCodelibrary(\"snapr\")\n\nexpect_snapshot_data(iris, name = \"iris\")",
+    "crumbs": [
+      "Documentation",
+      "Reference",
+      "expect_snapshot_data"
+    ]
+  },
+  {
+    "objectID": "man/platform_variant.html",
+    "href": "man/platform_variant.html",
+    "title": "snapr",
+    "section": "",
+    "text": "Returns a variant string combining OS and R major.minor version. This is useful for RDS snapshots that vary by both platform and R version.\n\nplatform_variant()\n\n\nRDS files can produce different binary output across R versions even when using the same serialization version. This function creates variant strings like \"linux-4.4\", \"darwin-4.5\", \"windows-4.4\" to handle these differences.\nUse this function with testthat::expect_snapshot_file() when testing RDS files or other formats that vary by both OS and R version.\n\nA character string like \"linux-4.4\", \"darwin-4.5\", or \"windows-4.4\"\n\n\nCodelibrary(\"snapr\")\n\n# Use with expect_snapshot_file for RDS snapshots\nexpect_snapshot_object(\n  my_object, name = \"test\", variant = platform_variant()\n)",
+    "crumbs": [
+      "Documentation",
+      "Reference",
+      "platform_variant"
+    ]
+  },
+  {
+    "objectID": "man/platform_variant.html#get-platform-variant-including-os-and-r-version",
+    "href": "man/platform_variant.html#get-platform-variant-including-os-and-r-version",
+    "title": "snapr",
+    "section": "",
+    "text": "Returns a variant string combining OS and R major.minor version. This is useful for RDS snapshots that vary by both platform and R version.\n\nplatform_variant()\n\n\nRDS files can produce different binary output across R versions even when using the same serialization version. This function creates variant strings like \"linux-4.4\", \"darwin-4.5\", \"windows-4.4\" to handle these differences.\nUse this function with testthat::expect_snapshot_file() when testing RDS files or other formats that vary by both OS and R version.\n\nA character string like \"linux-4.4\", \"darwin-4.5\", or \"windows-4.4\"\n\n\nCodelibrary(\"snapr\")\n\n# Use with expect_snapshot_file for RDS snapshots\nexpect_snapshot_object(\n  my_object, name = \"test\", variant = platform_variant()\n)",
+    "crumbs": [
+      "Documentation",
+      "Reference",
+      "platform_variant"
+    ]
+  },
+  {
+    "objectID": "man/system_os.html",
+    "href": "man/system_os.html",
+    "title": "snapr",
+    "section": "",
+    "text": "Returns the name of the current operating system in lowercase. This is a simple wrapper around Sys.info()[[“sysname”]].\n\nsystem_os()\n\n\nThis function is used with testthat’s variant parameter in testthat::expect_snapshot_file() to create OS-specific snapshots when file formats produce different output across platforms.\nCommon use cases:\n\n\nRDS files: Binary serialization format that can differ across OS\n\n\nPlatform-specific numeric computations (e.g., MCMC algorithms)\n\n\nFiles with platform-specific line endings or encodings\n\n\nA character string: \"linux\", \"darwin\" (macOS), or \"windows\"\n\n\nCodelibrary(\"snapr\")\n\n# Use with expect_snapshot_file for OS-specific snapshots\nexpect_snapshot_object(my_object, name = \"test\", variant = system_os())",
+    "crumbs": [
+      "Documentation",
+      "Reference",
+      "system_os"
+    ]
+  },
+  {
+    "objectID": "man/system_os.html#get-the-current-operating-system",
+    "href": "man/system_os.html#get-the-current-operating-system",
+    "title": "snapr",
+    "section": "",
+    "text": "Returns the name of the current operating system in lowercase. This is a simple wrapper around Sys.info()[[“sysname”]].\n\nsystem_os()\n\n\nThis function is used with testthat’s variant parameter in testthat::expect_snapshot_file() to create OS-specific snapshots when file formats produce different output across platforms.\nCommon use cases:\n\n\nRDS files: Binary serialization format that can differ across OS\n\n\nPlatform-specific numeric computations (e.g., MCMC algorithms)\n\n\nFiles with platform-specific line endings or encodings\n\n\nA character string: \"linux\", \"darwin\" (macOS), or \"windows\"\n\n\nCodelibrary(\"snapr\")\n\n# Use with expect_snapshot_file for OS-specific snapshots\nexpect_snapshot_object(my_object, name = \"test\", variant = system_os())",
+    "crumbs": [
+      "Documentation",
+      "Reference",
+      "system_os"
+    ]
+  },
+  {
+    "objectID": "LICENSE.html",
+    "href": "LICENSE.html",
+    "title": "MIT License",
+    "section": "",
+    "text": "MIT License\nCopyright (c) 2025 snapr authors\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
+    "crumbs": [
+      "Documentation",
+      "License"
+    ]
+  }
+]
