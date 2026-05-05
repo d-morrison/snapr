@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>news – snapr</title>
+<title>Getting Started with snapr – snapr</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,30 +23,65 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-656316d6d04240f7b7e07197a8824120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-dbf22739c68fc316d727e9fdf85a1c89.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-656316d6d04240f7b7e07197a8824120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-656316d6d04240f7b7e07197a8824120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-dbf22739c68fc316d727e9fdf85a1c89.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-656316d6d04240f7b7e07197a8824120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -248,7 +283,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">snapr</span>
     </a>
   </div>
@@ -259,7 +294,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./man/snapr-package.html" aria-current="page"> 
+    <a class="nav-link active" href="../man/snapr-package.html" aria-current="page"> 
 <span class="menu-text">Documentation</span></a>
   </li>  
 </ul>
@@ -281,7 +316,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./NEWS.html">News</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Getting Started with snapr</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -295,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
@@ -310,37 +345,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./man/darwin_variant.html" class="sidebar-item-text sidebar-link">
+  <a href="../man/darwin_variant.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">darwin_variant</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./man/expect_snapshot_data.html" class="sidebar-item-text sidebar-link">
+  <a href="../man/expect_snapshot_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">expect_snapshot_data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./man/expect_snapshot_object.html" class="sidebar-item-text sidebar-link">
+  <a href="../man/expect_snapshot_object.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">expect_snapshot_object</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./man/platform_variant.html" class="sidebar-item-text sidebar-link">
+  <a href="../man/platform_variant.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">platform_variant</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./man/snapr-package.html" class="sidebar-item-text sidebar-link">
+  <a href="../man/snapr-package.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">snapr-package</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./man/system_os.html" class="sidebar-item-text sidebar-link">
+  <a href="../man/system_os.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">system_os</span></a>
   </div>
 </li>
@@ -348,13 +383,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./NEWS.html" class="sidebar-item-text sidebar-link active">
+  <a href="../NEWS.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">News</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./LICENSE.html" class="sidebar-item-text sidebar-link">
+  <a href="../LICENSE.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">License</span></a>
   </div>
 </li>
@@ -368,28 +403,232 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#snapr-development-version" id="toc-snapr-development-version" class="nav-link active" data-scroll-target="#snapr-development-version">snapr (development version)</a></li>
-  <li><a href="#snapr-0.0.0" id="toc-snapr-0.0.0" class="nav-link" data-scroll-target="#snapr-0.0.0">snapr 0.0.0</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#basic-workflow" id="toc-basic-workflow" class="nav-link" data-scroll-target="#basic-workflow">Basic Workflow</a>
+  <ul class="collapse">
+  <li><a href="#snapshot-a-data.frame" id="toc-snapshot-a-data.frame" class="nav-link" data-scroll-target="#snapshot-a-data.frame">Snapshot a data.frame</a></li>
+  <li><a href="#snapshot-any-r-object" id="toc-snapshot-any-r-object" class="nav-link" data-scroll-target="#snapshot-any-r-object">Snapshot any R object</a></li>
+  </ul></li>
+  <li><a href="#choosing-a-writer" id="toc-choosing-a-writer" class="nav-link" data-scroll-target="#choosing-a-writer">Choosing a Writer</a>
+  <ul class="collapse">
+  <li><a href="#json-example" id="toc-json-example" class="nav-link" data-scroll-target="#json-example">JSON example</a></li>
+  <li><a href="#deparse-example" id="toc-deparse-example" class="nav-link" data-scroll-target="#deparse-example">Deparse example</a></li>
+  </ul></li>
+  <li><a href="#handling-platform-differences" id="toc-handling-platform-differences" class="nav-link" data-scroll-target="#handling-platform-differences">Handling Platform Differences</a></li>
+  <li><a href="#reviewing-snapshots" id="toc-reviewing-snapshots" class="nav-link" data-scroll-target="#reviewing-snapshots">Reviewing Snapshots</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/snapr/edit/main/NEWS.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/snapr/blob/main/NEWS.md" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/snapr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/snapr/edit/main/vignettes/getting-started.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/snapr/blob/main/vignettes/getting-started.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/snapr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7">Getting Started with snapr</h1></header>
 
 
+<header id="title-block-header">
 
 
+</header>
 
-<section id="snapr-development-version" class="level1">
-<h1>snapr (development version)</h1>
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Snapshot testing captures the output of a function or computation and saves it to a file. On subsequent test runs, the output is compared to the saved snapshot. If the output changes, the test fails — alerting you to unexpected behaviour.</p>
+<p><code>snapr</code> builds on top of <a href="https://testthat.r-lib.org/">testthat</a>’s <code>expect_snapshot_file()</code> to provide convenient helpers for common R objects:</p>
 <ul>
-<li>Initial development version</li>
-<li>Added “Getting Started” vignette</li>
+<li><code>expect_snapshot_data()</code> — for data.frames (stores as CSV for human-readable diffs)</li>
+<li><code>expect_snapshot_object()</code> — for any R object (stores as RDS, JSON, or plain text depending on the <code>writer</code> you choose)</li>
 </ul>
 </section>
-<section id="snapr-0.0.0" class="level1">
-<h1>snapr 0.0.0</h1>
-<p>Started development</p>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>Install the development version from GitHub:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("pak")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"d-morrison/snapr"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="basic-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="basic-workflow">Basic Workflow</h2>
+<p>Snapshot tests live inside <code>test_that()</code> blocks, just like any other <a href="https://testthat.r-lib.org/">testthat</a> expectation.</p>
+<section id="snapshot-a-data.frame" class="level3">
+<h3 class="anchored" data-anchor-id="snapshot-a-data.frame">Snapshot a data.frame</h3>
+<p>Use <code>expect_snapshot_data()</code> when you want a human-readable CSV snapshot:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(snapr)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"iris subset is stable"</span>, {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_snapshot_data</span>(iris[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ], <span class="at">name =</span> <span class="st">"iris_head"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The first time you run this test, <code>snapr</code> creates <code>tests/testthat/_snaps/iris_head.csv</code>. On subsequent runs the data.frame is compared against that file and the test fails if anything has changed.</p>
+</section>
+<section id="snapshot-any-r-object" class="level3">
+<h3 class="anchored" data-anchor-id="snapshot-any-r-object">Snapshot any R object</h3>
+<p>Use <code>expect_snapshot_object()</code> for objects that cannot be easily represented as a CSV. The default writer (<code>save_rds()</code>) stores the object as an <code>.rds</code> file and uses <a href="https://github.com/brodieG/diffobj">diffobj</a> to produce human-readable diffs during review:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"model structure is stable"</span>, {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> mtcars)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_snapshot_object</span>(model, <span class="at">name =</span> <span class="st">"mpg_model"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="choosing-a-writer" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-a-writer">Choosing a Writer</h2>
+<p>The <code>writer</code> argument of <code>expect_snapshot_object()</code> controls the file format. <code>snapr</code> ships four built-in writers:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 30%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Writer</th>
+<th>Format</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>save_rds()</code></td>
+<td><code>.rds</code> (binary)</td>
+<td>Any R object; rich diffs via diffobj</td>
+</tr>
+<tr class="even">
+<td><code>save_json()</code></td>
+<td><code>.json</code> (text)</td>
+<td>Lists and data that map cleanly to JSON</td>
+</tr>
+<tr class="odd">
+<td><code>save_csv()</code></td>
+<td><code>.csv</code> (text)</td>
+<td>data.frames (also used by <code>expect_snapshot_data()</code>)</td>
+</tr>
+<tr class="even">
+<td><code>save_deparse()</code></td>
+<td><code>.txt</code> (text)</td>
+<td>Simple objects; always human-readable</td>
+</tr>
+</tbody>
+</table>
+<section id="json-example" class="level3">
+<h3 class="anchored" data-anchor-id="json-example">JSON example</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"config list is stable"</span>, {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  config <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"my_app"</span>, <span class="at">version =</span> <span class="st">"1.0.0"</span>, <span class="at">debug =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_snapshot_object</span>(config, <span class="at">name =</span> <span class="st">"config"</span>, <span class="at">writer =</span> save_json)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="deparse-example" class="level3">
+<h3 class="anchored" data-anchor-id="deparse-example">Deparse example</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"simple list is stable"</span>, {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_snapshot_object</span>(<span class="fu">list</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>), <span class="at">name =</span> <span class="st">"simple"</span>, <span class="at">writer =</span> save_deparse)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="handling-platform-differences" class="level2">
+<h2 class="anchored" data-anchor-id="handling-platform-differences">Handling Platform Differences</h2>
+<p>Some R objects (particularly RDS files and results from numerical algorithms) can differ across operating systems or R versions. <code>snapr</code> provides helper functions to create <em>variant</em> strings that are appended to snapshot names, keeping snapshots separate per platform:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 41%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Variant string</th>
+<th>Use when…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>system_os()</code></td>
+<td><code>"linux"</code>, <code>"darwin"</code>, <code>"windows"</code></td>
+<td>Output differs by OS only</td>
+</tr>
+<tr class="even">
+<td><code>darwin_variant()</code></td>
+<td><code>"darwin"</code> / <code>NULL</code></td>
+<td>Only macOS differs; Linux &amp; Windows share one snapshot</td>
+</tr>
+<tr class="odd">
+<td><code>platform_variant()</code></td>
+<td><code>"linux-4.4"</code> etc.</td>
+<td>Output differs by both OS <em>and</em> R version</td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"RDS snapshot is platform-safe"</span>, {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">3</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_snapshot_object</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    result,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"result"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">variant =</span> <span class="fu">platform_variant</span>()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Text-based formats (JSON, CSV, deparse) typically produce identical output across platforms and do not require a variant.</p>
+</section>
+<section id="reviewing-snapshots" class="level2">
+<h2 class="anchored" data-anchor-id="reviewing-snapshots">Reviewing Snapshots</h2>
+<p>When a snapshot test fails, you can interactively review the differences with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">snapshot_review</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This opens a Shiny app that displays the old and new snapshots side-by-side, letting you accept or reject each change.</p>
+<p>To accept all new snapshots at once (e.g., after an intentional change):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>testthat<span class="sc">::</span><span class="fu">snapshot_accept</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Snapshot a data.frame</td>
+<td><code>expect_snapshot_data(x, name)</code></td>
+</tr>
+<tr class="even">
+<td>Snapshot any object (RDS)</td>
+<td><code>expect_snapshot_object(x, name)</code></td>
+</tr>
+<tr class="odd">
+<td>Snapshot as JSON</td>
+<td><code>expect_snapshot_object(x, name, writer = save_json)</code></td>
+</tr>
+<tr class="even">
+<td>Snapshot as CSV</td>
+<td><code>expect_snapshot_object(x, name, writer = save_csv)</code></td>
+</tr>
+<tr class="odd">
+<td>Snapshot as plain text</td>
+<td><code>expect_snapshot_object(x, name, writer = save_deparse)</code></td>
+</tr>
+<tr class="even">
+<td>OS-specific variant</td>
+<td><code>variant = system_os()</code></td>
+</tr>
+<tr class="odd">
+<td>macOS-only variant</td>
+<td><code>variant = darwin_variant()</code></td>
+</tr>
+<tr class="even">
+<td>OS + R-version variant</td>
+<td><code>variant = platform_variant()</code></td>
+</tr>
+<tr class="odd">
+<td>Review failing snapshots</td>
+<td><code>testthat::snapshot_review()</code></td>
+</tr>
+<tr class="even">
+<td>Accept new snapshots</td>
+<td><code>testthat::snapshot_accept()</code></td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
@@ -813,4 +1052,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/d-morrison/snapr/edit/main/NEWS.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/snapr/blob/main/NEWS.md" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/snapr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/d-morrison/snapr/edit/main/vignettes/getting-started.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/snapr/blob/main/vignettes/getting-started.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/snapr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
