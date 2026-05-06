@@ -1,0 +1,154 @@
+---
+title: "Getting Started with snapr"
+vignette: >
+  %\VignetteIndexEntry{Getting Started with snapr}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Introduction
+
+Snapshot testing captures the output of a function or computation and saves it
+to a file. On subsequent test runs, the output is compared to the saved
+snapshot. If the output changes, the test fails — alerting you to unexpected
+behaviour.
+
+`snapr` builds on top of [testthat](https://testthat.r-lib.org/)'s
+`expect_snapshot_file()` to provide convenient helpers for common R objects:
+
+- `expect_snapshot_data()` — for data.frames (stores as CSV for
+  human-readable diffs)
+- `expect_snapshot_object()` — for any R object (stores as RDS, JSON, or
+  plain text depending on the `writer` you choose)
+
+## Installation
+
+Install the development version from GitHub:
+
+```r
+# install.packages("pak")
+pak::pak("d-morrison/snapr")
+```
+
+## Basic Workflow
+
+Snapshot tests live inside `test_that()` blocks, just like any other
+[testthat](https://testthat.r-lib.org/) expectation.
+
+### Snapshot a data.frame
+
+Use `expect_snapshot_data()` when you want a human-readable CSV snapshot:
+
+```r
+library(snapr)
+
+test_that("iris subset is stable", {
+  expect_snapshot_data(iris[1:5, ], name = "iris_head")
+})
+```
+
+The first time you run this test, `snapr` creates
+`tests/testthat/_snaps/iris_head.csv`. On subsequent runs the data.frame is
+compared against that file and the test fails if anything has changed.
+
+### Snapshot any R object
+
+Use `expect_snapshot_object()` for objects that cannot be easily represented
+as a CSV. The default writer (`save_rds()`) stores the object as an `.rds`
+file and uses [diffobj](https://github.com/brodieG/diffobj) to produce
+human-readable diffs during review:
+
+```r
+test_that("model structure is stable", {
+  model <- lm(mpg ~ wt, data = mtcars)
+  expect_snapshot_object(model, name = "mpg_model")
+})
+```
+
+## Choosing a Writer
+
+The `writer` argument of `expect_snapshot_object()` controls the file format.
+`snapr` ships four built-in writers:
+
+| Writer | Format | Best for |
+|--------|--------|----------|
+| `save_rds()` | `.rds` (binary) | Any R object; rich diffs via diffobj |
+| `save_json()` | `.json` (text) | Lists and data that map cleanly to JSON |
+| `save_csv()` | `.csv` (text) | data.frames (also used by `expect_snapshot_data()`) |
+| `save_deparse()` | `.txt` (text) | Simple objects; always human-readable |
+
+### JSON example
+
+```r
+test_that("config list is stable", {
+  config <- list(name = "my_app", version = "1.0.0", debug = TRUE)
+  expect_snapshot_object(config, name = "config", writer = save_json)
+})
+```
+
+### Deparse example
+
+```r
+test_that("simple list is stable", {
+  expect_snapshot_object(list(x = 1:3), name = "simple", writer = save_deparse)
+})
+```
+
+## Handling Platform Differences
+
+Some R objects (particularly RDS files and results from numerical algorithms)
+can differ across operating systems or R versions. `snapr` provides helper
+functions to create *variant* strings that are appended to snapshot names,
+keeping snapshots separate per platform:
+
+| Function | Variant string | Use when… |
+|----------|---------------|-----------|
+| `system_os()` | `"linux"`, `"darwin"`, `"windows"` | Output differs by OS only |
+| `darwin_variant()` | `"darwin"` / `NULL` | Only macOS differs; Linux & Windows share one snapshot |
+| `platform_variant()` | `"linux-4.4"` etc. | Output differs by both OS *and* R version |
+
+```r
+test_that("RDS snapshot is platform-safe", {
+  result <- list(x = rnorm(3))
+  expect_snapshot_object(
+    result,
+    name = "result",
+    variant = platform_variant()
+  )
+})
+```
+
+Text-based formats (JSON, CSV, deparse) typically produce identical output
+across platforms and do not require a variant.
+
+## Reviewing Snapshots
+
+When a snapshot test fails, you can interactively review the differences with:
+
+```r
+testthat::snapshot_review()
+```
+
+This opens a Shiny app that displays the old and new snapshots side-by-side,
+letting you accept or reject each change.
+
+To accept all new snapshots at once (e.g., after an intentional change):
+
+```r
+testthat::snapshot_accept()
+```
+
+## Summary
+
+| Task | Function |
+|------|----------|
+| Snapshot a data.frame | `expect_snapshot_data(x, name)` |
+| Snapshot any object (RDS) | `expect_snapshot_object(x, name)` |
+| Snapshot as JSON | `expect_snapshot_object(x, name, writer = save_json)` |
+| Snapshot as CSV | `expect_snapshot_object(x, name, writer = save_csv)` |
+| Snapshot as plain text | `expect_snapshot_object(x, name, writer = save_deparse)` |
+| OS-specific variant | `variant = system_os()` |
+| macOS-only variant | `variant = darwin_variant()` |
+| OS + R-version variant | `variant = platform_variant()` |
+| Review failing snapshots | `testthat::snapshot_review()` |
+| Accept new snapshots | `testthat::snapshot_accept()` |
