@@ -2,27 +2,25 @@ project:
   type: website
   output-dir: ../docs/
   render:
-    - "*.qmd"      # Render all Quarto markdown files
-    - "*.md"       # Also render plain markdown files
-    - "!README.md" # Except README which is used in index
-    - "!index.md"  # Except index which is replaced by index.qmd
-    - "!data-raw/" # Exclude anything in the data-raw directory
-
-# Note: freeze functionality can be set at a project level or for individual .qmd files
-# execute:
-#   freeze: false
-
+    - '*.qmd'
+    - '*.md'
+    - '!README.md'
+    - '!index.md'
+    - '!data-raw/'
 website:
-  title: "$ALTDOC_PACKAGE_NAME"
+  title: snapr
   repo-url: https://github.com/d-morrison/snapr
-  repo-actions: [edit, source, issue]
+  repo-actions:
+    - edit
+    - source
+    - issue
   navbar:
     search: true
     pinned: false
     right:
       - icon: github
-        href: $ALTDOC_PACKAGE_URL_GITHUB
-        aria-label: $ALTDOC_PACKAGE_NAME GitHub
+        href: https://github.com/d-morrison/snapr
+        aria-label: snapr GitHub
     left:
       - text: Documentation
         file: man/snapr-package.qmd
@@ -36,16 +34,27 @@ website:
         contents:
           - text: Getting Started
             file: vignettes/getting-started.qmd
-      - section: $ALTDOC_MAN_BLOCK
-        style: floating
+      - section: Reference
+        contents:
+          - text: darwin_variant
+            file: man/darwin_variant.qmd
+          - text: expect_snapshot_data
+            file: man/expect_snapshot_data.qmd
+          - text: expect_snapshot_object
+            file: man/expect_snapshot_object.qmd
+          - text: platform_variant
+            file: man/platform_variant.qmd
+          - text: snapr-package
+            file: man/snapr-package.qmd
+          - text: system_os
+            file: man/system_os.qmd
       - text: News
         file: NEWS.md
       - text: License
         file: LICENSE.md
-
 format:
   html:
-    code-link: true # enables downlit; see https://altdoc.etiennebacher.com/#/man/render_docs.md#auto-link-for-quarto-websites
+    code-link: true
     theme:
       light: default
       dark: darkly
@@ -60,4 +69,3 @@ format:
     grid:
       sidebar-width: 340px
       margin-width: 340px
-
