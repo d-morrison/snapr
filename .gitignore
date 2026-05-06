@@ -1,3 +1,5 @@
 .Rproj.user
+_quarto/
 docs
+altdoc/freeze.rds
 vignettes/*_files/
