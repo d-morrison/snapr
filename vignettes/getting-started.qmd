@@ -132,6 +132,16 @@ testthat::snapshot_review()
 This opens a Shiny app that displays the old and new snapshots side-by-side,
 letting you accept or reject each change.
 
+For richer, visual diffs when reviewing RDS snapshots, install the
+[d-morrison/diffviewer](https://github.com/d-morrison/diffviewer) fork of
+[diffviewer](https://github.com/r-lib/diffviewer). This fork wraps
+[diffobj](https://github.com/brodieG/diffobj) to compare deserialized R
+objects with arbitrary structures rather than raw bytes:
+
+```r
+pak::pak("d-morrison/diffviewer")
+```
+
 To accept all new snapshots at once (e.g., after an intentional change):
 
 ```r
