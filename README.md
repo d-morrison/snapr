@@ -19,6 +19,18 @@ You can install the development version of snapr from [GitHub](https://github.co
 pak::pak("d-morrison/snapr")
 ```
 
+### Optional: enhanced RDS diffs with diffviewer
+
+`snapr` works best with the [d-morrison/diffviewer](https://github.com/d-morrison/diffviewer)
+fork of [diffviewer](https://github.com/r-lib/diffviewer), which wraps
+[diffobj](https://github.com/brodieG/diffobj) to provide rich, visual diffs
+when reviewing RDS snapshots via `testthat::snapshot_review()`. Install it
+with:
+
+``` r
+pak::pak("d-morrison/diffviewer")
+```
+
 ## Examples
 
 ### Snapshot data.frames
