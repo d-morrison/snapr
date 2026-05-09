@@ -32,6 +32,10 @@ website:
       - text: Home
         file: index.qmd
         style: floating
+      - section: Articles
+        contents:
+          - text: Getting Started
+            file: vignettes/getting-started.qmd
       - section: $ALTDOC_MAN_BLOCK
         style: floating
       - text: News
