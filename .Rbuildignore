@@ -12,3 +12,9 @@
 ^_quarto$
 ^\.quarto$
 ^index\.qmd$
+^cran-comments\.md$
+^\.positai$
+^\.claude$
+^revdep$
+^CRAN-SUBMISSION$
+^data-raw$
