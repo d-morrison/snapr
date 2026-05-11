@@ -1,4 +1,4 @@
-# snapr
+# snapr <img src="man/figures/logo.svg" align="right" height="139" alt="snapr hex sticker" />
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/d-morrison/snapr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/d-morrison/snapr/actions/workflows/R-CMD-check.yaml)
