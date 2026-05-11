@@ -13,3 +13,4 @@
 ^\.quarto$
 ^index\.qmd$
 ^cran-comments\.md$
+^\.positai$
