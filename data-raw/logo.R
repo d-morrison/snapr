@@ -49,7 +49,7 @@ bezier_path <- function(start, segs, extra_pts = NULL) {
 out_file <- "man/figures/logo.png"
 png(out_file, width = 543, height = 627, bg = "transparent")   # 3× standard 181×209
 grid.newpage()
-pushViewport(viewport(width = 1, height = 181 / 181, # square-ish after aspect correction
+pushViewport(viewport(width = 1, height = 1,
                       xscale = c(0, 1), yscale = c(0, 1)))
 
 ## ── hexagon ──────────────────────────────────────────────────────────────────
@@ -192,7 +192,7 @@ grid.lines(svg_x(mouth_l$x), svg_y(mouth_l$y),
 grid.text(
   "snapr",
   x = svg_x(90.5), y = svg_y(154),
-  just = c("centre", "bottom"),
+  just = c("center", "bottom"),
   gp = gpar(
     fontfamily = "serif",
     fontsize   = 26 * 543 / 181,   # scale font for 3× PNG
