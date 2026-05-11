@@ -504,6 +504,12 @@ Optionally, a function to scrub sensitive or stochastic text from the output. Sh
 <p>If not-<code>NULL</code>, results will be saved in <code style="white-space: pre;">_snaps/{variant}/{test}/{name}</code>. This allows you to create different snapshots for different scenarios, like different operating systems or different R versions.</p>
 Note that there’s no way to declare all possible variants up front which means that as soon as you start using variants, you are responsible for deleting snapshot variants that are no longer used. (testthat will still delete all variants if you delete the test.)
 </dd>
+<dt>
+<code>old,new</code>
+</dt>
+<dd>
+Paths to old and new snapshot files.
+</dd>
 </dl>
 </td>
 </tr>
