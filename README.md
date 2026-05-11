@@ -3,6 +3,11 @@
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/d-morrison/snapr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/d-morrison/snapr/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/d-morrison/snapr/graph/badge.svg)](https://app.codecov.io/gh/d-morrison/snapr)
+[![](https://www.r-pkg.org/badges/version/snapr?color=orange)](https://cran.r-project.org/package=snapr)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/snapr?color=blue)](https://cran.r-project.org/package=snapr)
+[![CRAN checks](https://badges.cranchecks.info/summary/snapr.svg)](https://cran.r-project.org/web/checks/check_results_snapr.html)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://cran.r-project.org/web/licenses/MIT)
+[![](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 The goal of snapr is to provide convenient snapshot testing functions for R packages:
