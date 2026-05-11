@@ -16,3 +16,4 @@
 ^\.positai$
 ^\.claude$
 ^revdep$
+^CRAN-SUBMISSION$
