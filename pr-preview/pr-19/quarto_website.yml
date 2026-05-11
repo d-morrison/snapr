@@ -17,6 +17,8 @@ website:
   repo-url: https://github.com/d-morrison/snapr
   repo-actions: [edit, source, issue]
   navbar:
+    logo: logo.svg
+    logo-alt: "snapr hex sticker — a cartoon Northern red snapper"
     search: true
     pinned: false
     right:

@@ -92,7 +92,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "snapr",
+    "title": "snapr ",
     "section": "",
     "text": "The goal of snapr is to provide convenient snapshot testing functions for R packages:\n\nexpect_snapshot_data() - for data.frames (adapted with permission from the {ssdtools} package)\nexpect_snapshot_object() - generalizes expect_snapshot_data() for use with any R object\n\n\n\nYou can install the released version of snapr from CRAN with:\ninstall.packages(\"snapr\")\nYou can install the development version of snapr from GitHub with:\n# install.packages(\"pak\")\npak::pak(\"d-morrison/snapr\")\n\n\nsnapr works best with the d-morrison/diffviewer fork of diffviewer, which wraps diffobj to provide rich, visual diffs when reviewing RDS snapshots via testthat::snapshot_review(). Install it with:\npak::pak(\"d-morrison/diffviewer\")\n\n\n\n\n\n\nlibrary(snapr)\n\n# In a testthat test file:\ntest_that(\"iris data is correct\", {\n  expect_snapshot_data(iris[1:5, ], name = \"iris_sample\")\n})\n\n\n\nlibrary(snapr)\n\n# Snapshot a list (RDS format by default - works for any R object)\ntest_that(\"config object is correct\", {\n  config &lt;- list(\n    name = \"my_app\",\n    version = \"1.0.0\",\n    settings = list(debug = TRUE, timeout = 30)\n  )\n  expect_snapshot_object(config, name = \"config\")\n})\n\n# Snapshot with JSON format for human-readable diffs\ntest_that(\"simple data is correct\", {\n  data &lt;- list(x = 1:5, y = letters[1:5])\n  expect_snapshot_object(data, name = \"simple_data\", writer = save_json)\n})\n\n# Snapshot a model (use RDS for complex objects)\ntest_that(\"model structure is correct\", {\n  model &lt;- lm(mpg ~ wt, data = mtcars)\n  expect_snapshot_object(model, name = \"model\")\n})",
     "crumbs": [
@@ -103,7 +103,7 @@
   {
     "objectID": "index.html#installation",
     "href": "index.html#installation",
-    "title": "snapr",
+    "title": "snapr ",
     "section": "",
     "text": "You can install the released version of snapr from CRAN with:\ninstall.packages(\"snapr\")\nYou can install the development version of snapr from GitHub with:\n# install.packages(\"pak\")\npak::pak(\"d-morrison/snapr\")\n\n\nsnapr works best with the d-morrison/diffviewer fork of diffviewer, which wraps diffobj to provide rich, visual diffs when reviewing RDS snapshots via testthat::snapshot_review(). Install it with:\npak::pak(\"d-morrison/diffviewer\")",
     "crumbs": [
@@ -114,7 +114,7 @@
   {
     "objectID": "index.html#examples",
     "href": "index.html#examples",
-    "title": "snapr",
+    "title": "snapr ",
     "section": "",
     "text": "library(snapr)\n\n# In a testthat test file:\ntest_that(\"iris data is correct\", {\n  expect_snapshot_data(iris[1:5, ], name = \"iris_sample\")\n})\n\n\n\nlibrary(snapr)\n\n# Snapshot a list (RDS format by default - works for any R object)\ntest_that(\"config object is correct\", {\n  config &lt;- list(\n    name = \"my_app\",\n    version = \"1.0.0\",\n    settings = list(debug = TRUE, timeout = 30)\n  )\n  expect_snapshot_object(config, name = \"config\")\n})\n\n# Snapshot with JSON format for human-readable diffs\ntest_that(\"simple data is correct\", {\n  data &lt;- list(x = 1:5, y = letters[1:5])\n  expect_snapshot_object(data, name = \"simple_data\", writer = save_json)\n})\n\n# Snapshot a model (use RDS for complex objects)\ntest_that(\"model structure is correct\", {\n  model &lt;- lm(mpg ~ wt, data = mtcars)\n  expect_snapshot_object(model, name = \"model\")\n})",
     "crumbs": [
