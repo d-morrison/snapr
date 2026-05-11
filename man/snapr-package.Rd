@@ -20,4 +20,9 @@ Useful links:
 \author{
 \strong{Maintainer}: Douglas Ezra Morrison \email{demorrison@ucdavis.edu}
 
+Authors:
+\itemize{
+  \item Douglas Ezra Morrison \email{demorrison@ucdavis.edu}
+}
+
 }

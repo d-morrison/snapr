@@ -61,6 +61,7 @@ Note that there's no way to declare all possible variants up front which
 means that as soon as you start using variants, you are responsible for
 deleting snapshot variants that are no longer used. (testthat will still
 delete all variants if you delete the test.)}
+    \item{\code{old,new}}{Paths to old and new snapshot files.}
   }}
 }
 \value{
@@ -74,7 +75,7 @@ serialization.
 
 When using RDS format (the default), snapshots are compared using
 \code{\link[diffobj:diffObj]{diffobj::diffObj()}} which provides rich, visual diffs in
-\code{\link[testthat:snapshot_accept]{testthat::snapshot_review()}}. This makes it much easier to review
+\code{\link[testthat:snapshot_review]{testthat::snapshot_review()}}. This makes it much easier to review
 changes to complex R objects.
 }
 \details{
@@ -85,7 +86,7 @@ differences, or use text-based formats like JSON or deparse for more
 stable snapshots across platforms and versions.
 
 The RDS comparison uses \code{\link[diffobj:diffObj]{diffobj::diffObj()}} internally, which provides
-rich visual diffs in \code{\link[testthat:snapshot_accept]{testthat::snapshot_review()}}. This is particularly
+rich visual diffs in \code{\link[testthat:snapshot_review]{testthat::snapshot_review()}}. This is particularly
 useful for complex objects like models, nested lists, or data structures
 where byte-level comparison would be difficult to interpret.
 }
