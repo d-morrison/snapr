@@ -26,8 +26,5 @@ Common use cases:
 }
 }
 \examples{
-\dontrun{
-# Use with expect_snapshot_file for OS-specific snapshots
-expect_snapshot_object(my_object, name = "test", variant = system_os())
-}
+system_os()
 }

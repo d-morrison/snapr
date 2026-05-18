@@ -10,7 +10,7 @@
 #' @returns [NULL] (from [testthat::expect_snapshot_file()])
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' expect_snapshot_data(iris, name = "iris")
 #' }
 expect_snapshot_data <- function(x, name, digits = 6, ...) {

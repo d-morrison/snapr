@@ -17,9 +17,6 @@
 #' @export
 #' @keywords internal
 #' @examples
-#' \dontrun{
-#' # This is used internally by expect_snapshot_object
-#' # when comparing RDS files
 #' old_obj <- list(a = 1, b = 2)
 #' new_obj <- list(a = 1, b = 3)
 #' old_path <- tempfile(fileext = ".rds")
@@ -27,7 +24,6 @@
 #' saveRDS(old_obj, old_path)
 #' saveRDS(new_obj, new_path)
 #' compare_file_object(old_path, new_path)
-#' }
 compare_file_object <- function(old,
                                 new,
                                 print = FALSE,

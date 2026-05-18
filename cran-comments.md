@@ -8,6 +8,17 @@
 * GitHub Actions: Ubuntu (release, devel, oldrel-1), macOS (release), Windows (release)
 * win-builder: R-devel
 
+## Resubmission notes
+
+* Removed redundant "for R" from Title and Description fields.
+* Replaced `\dontrun{}` with `\donttest{}` in examples for
+  `expect_snapshot_data()` and `expect_snapshot_object()`, which require a
+  testthat context to run. Unwrapped examples for `compare_file_object()`,
+  `system_os()`, `darwin_variant()`, and `platform_variant()`, which are
+  fully executable.
+* No academic references describe the methods in this package; the package
+  provides testing infrastructure utilities.
+
 ## First CRAN submission
 
 This is the first submission of snapr to CRAN.

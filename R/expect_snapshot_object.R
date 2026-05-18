@@ -35,7 +35,7 @@
 #' useful for complex objects like models, nested lists, or data structures
 #' where byte-level comparison would be difficult to interpret.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Snapshot a list (using RDS format with platform/version variant)
 #' expect_snapshot_object(
 #'   list(a = 1, b = 2), name = "config", variant = platform_variant()

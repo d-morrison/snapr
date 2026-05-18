@@ -17,10 +17,7 @@
 #' @returns A character string: "linux", "darwin" (macOS), or "windows"
 #' @export
 #' @examples
-#' \dontrun{
-#' # Use with expect_snapshot_file for OS-specific snapshots
-#' expect_snapshot_object(my_object, name = "test", variant = system_os())
-#' }
+#' system_os()
 system_os <- function() {
   tolower(Sys.info()[["sysname"]])
 }
@@ -45,12 +42,7 @@ system_os <- function() {
 #' @returns "darwin" on macOS, NULL on other platforms
 #' @export
 #' @examples
-#' \dontrun{
-#' # Use with expect_snapshot_file when only macOS differs
-#' expect_snapshot_object(
-#'   mcmc_result, name = "test", variant = darwin_variant()
-#' )
-#' }
+#' darwin_variant()
 darwin_variant <- function() {
   if (system_os() == "darwin") "darwin" else NULL
 }
@@ -73,12 +65,7 @@ darwin_variant <- function() {
 #'   "windows-4.4"
 #' @export
 #' @examples
-#' \dontrun{
-#' # Use with expect_snapshot_file for RDS snapshots
-#' expect_snapshot_object(
-#'   my_object, name = "test", variant = platform_variant()
-#' )
-#' }
+#' platform_variant()
 platform_variant <- function() {
   # Get R version as major.minor (e.g., "4.4" for R 4.4.3)
   # Patch versions shouldn't affect RDS serialization

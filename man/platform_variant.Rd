@@ -23,10 +23,5 @@ Use this function with \code{\link[testthat:expect_snapshot_file]{testthat::expe
 RDS files or other formats that vary by both OS and R version.
 }
 \examples{
-\dontrun{
-# Use with expect_snapshot_file for RDS snapshots
-expect_snapshot_object(
-  my_object, name = "test", variant = platform_variant()
-)
-}
+platform_variant()
 }

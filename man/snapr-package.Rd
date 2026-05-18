@@ -4,9 +4,9 @@
 \name{snapr-package}
 \alias{snapr}
 \alias{snapr-package}
-\title{snapr: Convenient Snapshot Testing Functions for R Packages}
+\title{snapr: Convenient Snapshot Testing Functions for Packages}
 \description{
-Provides convenient snapshot testing functions for R packages, including expect_snapshot_data() for data.frames and expect_snapshot_object() for any R object.
+Provides convenient snapshot testing functions for packages, including expect_snapshot_data() for data.frames and expect_snapshot_object() for any R object.
 }
 \seealso{
 Useful links:

@@ -78,9 +78,6 @@ For meaningful diffs in testthat's snapshot_review(), which uses diffobj
 internally, this function compares the R objects after deserialization.
 }
 \examples{
-\dontrun{
-# This is used internally by expect_snapshot_object
-# when comparing RDS files
 old_obj <- list(a = 1, b = 2)
 new_obj <- list(a = 1, b = 3)
 old_path <- tempfile(fileext = ".rds")
@@ -88,6 +85,5 @@ new_path <- tempfile(fileext = ".rds")
 saveRDS(old_obj, old_path)
 saveRDS(new_obj, new_path)
 compare_file_object(old_path, new_path)
-}
 }
 \keyword{internal}
