@@ -305,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/darwin_variant.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/expect_snapshot_data.html">expect_snapshot_data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/compare_file_object.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/expect_snapshot_data.html">expect_snapshot_data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -346,6 +346,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../man/compare_file_object.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">compare_file_object</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../man/darwin_variant.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">darwin_variant</span></a>
@@ -416,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/snapr/edit/main/man/expect_snapshot_data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/snapr/blob/main/man/expect_snapshot_data.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/snapr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/darwin_variant.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/expect_snapshot_data.html">expect_snapshot_data</a></li></ol></nav></header><section id="snapshot-testing-for-data.frames" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="snapshot-testing-for-data.frames">Snapshot testing for data.frames</h2>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/compare_file_object.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/expect_snapshot_data.html">expect_snapshot_data</a></li></ol></nav></header><section id="snapshot-testing-for-data.frames" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="snapshot-testing-for-data.frames">Snapshot testing for data.frames</h2>
 <section id="description" class="level3"><h3 class="anchored" data-anchor-id="description">Description</h3>
 <p>copied from <a href="https://github.com/bcgov/ssdtools">https://github.com/bcgov/ssdtools</a> with permission (<a href="https://github.com/bcgov/ssdtools/issues/379">https://github.com/bcgov/ssdtools/issues/379</a>)</p>
 </section><section id="usage" class="level3"><h3 class="anchored" data-anchor-id="usage">Usage</h3>
@@ -509,7 +515,7 @@ Paths to old and new snapshot files.
 <pre><code>── Snapshot ────────────────────────────────────────────────────────────────────</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>/tmp/RtmpAmtf4S/file1a9c26c4b00.csv
+<pre><code>/tmp/RtmpF3OK0y/file1b7946db2585.csv
 ────────────────────────────────────────────────────────────────────────────────
 ── Skip: iris snapshot ─────────────────────────────────────────────────────────
 Reason: empty test</code></pre>
