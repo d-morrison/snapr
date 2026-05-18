@@ -12,7 +12,9 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 URL: https://github.com/d-morrison/snapr, https://d-morrison.github.io/snapr/
 BugReports: https://github.com/d-morrison/snapr/issues
-Imports: 
+Depends:
+    R (>= 4.1.0)
+Imports:
     dplyr,
     jsonlite,
     readr,

@@ -11,7 +11,15 @@
 #' @export
 #' @examples
 #' \donttest{
-#' expect_snapshot_data(iris, name = "iris")
+#' # expect_snapshot_data() must be called inside a test_that() block with
+#' # testthat 3rd edition active. Outside a test suite, the snapshot is
+#' # skipped because there is no reference file to compare against.
+#' withr::with_tempdir({
+#'   testthat::test_that("iris snapshot", {
+#'     testthat::local_edition(3)
+#'     expect_snapshot_data(iris, name = "iris")
+#'   })
+#' })
 #' }
 expect_snapshot_data <- function(x, name, digits = 6, ...) {
   fun <- function(x) signif(x, digits = digits)

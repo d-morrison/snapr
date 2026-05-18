@@ -36,25 +36,34 @@
 #' where byte-level comparison would be difficult to interpret.
 #' @examples
 #' \donttest{
-#' # Snapshot a list (using RDS format with platform/version variant)
-#' expect_snapshot_object(
-#'   list(a = 1, b = 2), name = "config", variant = platform_variant()
-#' )
+#' # expect_snapshot_object() must be called inside a test_that() block with
+#' # testthat 3rd edition active. Outside a test suite, the snapshot is
+#' # skipped because there is no reference file to compare against.
+#' withr::with_tempdir({
+#'   testthat::test_that("snapshot examples", {
+#'     testthat::local_edition(3)
 #'
-#' # Snapshot a model
-#' model <- lm(mpg ~ wt, data = mtcars)
-#' expect_snapshot_object(
-#'   model, name = "model", variant = platform_variant()
-#' )
+#'     # Snapshot a list (RDS format with platform/version variant)
+#'     expect_snapshot_object(
+#'       list(a = 1, b = 2), name = "config", variant = platform_variant()
+#'     )
 #'
-#' # Snapshot with JSON format (for human-readable diffs)
-#' # Text formats don't need variants
-#' expect_snapshot_object(iris[1:5, ], name = "iris", writer = save_json)
+#'     # Snapshot a model
+#'     model <- lm(mpg ~ wt, data = mtcars)
+#'     expect_snapshot_object(
+#'       model, name = "model", variant = platform_variant()
+#'     )
 #'
-#' # Snapshot with deparse format
-#' expect_snapshot_object(
-#'   list(x = 1:5), name = "simple_list", writer = save_deparse
-#' )
+#'     # Snapshot with JSON format (for human-readable diffs)
+#'     # Text formats don't need variants
+#'     expect_snapshot_object(iris[1:5, ], name = "iris", writer = save_json)
+#'
+#'     # Snapshot with deparse format
+#'     expect_snapshot_object(
+#'       list(x = 1:5), name = "simple_list", writer = save_deparse
+#'     )
+#'   })
+#' })
 #' }
 expect_snapshot_object <- function(x,
                                    name,
