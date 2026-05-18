@@ -495,8 +495,25 @@ Paths to old and new snapshot files.
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/d-morrison/snapr">"snapr"</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://d-morrison.github.io/snapr/man/expect_snapshot_data.html">expect_snapshot_data</a></span><span class="op">(</span><span class="va">iris</span>, name <span class="op">=</span> <span class="st">"iris"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<span></span>
+<span><span class="co"># expect_snapshot_data() must be called inside a test_that() block with</span></span>
+<span><span class="co"># testthat 3rd edition active. Outside a test suite, the snapshot is</span></span>
+<span><span class="co"># skipped because there is no reference file to compare against.</span></span>
+<span><span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_tempfile.html">with_tempdir</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"iris snapshot"</span>, <span class="op">{</span></span>
+<span>    <span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/local_edition.html">local_edition</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://d-morrison.github.io/snapr/man/expect_snapshot_data.html">expect_snapshot_data</a></span><span class="op">(</span><span class="va">iris</span>, name <span class="op">=</span> <span class="st">"iris"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>── Snapshot ────────────────────────────────────────────────────────────────────</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/tmp/RtmpAmtf4S/file1a9c26c4b00.csv
+────────────────────────────────────────────────────────────────────────────────
+── Skip: iris snapshot ─────────────────────────────────────────────────────────
+Reason: empty test</code></pre>
+</div>
 </div>
 
 
