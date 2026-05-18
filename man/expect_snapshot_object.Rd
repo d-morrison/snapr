@@ -29,17 +29,10 @@ Custom writer functions should accept \code{x} and return a file path.}
 can become very long for complex objects like \link{lm}s}
 
 \item{tolerance}{If non-\code{NULL}, used as threshold for ignoring small
-floating point difference when comparing numeric vectors. Using any
-non-\code{NULL} value will cause integer and double vectors to be compared
-based on their values, not their types, and will ignore the difference
-between \code{NaN} and \code{NA_real_}.
-
-It uses the same algorithm as \code{\link[=all.equal]{all.equal()}}, i.e., first we generate
-\code{x_diff} and \code{y_diff} by subsetting \code{x} and \code{y} to look only locations
-with differences. Then we check that
-\code{mean(abs(x_diff - y_diff)) / mean(abs(y_diff))} (or just
-\code{mean(abs(x_diff - y_diff))} if \code{y_diff} is small) is less than
-\code{tolerance}.}
+floating point differences when comparing numeric vectors. Only applies
+when \code{writer} produces an RDS file (the default); silently ignored for
+text-based formats (JSON, CSV, deparse, etc.). See \code{\link[waldo:compare]{waldo::compare()}} for
+full details.}
 
 \item{...}{
   Arguments passed on to \code{\link[testthat:expect_snapshot_file]{testthat::expect_snapshot_file}}
@@ -74,7 +67,7 @@ a convenient interface for snapshot testing with sensible defaults for
 serialization.
 
 When using RDS format (the default), snapshots are compared using
-\code{\link[diffobj:diffObj]{diffobj::diffObj()}} which provides rich, visual diffs in
+\code{\link[waldo:compare]{waldo::compare()}} which provides rich, visual diffs in
 \code{\link[testthat:snapshot_review]{testthat::snapshot_review()}}. This makes it much easier to review
 changes to complex R objects.
 }
@@ -85,7 +78,7 @@ and platforms even with fixed serialization versions. Consider using
 differences, or use text-based formats like JSON or deparse for more
 stable snapshots across platforms and versions.
 
-The RDS comparison uses \code{\link[diffobj:diffObj]{diffobj::diffObj()}} internally, which provides
+The RDS comparison uses \code{\link[waldo:compare]{waldo::compare()}} internally, which provides
 rich visual diffs in \code{\link[testthat:snapshot_review]{testthat::snapshot_review()}}. This is particularly
 useful for complex objects like models, nested lists, or data structures
 where byte-level comparison would be difficult to interpret.

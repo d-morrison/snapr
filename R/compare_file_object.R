@@ -1,12 +1,12 @@
-#' Compare RDS files using diffobj for better snapshot review
+#' Compare RDS files using waldo for better snapshot review
 #' @description
 #' This comparison function loads RDS files and compares the deserialized
 #' R objects rather than raw bytes. This enables better visualization in
 #' snapshot_review() by comparing the actual object structure rather than
 #' binary serialization.
 #'
-#' For meaningful diffs in testthat's snapshot_review(), which uses diffobj
-#' internally, this function compares the R objects after deserialization.
+#' For meaningful diffs in testthat's snapshot_review(), this function
+#' compares the R objects after deserialization using [waldo::compare()].
 #'
 #' @param old Path to the old (reference) RDS file
 #' @param new Path to the new RDS file to compare
@@ -15,7 +15,6 @@
 #' @inheritDotParams waldo::compare
 #' @returns [logical] TRUE if objects are identical, FALSE otherwise
 #' @export
-#' @keywords internal
 #' @examples
 #' old_obj <- list(a = 1, b = 2)
 #' new_obj <- list(a = 1, b = 3)

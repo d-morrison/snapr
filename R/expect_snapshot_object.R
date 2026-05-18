@@ -6,7 +6,7 @@
 #' serialization.
 #'
 #' When using RDS format (the default), snapshots are compared using
-#' [diffobj::diffObj()] which provides rich, visual diffs in
+#' [waldo::compare()] which provides rich, visual diffs in
 #' [testthat::snapshot_review()]. This makes it much easier to review
 #' changes to complex R objects.
 #'
@@ -19,7 +19,11 @@
 #'   Other options include [save_json()], [save_deparse()], [save_csv()].
 #'   Custom writer functions should accept `x` and return a file path.
 #' @inheritParams compare_file_object
-#' @inheritParams waldo::compare
+#' @param tolerance If non-`NULL`, used as threshold for ignoring small
+#'   floating point differences when comparing numeric vectors. Only applies
+#'   when `writer` produces an RDS file (the default); silently ignored for
+#'   text-based formats (JSON, CSV, deparse, etc.). See [waldo::compare()] for
+#'   full details.
 #' @inheritDotParams testthat::expect_snapshot_file -path -name -compare
 #' @returns [NULL] (from [testthat::expect_snapshot_file()])
 #' @export
@@ -30,7 +34,7 @@
 #' differences, or use text-based formats like JSON or deparse for more
 #' stable snapshots across platforms and versions.
 #'
-#' The RDS comparison uses [diffobj::diffObj()] internally, which provides
+#' The RDS comparison uses [waldo::compare()] internally, which provides
 #' rich visual diffs in [testthat::snapshot_review()]. This is particularly
 #' useful for complex objects like models, nested lists, or data structures
 #' where byte-level comparison would be difficult to interpret.

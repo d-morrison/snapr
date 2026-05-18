@@ -2,7 +2,7 @@
 % Please edit documentation in R/compare_file_object.R
 \name{compare_file_object}
 \alias{compare_file_object}
-\title{Compare RDS files using diffobj for better snapshot review}
+\title{Compare RDS files using waldo for better snapshot review}
 \usage{
 compare_file_object(old, new, print = FALSE, ...)
 }
@@ -74,8 +74,8 @@ R objects rather than raw bytes. This enables better visualization in
 snapshot_review() by comparing the actual object structure rather than
 binary serialization.
 
-For meaningful diffs in testthat's snapshot_review(), which uses diffobj
-internally, this function compares the R objects after deserialization.
+For meaningful diffs in testthat's snapshot_review(), this function
+compares the R objects after deserialization using \code{\link[waldo:compare]{waldo::compare()}}.
 }
 \examples{
 old_obj <- list(a = 1, b = 2)
@@ -86,4 +86,3 @@ saveRDS(old_obj, old_path)
 saveRDS(new_obj, new_path)
 compare_file_object(old_path, new_path)
 }
-\keyword{internal}
