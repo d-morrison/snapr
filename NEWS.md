@@ -1,3 +1,5 @@
+# snapr (development version)
+
 # snapr 0.1.0
 
 * Initial release.

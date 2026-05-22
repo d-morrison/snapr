@@ -1,6 +1,6 @@
 Package: snapr
 Title: Convenient Snapshot Testing Functions for Packages
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R:
     person("Douglas Ezra", "Morrison", , "demorrison@ucdavis.edu", role = c("aut", "cre"))
 Description: Provides convenient snapshot testing functions for packages,
