@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>system_os – snapr</title>
+<title>compare_file_object – snapr</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -305,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/compare_file_object.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/system_os.html">system_os</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/compare_file_object.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/compare_file_object.html">compare_file_object</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -347,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/compare_file_object.html" class="sidebar-item-text sidebar-link">
+  <a href="../man/compare_file_object.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">compare_file_object</span></a>
   </div>
 </li>
@@ -383,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/system_os.html" class="sidebar-item-text sidebar-link active">
+  <a href="../man/system_os.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">system_os</span></a>
   </div>
 </li>
@@ -410,46 +410,138 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#get-the-current-operating-system" id="toc-get-the-current-operating-system" class="nav-link active" data-scroll-target="#get-the-current-operating-system">Get the current operating system</a>
+<a href="#compare-rds-files-using-waldo-for-better-snapshot-review" id="toc-compare-rds-files-using-waldo-for-better-snapshot-review" class="nav-link active" data-scroll-target="#compare-rds-files-using-waldo-for-better-snapshot-review">Compare RDS files using waldo for better snapshot review</a>
   <ul class="collapse">
 <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
   <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
-  <li><a href="#details" id="toc-details" class="nav-link" data-scroll-target="#details">Details</a></li>
+  <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments">Arguments</a></li>
   <li><a href="#value" id="toc-value" class="nav-link" data-scroll-target="#value">Value</a></li>
   <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   </ul>
 </li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/snapr/edit/main/man/system_os.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/snapr/blob/main/man/system_os.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/snapr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/snapr/edit/main/man/compare_file_object.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/snapr/blob/main/man/compare_file_object.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/snapr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/compare_file_object.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/system_os.html">system_os</a></li></ol></nav></header><section id="get-the-current-operating-system" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="get-the-current-operating-system">Get the current operating system</h2>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/compare_file_object.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/compare_file_object.html">compare_file_object</a></li></ol></nav></header><section id="compare-rds-files-using-waldo-for-better-snapshot-review" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="compare-rds-files-using-waldo-for-better-snapshot-review">Compare RDS files using waldo for better snapshot review</h2>
 <section id="description" class="level3"><h3 class="anchored" data-anchor-id="description">Description</h3>
-<p>Returns the name of the current operating system in lowercase. This is a simple wrapper around <code>Sys.info()[[“sysname”]]</code>.</p>
+<p>This comparison function loads RDS files and compares the deserialized R objects rather than raw bytes. This enables better visualization in snapshot_review() by comparing the actual object structure rather than binary serialization.</p>
+<p>For meaningful diffs in testthat’s snapshot_review(), this function compares the R objects after deserialization using <code><a href="https://waldo.r-lib.org/reference/compare.html">waldo::compare()</a></code>.</p>
 </section><section id="usage" class="level3"><h3 class="anchored" data-anchor-id="usage">Usage</h3>
-<pre><code class="language-R"><a href="https://d-morrison.github.io/snapr/man/system_os.html">system_os()
-</a></code></pre>
-</section><section id="details" class="level3"><h3 class="anchored" data-anchor-id="details">Details</h3>
-<p>This function is used with testthat’s <code>variant</code> parameter in <code><a href="https://testthat.r-lib.org/reference/expect_snapshot_file.html">testthat::expect_snapshot_file()</a></code> to create OS-specific snapshots when file formats produce different output across platforms.</p>
-<p>Common use cases:</p>
-<ul>
-<li>
-<p>RDS files: Binary serialization format that can differ across OS</p>
-</li>
-<li>
-<p>Platform-specific numeric computations (e.g., MCMC algorithms)</p>
-</li>
-<li>
-<p>Files with platform-specific line endings or encodings</p>
-</li>
-</ul></section><section id="value" class="level3"><h3 class="anchored" data-anchor-id="value">Value</h3>
-<p>A character string: "linux", "darwin" (macOS), or "windows"</p>
+<pre><code class="language-R">compare_file_object(old, new, print = FALSE, ...)
+</code></pre>
+</section><section id="arguments" class="level3"><h3 class="anchored" data-anchor-id="arguments">Arguments</h3>
+<table role="presentation">
+<tbody><tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="old">old</code>
+</td>
+<td>
+Path to the old (reference) RDS file
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="new">new</code>
+</td>
+<td>
+Path to the new RDS file to compare
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="print">print</code>
+</td>
+<td>
+logical whether to print waldo::compare output to R console; can become very long for complex objects like lms
+</td>
+</tr>
+<tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="...">…</code>
+</td>
+<td>
+<p>Arguments passed on to <code><a href="https://waldo.r-lib.org/reference/compare.html">waldo::compare</a></code></p>
+<dl>
+<dt>
+<code>x,y</code>
+</dt>
+<dd>
+Objects to compare. <code>x</code> is treated as the reference object so messages describe how <code>y</code> is different to <code>x</code>.
+</dd>
+<dt>
+<code>x_arg,y_arg</code>
+</dt>
+<dd>
+Name of <code>x</code> and <code>y</code> arguments, used when generated paths to internal components. These default to "old" and "new" since it’s most natural to supply the previous value then the new value.
+</dd>
+<dt>
+<code>tolerance</code>
+</dt>
+<dd>
+<p>If non-<code>NULL</code>, used as threshold for ignoring small floating point difference when comparing numeric vectors. Using any non-<code>NULL</code> value will cause integer and double vectors to be compared based on their values, not their types, and will ignore the difference between <code>NaN</code> and <code>NA_real_</code>.</p>
+It uses the same algorithm as <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code>, i.e., first we generate <code>x_diff</code> and <code>y_diff</code> by subsetting <code>x</code> and <code>y</code> to look only locations with differences. Then we check that <code>mean(abs(x_diff - y_diff)) / mean(abs(y_diff))</code> (or just <code>mean(abs(x_diff - y_diff))</code> if <code>y_diff</code> is small) is less than <code>tolerance</code>.
+</dd>
+<dt>
+<code>max_diffs</code>
+</dt>
+<dd>
+Control the maximum number of differences shown. The default shows 10 differences when run interactively and all differences when run in CI. Set <code>max_diffs = Inf</code> to see all differences.
+</dd>
+<dt>
+<code>ignore_srcref</code>
+</dt>
+<dd>
+Ignore differences in function <code>srcref</code>s? <code>TRUE</code> by default since the <code>srcref</code> does not change the behaviour of a function, only its printed representation.
+</dd>
+<dt>
+<code>ignore_attr</code>
+</dt>
+<dd>
+<p>Ignore differences in specified attributes? Supply a character vector to ignore differences in named attributes. By default the <code>“waldo_opts”</code> attribute is listed in <code>ignore_attr</code> so that changes to it are not reported; if you customize <code>ignore_attr</code>, you will probably want to do this yourself.</p>
+For backward compatibility with <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code>, you can also use <code>TRUE</code>, to all ignore differences in all attributes. This is not generally recommended as it is a blunt tool that will ignore many important functional differences.
+</dd>
+<dt>
+<code>ignore_encoding</code>
+</dt>
+<dd>
+Ignore string encoding? <code>TRUE</code> by default, because this is R’s default behaviour. Use <code>FALSE</code> when specifically concerned with the encoding, not just the value of the string.
+</dd>
+<dt>
+<code>ignore_function_env,ignore_formula_env</code>
+</dt>
+<dd>
+Ignore the environments of functions and formulas, respectively? These are provided primarily for backward compatibility with <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> which always ignores these environments.
+</dd>
+<dt>
+<code>list_as_map</code>
+</dt>
+<dd>
+Compare lists as if they are mappings between names and values. Concretely, this drops <code>NULL</code>s in both objects and sorts named components.
+</dd>
+<dt>
+<code>quote_strings</code>
+</dt>
+<dd>
+Should strings be surrounded by quotes? If <code>FALSE</code>, only side-by-side and line-by-line comparisons will be used, and there’s no way to distinguish between <code>NA</code> and <code>“NA”</code>.
+</dd>
+</dl>
+</td>
+</tr>
+</tbody></table></section><section id="value" class="level3"><h3 class="anchored" data-anchor-id="value">Value</h3>
+<p>logical TRUE if objects are identical, FALSE otherwise</p>
 </section><section id="examples" class="level3"><h3 class="anchored" data-anchor-id="examples">Examples</h3>
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/d-morrison/snapr">"snapr"</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://d-morrison.github.io/snapr/man/system_os.html">system_os</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="va">old_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">new_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">old_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".rds"</span><span class="op">)</span></span>
+<span><span class="va">new_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".rds"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">old_obj</span>, <span class="va">old_path</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">new_obj</span>, <span class="va">new_path</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://d-morrison.github.io/snapr/man/compare_file_object.html">compare_file_object</a></span><span class="op">(</span><span class="va">old_path</span>, <span class="va">new_path</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code>[1] "linux"</code></pre>
+<pre><code>[1] FALSE</code></pre>
 </div>
 </div>
 
@@ -871,4 +963,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/d-morrison/snapr/edit/main/man/system_os.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/snapr/blob/main/man/system_os.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/snapr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/d-morrison/snapr/edit/main/man/compare_file_object.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/snapr/blob/main/man/compare_file_object.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/snapr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

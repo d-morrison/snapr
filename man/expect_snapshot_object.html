@@ -272,6 +272,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo.svg" alt="snapr hex sticker — a cartoon Northern red snapper" class="navbar-logo light-content"><img src="../logo.svg" alt="snapr hex sticker — a cartoon Northern red snapper" class="navbar-logo dark-content"></a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">snapr</span>
     </a>
@@ -303,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/darwin_variant.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/expect_snapshot_object.html">expect_snapshot_object</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/compare_file_object.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/expect_snapshot_object.html">expect_snapshot_object</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -344,6 +346,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../man/compare_file_object.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">compare_file_object</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../man/darwin_variant.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">darwin_variant</span></a>
@@ -415,10 +423,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/snapr/edit/main/man/expect_snapshot_object.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/snapr/blob/main/man/expect_snapshot_object.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/snapr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/darwin_variant.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/expect_snapshot_object.html">expect_snapshot_object</a></li></ol></nav></header><section id="snapshot-testing-for-r-objects" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="snapshot-testing-for-r-objects">Snapshot testing for R objects</h2>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/compare_file_object.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/expect_snapshot_object.html">expect_snapshot_object</a></li></ol></nav></header><section id="snapshot-testing-for-r-objects" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="snapshot-testing-for-r-objects">Snapshot testing for R objects</h2>
 <section id="description" class="level3"><h3 class="anchored" data-anchor-id="description">Description</h3>
 <p>A flexible wrapper around <code><a href="https://testthat.r-lib.org/reference/expect_snapshot_file.html">testthat::expect_snapshot_file()</a></code> that allows snapshotting any R object, not just data.frames. This function provides a convenient interface for snapshot testing with sensible defaults for serialization.</p>
-<p>When using RDS format (the default), snapshots are compared using <code><a href="https://rdrr.io/pkg/diffobj/man/diffObj.html">diffobj::diffObj()</a></code> which provides rich, visual diffs in <code><a href="https://testthat.r-lib.org/reference/snapshot_accept.html">testthat::snapshot_review()</a></code>. This makes it much easier to review changes to complex R objects.</p>
+<p>When using RDS format (the default), snapshots are compared using <code><a href="https://waldo.r-lib.org/reference/compare.html">waldo::compare()</a></code> which provides rich, visual diffs in <code><a href="https://testthat.r-lib.org/reference/snapshot_accept.html">testthat::snapshot_review()</a></code>. This makes it much easier to review changes to complex R objects.</p>
 </section><section id="usage" class="level3"><h3 class="anchored" data-anchor-id="usage">Usage</h3>
 <pre><code class="language-R">expect_snapshot_object(
   x,
@@ -468,8 +476,7 @@ logical whether to print waldo::compare output to R console; can become very lon
 <code id="tolerance">tolerance</code>
 </td>
 <td>
-<p>If non-<code>NULL</code>, used as threshold for ignoring small floating point difference when comparing numeric vectors. Using any non-<code>NULL</code> value will cause integer and double vectors to be compared based on their values, not their types, and will ignore the difference between <code>NaN</code> and <code>NA_real_</code>.</p>
-It uses the same algorithm as <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code>, i.e., first we generate <code>x_diff</code> and <code>y_diff</code> by subsetting <code>x</code> and <code>y</code> to look only locations with differences. Then we check that <code>mean(abs(x_diff - y_diff)) / mean(abs(y_diff))</code> (or just <code>mean(abs(x_diff - y_diff))</code> if <code>y_diff</code> is small) is less than <code>tolerance</code>.
+If non-<code>NULL</code>, used as threshold for ignoring small floating point differences when comparing numeric vectors. Only applies when <code>writer</code> produces an RDS file (the default); silently ignored for text-based formats (JSON, CSV, deparse, etc.). See <code><a href="https://waldo.r-lib.org/reference/compare.html">waldo::compare()</a></code> for full details.
 </td>
 </tr>
 <tr>
@@ -504,38 +511,77 @@ Optionally, a function to scrub sensitive or stochastic text from the output. Sh
 <p>If not-<code>NULL</code>, results will be saved in <code style="white-space: pre;">_snaps/{variant}/{test}/{name}</code>. This allows you to create different snapshots for different scenarios, like different operating systems or different R versions.</p>
 Note that there’s no way to declare all possible variants up front which means that as soon as you start using variants, you are responsible for deleting snapshot variants that are no longer used. (testthat will still delete all variants if you delete the test.)
 </dd>
+<dt>
+<code>old,new</code>
+</dt>
+<dd>
+Paths to old and new snapshot files.
+</dd>
 </dl>
 </td>
 </tr>
 </tbody></table></section><section id="details" class="level3"><h3 class="anchored" data-anchor-id="details">Details</h3>
 <p>When using RDS format (the default), snapshots can vary across R versions and platforms even with fixed serialization versions. Consider using <code>variant = platform_variant()</code> for RDS snapshots to handle these differences, or use text-based formats like JSON or deparse for more stable snapshots across platforms and versions.</p>
-<p>The RDS comparison uses <code><a href="https://rdrr.io/pkg/diffobj/man/diffObj.html">diffobj::diffObj()</a></code> internally, which provides rich visual diffs in <code><a href="https://testthat.r-lib.org/reference/snapshot_accept.html">testthat::snapshot_review()</a></code>. This is particularly useful for complex objects like models, nested lists, or data structures where byte-level comparison would be difficult to interpret.</p>
+<p>The RDS comparison uses <code><a href="https://waldo.r-lib.org/reference/compare.html">waldo::compare()</a></code> internally, which provides rich visual diffs in <code><a href="https://testthat.r-lib.org/reference/snapshot_accept.html">testthat::snapshot_review()</a></code>. This is particularly useful for complex objects like models, nested lists, or data structures where byte-level comparison would be difficult to interpret.</p>
 </section><section id="value" class="level3"><h3 class="anchored" data-anchor-id="value">Value</h3>
 <p>NULL (from <code><a href="https://testthat.r-lib.org/reference/expect_snapshot_file.html">testthat::expect_snapshot_file()</a></code>)</p>
 </section><section id="examples" class="level3"><h3 class="anchored" data-anchor-id="examples">Examples</h3>
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/d-morrison/snapr">"snapr"</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Snapshot a list (using RDS format with platform/version variant)</span></span>
-<span><span class="fu"><a href="https://d-morrison.github.io/snapr/man/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"config"</span>, variant <span class="op">=</span> <span class="fu"><a href="https://d-morrison.github.io/snapr/man/platform_variant.html">platform_variant</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Snapshot a model</span></span>
-<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://d-morrison.github.io/snapr/man/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span></span>
-<span>  <span class="va">model</span>, name <span class="op">=</span> <span class="st">"model"</span>, variant <span class="op">=</span> <span class="fu"><a href="https://d-morrison.github.io/snapr/man/platform_variant.html">platform_variant</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
+<span><span class="co"># expect_snapshot_object() must be called inside a test_that() block with</span></span>
+<span><span class="co"># testthat 3rd edition active. Outside a test suite, the snapshot is</span></span>
+<span><span class="co"># skipped because there is no reference file to compare against.</span></span>
+<span><span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_tempfile.html">with_tempdir</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"snapshot examples"</span>, <span class="op">{</span></span>
+<span>    <span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/local_edition.html">local_edition</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Snapshot with JSON format (for human-readable diffs)</span></span>
-<span><span class="co"># Text formats don't need variants</span></span>
-<span><span class="fu"><a href="https://d-morrison.github.io/snapr/man/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span>, name <span class="op">=</span> <span class="st">"iris"</span>, writer <span class="op">=</span> <span class="va">save_json</span><span class="op">)</span></span>
+<span>    <span class="co"># Snapshot a list (RDS format with platform/version variant)</span></span>
+<span>    <span class="fu"><a href="https://d-morrison.github.io/snapr/man/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"config"</span>, variant <span class="op">=</span> <span class="fu"><a href="https://d-morrison.github.io/snapr/man/platform_variant.html">platform_variant</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Snapshot with deparse format</span></span>
-<span><span class="fu"><a href="https://d-morrison.github.io/snapr/man/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"simple_list"</span>, writer <span class="op">=</span> <span class="va">save_deparse</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<span>    <span class="co"># Snapshot a model</span></span>
+<span>    <span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://d-morrison.github.io/snapr/man/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span></span>
+<span>      <span class="va">model</span>, name <span class="op">=</span> <span class="st">"model"</span>, variant <span class="op">=</span> <span class="fu"><a href="https://d-morrison.github.io/snapr/man/platform_variant.html">platform_variant</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span></span>
+<span>    <span class="co"># Snapshot with JSON format (for human-readable diffs)</span></span>
+<span>    <span class="co"># Text formats don't need variants</span></span>
+<span>    <span class="fu"><a href="https://d-morrison.github.io/snapr/man/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span>, name <span class="op">=</span> <span class="st">"iris"</span>, writer <span class="op">=</span> <span class="va">save_json</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="co"># Snapshot with deparse format</span></span>
+<span>    <span class="fu"><a href="https://d-morrison.github.io/snapr/man/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"simple_list"</span>, writer <span class="op">=</span> <span class="va">save_deparse</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>── Snapshot ────────────────────────────────────────────────────────────────────</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/tmp/RtmpDaiIUA/file1c84708ccf8c.rds
+────────────────────────────────────────────────────────────────────────────────
+── Snapshot ────────────────────────────────────────────────────────────────────</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/tmp/RtmpDaiIUA/file1c841baf5971.rds
+────────────────────────────────────────────────────────────────────────────────
+── Snapshot ────────────────────────────────────────────────────────────────────</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/tmp/RtmpDaiIUA/file1c847c030e62.json
+────────────────────────────────────────────────────────────────────────────────
+── Snapshot ────────────────────────────────────────────────────────────────────</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/tmp/RtmpDaiIUA/file1c8462eff665.txt
+────────────────────────────────────────────────────────────────────────────────
+── Skip: snapshot examples ─────────────────────────────────────────────────────
+Reason: empty test</code></pre>
+</div>
 </div>
 
 

@@ -272,6 +272,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo.svg" alt="snapr hex sticker — a cartoon Northern red snapper" class="navbar-logo light-content"><img src="../logo.svg" alt="snapr hex sticker — a cartoon Northern red snapper" class="navbar-logo dark-content"></a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">snapr</span>
     </a>
@@ -303,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/darwin_variant.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/platform_variant.html">platform_variant</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/compare_file_object.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/platform_variant.html">platform_variant</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -344,6 +346,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../man/compare_file_object.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">compare_file_object</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../man/darwin_variant.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">darwin_variant</span></a>
@@ -414,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/snapr/edit/main/man/platform_variant.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/snapr/blob/main/man/platform_variant.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/snapr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/darwin_variant.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/platform_variant.html">platform_variant</a></li></ol></nav></header><section id="get-platform-variant-including-os-and-r-version" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="get-platform-variant-including-os-and-r-version">Get platform variant including OS and R version</h2>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/compare_file_object.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/platform_variant.html">platform_variant</a></li></ol></nav></header><section id="get-platform-variant-including-os-and-r-version" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="get-platform-variant-including-os-and-r-version">Get platform variant including OS and R version</h2>
 <section id="description" class="level3"><h3 class="anchored" data-anchor-id="description">Description</h3>
 <p>Returns a variant string combining OS and R major.minor version. This is useful for RDS snapshots that vary by both platform and R version.</p>
 </section><section id="usage" class="level3"><h3 class="anchored" data-anchor-id="usage">Usage</h3>
@@ -429,11 +437,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/d-morrison/snapr">"snapr"</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Use with expect_snapshot_file for RDS snapshots</span></span>
-<span><span class="fu"><a href="https://d-morrison.github.io/snapr/man/expect_snapshot_object.html">expect_snapshot_object</a></span><span class="op">(</span></span>
-<span>  <span class="va">my_object</span>, name <span class="op">=</span> <span class="st">"test"</span>, variant <span class="op">=</span> <span class="fu"><a href="https://d-morrison.github.io/snapr/man/platform_variant.html">platform_variant</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<span><span class="fu"><a href="https://d-morrison.github.io/snapr/man/platform_variant.html">platform_variant</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>[1] "linux-4.6"</code></pre>
+</div>
 </div>
 
 

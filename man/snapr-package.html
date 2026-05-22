@@ -248,6 +248,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo.svg" alt="snapr hex sticker — a cartoon Northern red snapper" class="navbar-logo light-content">
+    <img src="../logo.svg" alt="snapr hex sticker — a cartoon Northern red snapper" class="navbar-logo dark-content">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">snapr</span>
     </a>
@@ -281,7 +285,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/darwin_variant.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/snapr-package.html">snapr-package</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/compare_file_object.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/snapr-package.html">snapr-package</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -325,6 +329,12 @@ ul.task-list li input[type="checkbox"] {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../man/compare_file_object.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">compare_file_object</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../man/darwin_variant.html" class="sidebar-item-text sidebar-link">
@@ -385,7 +395,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#snapr-convenient-snapshot-testing-functions-for-r-packages" id="toc-snapr-convenient-snapshot-testing-functions-for-r-packages" class="nav-link active" data-scroll-target="#snapr-convenient-snapshot-testing-functions-for-r-packages">snapr: Convenient Snapshot Testing Functions for R Packages</a>
+  <li><a href="#snapr-convenient-snapshot-testing-functions-for-packages" id="toc-snapr-convenient-snapshot-testing-functions-for-packages" class="nav-link active" data-scroll-target="#snapr-convenient-snapshot-testing-functions-for-packages">snapr: Convenient Snapshot Testing Functions for Packages</a>
   <ul class="collapse">
   <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
   <li><a href="#authors" id="toc-authors" class="nav-link" data-scroll-target="#authors">Author(s)</a></li>
@@ -395,21 +405,28 @@ ul.task-list li input[type="checkbox"] {
 <div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/snapr/edit/main/man/snapr-package.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/snapr/blob/main/man/snapr-package.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/snapr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/darwin_variant.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/snapr-package.html">snapr-package</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/compare_file_object.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/snapr-package.html">snapr-package</a></li></ol></nav></header>
 
 
 
 
 
-<section id="snapr-convenient-snapshot-testing-functions-for-r-packages" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="snapr-convenient-snapshot-testing-functions-for-r-packages">snapr: Convenient Snapshot Testing Functions for R Packages</h2>
+<section id="snapr-convenient-snapshot-testing-functions-for-packages" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="snapr-convenient-snapshot-testing-functions-for-packages">snapr: Convenient Snapshot Testing Functions for Packages</h2>
 <section id="description" class="level3">
 <h3 class="anchored" data-anchor-id="description">Description</h3>
-<p>Provides convenient snapshot testing functions for R packages, including expect_snapshot_data() for data.frames and expect_snapshot_object() for any R object.</p>
+<p><img src="../help/figures/logo.svg" style="float: right" alt="logo" width="120"></p>
+<p>Provides convenient snapshot testing functions for packages, including expect_snapshot_data() for data.frames and expect_snapshot_object() for any R object.</p>
 </section>
 <section id="authors" class="level3">
 <h3 class="anchored" data-anchor-id="authors">Author(s)</h3>
 <p><strong>Maintainer</strong>: Douglas Ezra Morrison <a href="mailto:demorrison@ucdavis.edu">demorrison@ucdavis.edu</a></p>
+<p>Authors:</p>
+<ul>
+<li>
+<p>Douglas Ezra Morrison <a href="mailto:demorrison@ucdavis.edu">demorrison@ucdavis.edu</a></p>
+</li>
+</ul>
 </section>
 <section id="see-also" class="level3">
 <h3 class="anchored" data-anchor-id="see-also">See Also</h3>
