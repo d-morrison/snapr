@@ -3,3 +3,8 @@ body.quarto-dark code:not(pre > code) {
   background-color: #404040;
   color: #e6e6e6;
 }
+
+/* Hide hex sticker from page heading (logo is already shown in the navbar) */
+h1 img[align="right"] {
+  display: none;
+}

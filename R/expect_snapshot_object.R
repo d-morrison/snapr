@@ -6,7 +6,7 @@
 #' serialization.
 #'
 #' When using RDS format (the default), snapshots are compared using
-#' [diffobj::diffObj()] which provides rich, visual diffs in
+#' [waldo::compare()] which provides rich, visual diffs in
 #' [testthat::snapshot_review()]. This makes it much easier to review
 #' changes to complex R objects.
 #'
@@ -19,7 +19,11 @@
 #'   Other options include [save_json()], [save_deparse()], [save_csv()].
 #'   Custom writer functions should accept `x` and return a file path.
 #' @inheritParams compare_file_object
-#' @inheritParams waldo::compare
+#' @param tolerance If non-`NULL`, used as threshold for ignoring small
+#'   floating point differences when comparing numeric vectors. Only applies
+#'   when `writer` produces an RDS file (the default); silently ignored for
+#'   text-based formats (JSON, CSV, deparse, etc.). See [waldo::compare()] for
+#'   full details.
 #' @inheritDotParams testthat::expect_snapshot_file -path -name -compare
 #' @returns [NULL] (from [testthat::expect_snapshot_file()])
 #' @export
@@ -30,31 +34,40 @@
 #' differences, or use text-based formats like JSON or deparse for more
 #' stable snapshots across platforms and versions.
 #'
-#' The RDS comparison uses [diffobj::diffObj()] internally, which provides
+#' The RDS comparison uses [waldo::compare()] internally, which provides
 #' rich visual diffs in [testthat::snapshot_review()]. This is particularly
 #' useful for complex objects like models, nested lists, or data structures
 #' where byte-level comparison would be difficult to interpret.
 #' @examples
-#' \dontrun{
-#' # Snapshot a list (using RDS format with platform/version variant)
-#' expect_snapshot_object(
-#'   list(a = 1, b = 2), name = "config", variant = platform_variant()
-#' )
+#' \donttest{
+#' # expect_snapshot_object() must be called inside a test_that() block with
+#' # testthat 3rd edition active. Outside a test suite, the snapshot is
+#' # skipped because there is no reference file to compare against.
+#' withr::with_tempdir({
+#'   testthat::test_that("snapshot examples", {
+#'     testthat::local_edition(3)
 #'
-#' # Snapshot a model
-#' model <- lm(mpg ~ wt, data = mtcars)
-#' expect_snapshot_object(
-#'   model, name = "model", variant = platform_variant()
-#' )
+#'     # Snapshot a list (RDS format with platform/version variant)
+#'     expect_snapshot_object(
+#'       list(a = 1, b = 2), name = "config", variant = platform_variant()
+#'     )
 #'
-#' # Snapshot with JSON format (for human-readable diffs)
-#' # Text formats don't need variants
-#' expect_snapshot_object(iris[1:5, ], name = "iris", writer = save_json)
+#'     # Snapshot a model
+#'     model <- lm(mpg ~ wt, data = mtcars)
+#'     expect_snapshot_object(
+#'       model, name = "model", variant = platform_variant()
+#'     )
 #'
-#' # Snapshot with deparse format
-#' expect_snapshot_object(
-#'   list(x = 1:5), name = "simple_list", writer = save_deparse
-#' )
+#'     # Snapshot with JSON format (for human-readable diffs)
+#'     # Text formats don't need variants
+#'     expect_snapshot_object(iris[1:5, ], name = "iris", writer = save_json)
+#'
+#'     # Snapshot with deparse format
+#'     expect_snapshot_object(
+#'       list(x = 1:5), name = "simple_list", writer = save_deparse
+#'     )
+#'   })
+#' })
 #' }
 expect_snapshot_object <- function(x,
                                    name,

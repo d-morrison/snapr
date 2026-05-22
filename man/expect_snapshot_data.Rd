@@ -33,6 +33,7 @@ Note that there's no way to declare all possible variants up front which
 means that as soon as you start using variants, you are responsible for
 deleting snapshot variants that are no longer used. (testthat will still
 delete all variants if you delete the test.)}
+    \item{\code{old,new}}{Paths to old and new snapshot files.}
   }}
 }
 \value{
@@ -43,7 +44,15 @@ copied from \url{https://github.com/bcgov/ssdtools}
 with permission (\url{https://github.com/bcgov/ssdtools/issues/379})
 }
 \examples{
-\dontrun{
-expect_snapshot_data(iris, name = "iris")
+\donttest{
+# expect_snapshot_data() must be called inside a test_that() block with
+# testthat 3rd edition active. Outside a test suite, the snapshot is
+# skipped because there is no reference file to compare against.
+withr::with_tempdir({
+  testthat::test_that("iris snapshot", {
+    testthat::local_edition(3)
+    expect_snapshot_data(iris, name = "iris")
+  })
+})
 }
 }

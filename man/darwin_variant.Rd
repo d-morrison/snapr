@@ -29,10 +29,5 @@ Common use cases:
 }
 }
 \examples{
-\dontrun{
-# Use with expect_snapshot_file when only macOS differs
-expect_snapshot_object(
-  mcmc_result, name = "test", variant = darwin_variant()
-)
-}
+darwin_variant()
 }

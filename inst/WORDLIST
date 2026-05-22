@@ -1,10 +1,14 @@
 CMD
 Codecov
 darwin
+behaviour
 deserialization
 deserialized
+deserializing
 diffobj
+diffviewer
 linux
+morrison
 snapshotting
 testthat
 testthat's

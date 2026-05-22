@@ -4,9 +4,11 @@
 \name{snapr-package}
 \alias{snapr}
 \alias{snapr-package}
-\title{snapr: Convenient Snapshot Testing Functions for R Packages}
+\title{snapr: Convenient Snapshot Testing Functions for Packages}
 \description{
-Provides convenient snapshot testing functions for R packages, including expect_snapshot_data() for data.frames and expect_snapshot_object() for any R object.
+\if{html}{\figure{logo.svg}{options: style='float: right' alt='logo' width='120'}}
+
+Provides convenient snapshot testing functions for packages, including expect_snapshot_data() for data.frames and expect_snapshot_object() for any R object.
 }
 \seealso{
 Useful links:
@@ -19,5 +21,10 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Douglas Ezra Morrison \email{demorrison@ucdavis.edu}
+
+Authors:
+\itemize{
+  \item Douglas Ezra Morrison \email{demorrison@ucdavis.edu}
+}
 
 }

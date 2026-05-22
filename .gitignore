@@ -3,3 +3,4 @@ _quarto/
 docs
 altdoc/freeze.rds
 vignettes/*_files/
+.positai
