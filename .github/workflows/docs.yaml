@@ -75,7 +75,7 @@ jobs:
             website
           extra-packages: |
             d-morrison/altdoc@recursive-qmd-search
-            quarto-dev/quarto
+            quarto-dev/quarto-r
             any::sessioninfo
             local::.
 
